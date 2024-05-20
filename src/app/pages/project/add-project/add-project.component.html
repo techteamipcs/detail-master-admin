@@ -1,0 +1,139 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+	style="min-height: 400px;  background-size: cover; background-position: center top;">
+	<!-- Mask -->
+	<span class="mask bg-gradient-info opacity-8"></span>
+	<!-- Header container -->
+	<div class="container-fluid d-flex align-items-center">
+		<div class="row">
+			<div class="col-lg-7 col-md-10">
+				<h1 class="display-2 text-white">Project Information </h1>
+				<p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with
+					your work
+					and manage your projects or assigned tasks</p>
+				<!-- <a href="#!" class="btn btn-info">Edit Pages</a> -->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid mt--7">
+	<div class="row">
+		<div class="col-xl-12 order-xl-1">
+			<div class="card bg-secondary shadow">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">Edit Project</h3>
+						</div>
+					</div>
+					<div class="alert alert-success alert-dismissable" style="margin-left: 0;" *ngIf="msg_success">
+						{{throw_msg}}
+					</div>
+					<div class="alert alert-danger alert-dismissable" style="margin-left: 0;" *ngIf="msg_danger">
+						{{throw_msg}}
+					</div>
+				</div>
+				<div class="card-body">
+					<!-- form start -->
+					<form [formGroup]="addProjectForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+						<div class="box-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Project Name</label>
+								<input type="text" name="name" autocomplete="off" formControlName="name" class="form-control"
+									placeholder="Project Name">
+								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Project Name
+									is
+									required</span>
+								<span *ngIf="submitted && hasError('name','maxlength')" class="alert-danger">Please
+									Enter the 30 length Project Name</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Type of structure</label>
+								<!-- Using Items Input -->
+								<ng-select class="form-control" [items]="categories" bindLabel="name" placeholder="Select Category"
+									[multiple]="true" formControlName="category">
+								</ng-select>
+								<span *ngIf="submitted && hasError('category','required')" class="alert-danger">Category is
+									required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Scope of project</label>
+								<input type="text" name="scope" autocomplete="off" formControlName="scope" class="form-control" placeholder="Scope of project">
+								<span *ngIf="submitted && hasError('scope','required')" class="alert-danger">Scope is
+									required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Project Overview</label>
+								<angular-editor name="desc" formControlName="desc" [config]="editorConfig">
+								</angular-editor>
+								<span *ngIf="submitted && hasError('desc','required')" class="alert-danger">Description is
+									required</span>
+							</div>
+							
+							<div class="form-group">
+								<label for="exampleInputEmail1">Link</label>
+								<input type="text" name="link" autocomplete="off" formControlName="link" class="form-control"
+									placeholder="Project Link">
+								<span *ngIf="submitted && hasError('link','required')" class="alert-danger">Link is
+									required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Project Image</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
+									141)</label>
+								<div class="row" *ngIf="projectImage">
+									<div class="col-md-2">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{projectImage}}">
+										<a href="javascript:;" (click)="removeImage(projectImage)" class="small-box-footer"><i
+												class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Project Multil Image</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputProjectImage($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail2" style="display: block;">(Required Size 141 *
+									141)</label>
+
+								<div class="row">
+									<div class="col-md-2" *ngFor="let proimage of projectMultiImages; let i = index;">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{proimage}}">
+										<a href="javascript:;" (click)="removeImageHover(i)" class="small-box-footer"><i
+												class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Sequence Number</label>
+								<input type="number" name="sequence_number" autocomplete="off" formControlName="sequence_number" class="form-control"
+									placeholder="Sequence Number">
+								<span *ngIf="submitted && hasError('sequence_number','required')" class="alert-danger">Sequence Number is required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Status</label>
+								<select name="status" formControlName="status" class="form-control">
+									<option value="true">Active</option>
+									<option value="false">InActive</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="cancel" (click)="onCancel()" class="btn btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

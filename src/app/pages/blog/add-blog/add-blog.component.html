@@ -1,0 +1,164 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+	style="min-height: 400px;  background-size: cover; background-position: center top;">
+	<!-- Mask -->
+	<span class="mask bg-gradient-info opacity-8"></span>
+	<!-- Header container -->
+	<div class="container-fluid d-flex align-items-center">
+		<div class="row">
+			<div class="col-lg-7 col-md-10">
+				<h1 class="display-2 text-white">Single Blog </h1>
+				<p class="text-white mt-0 mb-5">This is your blog page. You can select author, tags and add/edit blog content you've and manage your blogs</p>
+				<!-- <a href="#!" class="btn btn-info">Edit Pages</a> -->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid mt--7">
+	<div class="row">
+		<div class="col-xl-12 order-xl-1">
+			<div class="card bg-secondary shadow">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">Edit Blog</h3>
+						</div>
+					</div>
+					<div class="alert alert-success alert-dismissable" style="margin-left: 0;" *ngIf="msg_success">
+						{{throw_msg}}
+					</div>
+					<div class="alert alert-danger alert-dismissable" style="margin-left: 0;" *ngIf="msg_danger">
+						{{throw_msg}}
+					</div>
+				</div>
+				<div class="card-body">
+                    <!-- form start -->  
+                    <form [formGroup]="addBlogForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+                        <div class="box-body">
+                            <div class="form-group"> 
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" name="name" autocomplete="off" formControlName="name"
+                                    class="form-control" placeholder="Blog Name">
+                                <span *ngIf="submitted && hasError('name','required')" class="alert-danger">Blog Name is
+                                    required</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Select Blog Category</label>
+                                <select name="blog_category" formControlName="blog_category" class="form-control" (change)="onChangeCategory($event)">
+                                    <option value="">Select Blog Category</option>
+                                    <option value="1">Wind Turbines</option>
+                                    <option value="2">Solar Panels</option>
+                                    <option value="3">Battery Matrial</option>
+                                    <option value="4">Hydro Plants</option>
+                                    <option value="5">Charge Control</option>
+                                    <option value="6">Fossil Resourc</option> 
+                                </select>   
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Select Tag</label>
+                                <select name="Tag" formControlName="tag" multiple class="form-control">
+                                    <option value="">Select Tag</option>
+                                    <option value="{{listTag._id}}" *ngFor="let listTag of tagData; let j = index">{{listTag.name}}</option>
+                                </select>
+                                <span *ngIf="submitted && hasError('tag','required')" class="alert-danger">Tag is
+                                    required</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Select Author</label>
+                                <select name="author" formControlName="author" class="form-control">
+                                    <option value="">Select Author</option>
+                                    <option value="{{listAuthor._id}}" *ngFor="let listAuthor of authorData; let j = index">{{listAuthor.name}}</option>
+                                </select>
+                                <span *ngIf="submitted && hasError('author','required')" class="alert-danger">Author is
+                                    required</span>
+                            </div>
+
+                            <div class="pixtar-ordiv">
+                                <div class="alert alert-danger" style="margin-left: 0;" *ngIf="videomsg">
+                                    Please Select Video And Image Both for Video Infographics Category    
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="exampleInputEmail1">Video Link</label>
+                                    <input type="text" name="video_link" autocomplete="off" formControlName="video_link"
+                                        class="form-control" placeholder="Video Link">
+                                </div>
+
+                                <div class="gslor"> OR</div>
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Blog Image</label>
+                                    <input   
+                                        type="file" 
+                                        #uploader 
+                                        ngFileSelect 
+                                        (uploadOutput)="onUploadOutput($event)" 
+                                        [uploadInput]="uploadInput" 
+                                    />
+                                    <label for="exampleInputEmail1" style="display: block;">(Required Size 514 * 554)</label>
+                                    <img  *ngIf="blogImage" alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{blogImage}}">
+                                </div>
+                            </div>
+                              
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Featured</label>
+                                <select name="featured" formControlName="featured" class="form-control">
+                                    <option value="">Select Featured</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                                <span *ngIf="submitted && hasError('featured','required')" class="alert-danger">Featured is
+                                    required</span>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Content Html</label> 
+                            <angular-editor name="content_html" formControlName="content_html" [config]="editorConfig"></angular-editor>
+                            <span *ngIf="submitted && hasError('content_html','required')" class="alert-danger">Content Html is
+                                required</span>
+                            </div>
+
+                            <div class="form-group"> 
+                                <label for="exampleInputEmail1">Meta Title</label>
+                                <input type="text" name="meta_title" autocomplete="off" formControlName="meta_title"
+                                    class="form-control" placeholder="Meta Title">
+                                <span *ngIf="submitted && hasError('meta_title','required')" class="alert-danger">Meta Title is
+                                    required</span>
+                            </div>
+
+                            <div class="form-group"> 
+                                <label for="exampleInputEmail1">Meta Keywords</label>
+                                <input type="text" name="meta_keywords" autocomplete="off" formControlName="meta_keywords"
+                                    class="form-control" placeholder="Meta Keywords">
+                                <span *ngIf="submitted && hasError('meta_keywords','required')" class="alert-danger">Meta Keywords is
+                                    required</span>
+                            </div>
+                         
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Meta Description</label> 
+                                   <textarea name="meta_description" autocomplete="off" formControlName="meta_description" 
+                                        class="form-control" placeholder="Meta Description"></textarea>
+                                <span *ngIf="submitted && hasError('meta_description','required')" class="alert-danger">Meta Description is
+                                    required</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Status</label>
+                                <select name="status" formControlName="status" class="form-control">
+                                    <option value="true">Active</option>
+                                    <option value="false">Deactive</option>
+                                </select>
+                            </div>
+                            
+                      </div>
+                       <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="cancel" (click)="onCancel()" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

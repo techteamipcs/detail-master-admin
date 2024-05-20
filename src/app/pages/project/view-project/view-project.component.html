@@ -1,0 +1,98 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+	<div class="container-fluid">
+		<div class="header-body">
+			<!-- Card stats -->
+
+		</div>
+	</div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+	<!-- Table -->
+	<div class="row">
+		<div class="col">
+			<div class="card shadow">
+				<div class="card-header border-0">
+					<h3 class="mb-0">Project List</h3>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6">
+							<input class="form-control mt-4" type="text" (keyup)="searchProject()" name="search" [(ngModel)]="searchText"
+                                          autocomplete="off" placeholder="&#61442;  Start searching a Project by id or name">
+						</div>
+						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right" routerLink="/project/add">Add
+								Project</button></div>
+					</div>
+					<div class="col-md-6">
+						<h4 class="title"></h4>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table align-items-center table-flush">
+						<thead>
+							<tr>
+								<th>SL No</th>
+								<th>Project Name</th>
+								<!-- <th>Project Overview</th> -->
+								<th>Image</th>
+								<!-- <th>Image Hover</th> -->
+								<th>Category</th>
+								<th>Sequence Number</th>
+								<th>Status <ng-toggle
+									[(ngModel)]="isactive"
+									[disabled]="config.disabled"
+									[width]="config.width"
+									[height]="config.height"
+									[margin]="config.margin"
+									[labels]="config.labels"
+									[color]="config.color"
+									[switchColor]="config.switchColor"
+									[fontColor]="config.fontColor"
+									[fontSize]="config.fontSize"
+									(click)="changeStatus()"
+									required
+					></ng-toggle> <a (click)="resetFilter()" class="btn btn-sm btn-info mr-4">Reset</a></th>
+								<th>Created At</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<td colspan="6" *ngIf="msg_danger">
+								<div class="alert alert-dismissable" style="text-align: center;">
+									Project List is Empty
+								</div>
+							</td>
+							<tr *ngFor="let listProject of projectData | filter:searchText | activefilter:isactive; let i = index">
+								<td *ngIf="currentPage == 1">{{i+1}}</td>
+								<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
+								<td>{{listProject.name}}</td>
+								<!-- <td [innerHTML]="listProject.desc"></td> -->
+								<td><img src="{{imagePath}}{{listProject.image}}" alt="logo" style="height: 100px;width: 100px;">
+								</td>
+								<!-- <td><img src="{{imagePath}}{{listProject.project_images}}" alt="logo" style="height: 100px;width: 100px;">
+								</td> -->
+								<td>
+									<p *ngFor="let cat of listProject.category">{{cat.name}}</p>
+								</td>
+								<td><p>{{listProject.sequence_number}}</p></td>
+								<td>{{listProject.status == true ? 'Active':'Deactive'}}</td>
+								<td>{{listProject.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>
+									<a routerLink="/project/edit/{{listProject._id}}" style="cursor:pointer"><i
+											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+									</a>
+									<a style="cursor:pointer;padding-left: 15px;" (click)="deleteProject(listProject._id)"><i
+											class="fa fa-trash-o" aria-hidden="true"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="drminnie-pagination" *ngIf="totalRecord > 0 && !searchText">
+						<app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
+							(changePage)="onListChangePage($event)"></app-pagination>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
