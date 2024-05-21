@@ -12,7 +12,7 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  getTagDeta = (data:any): Observable<any> => {
+  getTagData = (data:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/blog/viewtag';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
@@ -161,6 +161,15 @@ export class BlogService {
         return throwError(err);
       })
     );
+  };
+
+  getCategoryData = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/blog/viewcategory';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    ); 
   };
 
   protected getRequestHeaders(): {

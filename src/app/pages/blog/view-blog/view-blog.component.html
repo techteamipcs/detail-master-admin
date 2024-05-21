@@ -20,6 +20,7 @@
                         <div class="col-md-6">
                             <button class="btn btn-primary"  routerLink="/author/view" style="margin-right: 10px;">Add Authors</button>
                         <button class="btn btn-primary" routerLink="/tag/view">Add Tags</button>
+                        <button class="btn btn-primary" routerLink="/category/view">Add Category</button>
                         <input class="form-control mt-4" type="text" (keyup)="searchBlog()" name="search" [(ngModel)]="searchText"
                                           autocomplete="off" placeholder="&#61442;  Start searching a Blog by id or name">
                         </div>  
@@ -39,6 +40,7 @@
                             <tr>
                                 <th>Blog Name</th>
                                 <th>Blog Image</th>
+                                <th>Blog Category</th>
                                 <th>Blog Tag</th>
                                 <th>View Comment</th>
                                 <th>Status <ng-toggle
@@ -69,6 +71,7 @@
                                 <td>{{listblog.name}}</td>
                                 <td><img src="{{imagePath}}{{listblog.image}}" alt="logo"
                                         style="height: 100px;width: 100px;"></td>
+                                <td>{{listblog.category_name}}</td>
                                 <td>{{listblog.tagsdata}}</td>
                                 <td><a routerLink="/comment/{{listblog._id}}">Show Comment</a></td>
                                 <td>{{listblog.status == true ? 'Active':'Deactive'}}</td>

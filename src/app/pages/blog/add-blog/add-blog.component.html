@@ -44,14 +44,9 @@
                             
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Select Blog Category</label>
-                                <select name="blog_category" formControlName="blog_category" class="form-control" (change)="onChangeCategory($event)">
+                                <select name="blog_category" formControlName="blog_category" class="form-control">
                                     <option value="">Select Blog Category</option>
-                                    <option value="1">Wind Turbines</option>
-                                    <option value="2">Solar Panels</option>
-                                    <option value="3">Battery Matrial</option>
-                                    <option value="4">Hydro Plants</option>
-                                    <option value="5">Charge Control</option>
-                                    <option value="6">Fossil Resourc</option> 
+                                    <option value="{{cat._id}}" *ngFor="let cat of categoryData; let j = index">{{cat.name}}</option>
                                 </select>   
                             </div>
 
@@ -95,6 +90,7 @@
                                         ngFileSelect 
                                         (uploadOutput)="onUploadOutput($event)" 
                                         [uploadInput]="uploadInput" 
+                                        accept="image/*"
                                     />
                                     <label for="exampleInputEmail1" style="display: block;">(Required Size 514 * 554)</label>
                                     <img  *ngIf="blogImage" alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{blogImage}}">

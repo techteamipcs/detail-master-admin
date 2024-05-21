@@ -36,6 +36,7 @@ export class AddBlogComponent implements OnInit {
   
   // Edit Action Here
   id:any;
+  categoryData:any;
   isEdit = this.route.snapshot.data.title === 'edit' ? true : false;
   editorConfig: AngularEditorConfig = {
       editable: true,
@@ -88,6 +89,7 @@ export class AddBlogComponent implements OnInit {
     
     this.id = this.route.snapshot.paramMap.get('id');
     this.get_tagdata();
+    this.get_categorydata();
     this.get_authordata()
     if (this.isEdit) 
     {
@@ -193,7 +195,7 @@ export class AddBlogComponent implements OnInit {
 
   get_tagdata()
   {
-    this.blogService.getTagDeta({}).subscribe(
+    this.blogService.getTagData({}).subscribe(
       (response)=> {  
         if (response.code == 200) 
         {
@@ -216,6 +218,22 @@ export class AddBlogComponent implements OnInit {
           if(response.result != null && response.result != '')
           {
             this.authorData  = response.result;
+          }
+          
+        }
+      },
+    );
+  }
+
+  get_categorydata()
+  {
+    this.blogService.getCategoryData({}).subscribe(
+      (response)=> {  
+        if (response.code == 200) 
+        {
+          if(response.result != null && response.result != '')
+          {
+            this.categoryData  = response.result;
           }
           
         }

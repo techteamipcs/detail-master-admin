@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Gallery Featured Image</label><br>
                                 <input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
-                                    [uploadInput]="uploadInput" /><br>
+                                    [uploadInput]="uploadInput" accept="image/*"/><br>
                                 <img *ngIf="galleryImage" alt="logo"
                                     style="height: 100px; width: 100px;margin-top: 5px;"
                                     src="{{imagePath}}{{galleryImage}}">

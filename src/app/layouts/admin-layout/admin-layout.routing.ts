@@ -102,5 +102,10 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'download',
 		loadChildren: () => import("./../../pages/download/download.module").then((m) => m.DownloadModule),
 		data: { title: 'Download Module' },
+	},
+	{
+		path: 'category',
+		loadChildren: () => import("./../../pages/category/category.module").then((m) => m.CategoryModule),
+		data: { title: 'Category Module' },
 	}
 ];
