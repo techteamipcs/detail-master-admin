@@ -107,5 +107,25 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'category',
 		loadChildren: () => import("./../../pages/category/category.module").then((m) => m.CategoryModule),
 		data: { title: 'Category Module' },
+	},
+	{
+		path: 'award',
+		loadChildren: () => import("./../../pages/award/award.module").then((m) => m.AwardModule),
+		data: { title: 'Award Module' },
+	},
+	{
+		path: 'achievement',
+		loadChildren: () => import("./../../pages/achievement/achievement.module").then((m) => m.AchievementModule),
+		data: { title: 'Achievement Module' },
+	},
+	{
+		path: 'podcast',
+		loadChildren: () => import("./../../pages/podcast/podcast.module").then((m) => m.PodcastModule),
+		data: { title: 'Podcast Module' },
+	},
+	{
+		path: 'socialactivity',
+		loadChildren: () => import("./../../pages/socialactivity/socialactivity.module").then((m) => m.SocialactivityModule),
+		data: { title: 'Social Activity Module' },
 	}
 ];
