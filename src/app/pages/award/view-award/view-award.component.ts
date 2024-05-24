@@ -229,7 +229,7 @@ export class ViewAwardComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_AwardData();
-						this.router.navigate(['/award-images/view']);
+						this.router.navigate(['/award/view']);
             window.location.reload();
 					}
 				},

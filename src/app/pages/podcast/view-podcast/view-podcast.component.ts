@@ -229,7 +229,7 @@ export class ViewPodcastComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_PodcastData();
-						this.router.navigate(['/podcast-images/view']);
+						this.router.navigate(['/podcast/view']);
             window.location.reload();
 					}
 				},

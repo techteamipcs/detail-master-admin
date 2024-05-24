@@ -116,7 +116,7 @@ export class ViewCatalogComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_CatalogData();
-						this.router.navigate(['/catalog-images/view']);
+						this.router.navigate(['/catalog/view']);
 					}
 				},
 			);

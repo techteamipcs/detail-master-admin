@@ -386,11 +386,11 @@ export const chartExample3 = {
     }
   },
   data: {
-    labels: ["Banners", "Blogs", "Career","Catalog", "Contact", "Gallery", "Projects","Pages","Service","Subscribers","Testimonials","Users"],
+    labels: ["Achievements", "Awards", "Podcast","Social Activity", "Contact", "Gallery", "Pages","Subscribers","Testimonials","Users"],
     datasets: [
       {
         label: "Dashboard",
-        data: [1, 2, 1, 10, 15, 2, 10, 5, 6, 2, 4, 10],
+        data: [1, 2, 1, 10, 15, 2, 6, 2, 4, 10],
         maxBarThickness: 10
       }
     ]

@@ -5,6 +5,7 @@ import { from } from 'rxjs';
 import { BannerService } from '../../../providers/banner/banner.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { MediaService } from '../../../providers/media/media.service';
 
 @Component({
   selector: 'app-view-banner',
@@ -62,14 +63,15 @@ export class ViewBannerComponent implements OnInit {
       unchecked: '#ffffff',
     },
   };
-
+  
 	constructor(
 		private router: Router,
 		// private loginService: LoginService,
 		private toastr: ToastrManager,
     private bannerservice:BannerService,
     private modalService: NgbModal,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private mediaService: MediaService,
 	) {
 		this.imagePath = environment.baseUrl + '/public/';
 		this.token = localStorage.getItem('token');
@@ -178,7 +180,7 @@ export class ViewBannerComponent implements OnInit {
           {   
             this.get_BannerData();
 						this.toastr.successToastr(response.message);
-            window.location.reload();
+            this.modalService.dismissAll();
           }
         },
       );
@@ -230,8 +232,8 @@ export class ViewBannerComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_BannerData();
-						this.router.navigate(['/banner-images/view']);
-            window.location.reload();
+            this.deleteMediaData();
+            this.modalService.dismissAll();
 					}
 				},
 			);
@@ -264,6 +266,35 @@ export class ViewBannerComponent implements OnInit {
     this.config.color.unchecked = '#dcdcdc';
     this.config.labels.unchecked = 'Change';
     this.isactive = 'none';
+	}
+
+  deleteMediaFile(){
+    let obj = {	};
+    if(this.selectedBanner.media_data && this.selectedBanner.media_data.length > 0){
+    obj['file'] =  this.selectedBanner.media_data[0].src;
+		this.bannerservice.deletefile(obj).subscribe(
+			(response) => {
+				if (response.code == 200) {
+				}
+				else {
+					// this.bannerVideo = this.bannerVideo;
+				}
+			},
+		);
+    }
+	}
+
+  deleteMediaData() {
+		if (this.selectedBanner.media_data && this.selectedBanner.media_data.length > 0) {
+			var mylist = { id: this.selectedBanner.media_data[0]._id, file: this.selectedBanner.media_data[0].src };
+			this.bannerservice.deleteMediaData(mylist).subscribe(
+				(response) => {
+					if (response.code == 200) {
+						this.modalService.dismissAll();
+					}
+				},
+			);
+		}
 	}
 
 }

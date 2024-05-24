@@ -229,7 +229,7 @@ export class ViewSocialactivityComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_SocialactivityData();
-						this.router.navigate(['/socialactivity-images/view']);
+						this.router.navigate(['/socialactivity/view']);
             window.location.reload();
 					}
 				},

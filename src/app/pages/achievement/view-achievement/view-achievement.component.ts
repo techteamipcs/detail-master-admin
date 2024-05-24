@@ -229,7 +229,7 @@ export class ViewAchievementComponent implements OnInit {
 				(response) => {
 					if (response.code == 200) {
 						this.get_AchievementData();
-						this.router.navigate(['/achievement-images/view']);
+						this.router.navigate(['/achievement/view']);
             window.location.reload();
 					}
 				},

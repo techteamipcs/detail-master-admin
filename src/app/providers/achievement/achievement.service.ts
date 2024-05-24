@@ -97,6 +97,24 @@ importallAchievement = (file: File): Observable<any> => {
     );
   };
 
+  deletefile = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/achievement/deletefile';
+    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  deleteMediaData = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/achievement/deletemediadata';
+    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   protected getRequestHeaders(): {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {

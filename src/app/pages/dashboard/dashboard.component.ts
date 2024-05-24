@@ -45,6 +45,10 @@ export class DashboardComponent implements OnInit {
   subscriber_count:any;
   catalog_count:any;
   cartCountValues:any;
+  achievement_count:any;
+  award_count:any;
+  podcast_count:any;
+  socialactivity_count:any;
   constructor( private router: Router,
     private dashboardService:DashboardService,
     private toastr: ToastrManager) { }
@@ -112,10 +116,13 @@ export class DashboardComponent implements OnInit {
               this.project_count  =  response.count_project;
               this.subscriber_count = response.count_subscriber;
               this.catalog_count = response.count_catalog;
-              this.cartCountValues = [this.banner_count,this.blog_count,
-                this.career_count,this.catalog_count,this.contact_count,this.gallery_count,
-                this.project_count,this.allpage_count,this.service_count,this.subscriber_count,
-                this.testimonial_count,this.user_count,]
+              this.achievement_count = response.count_achievement;
+              this.award_count = response.count_award;
+              this.podcast_count = response.count_podcast;
+              this.socialactivity_count = response.count_socialactivity;
+              this.cartCountValues = [this.achievement_count,this.award_count,
+                this.podcast_count,this.socialactivity_count,this.contact_count,this.gallery_count,
+                this.allpage_count,this.subscriber_count,this.testimonial_count,this.user_count,]
               // this.toastr.successToastr(response.message);
               this.updateChartOptions();
           } else {
