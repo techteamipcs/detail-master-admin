@@ -13,17 +13,16 @@
 		<div class="col">
 			<div class="card shadow">
 				<div class="card-header border-0">
-					<h3 class="mb-0">Podcasts List</h3>
+					<h3 class="mb-0">Courses List</h3>
 				</div>
 				<div class="col-md-12 mb-4">
 					<div class="row">
 						<div class="col-md-6">
-							<button class="btn btn-primary" routerLink="/podcast-category/view">Add Podcast Category</button>
-							<input class="form-control mt-4" type="text" (keyup)="searchPodcast()" name="search" [(ngModel)]="searchText"
-								autocomplete="off" placeholder="&#61442;  Start searching a Podcast Image by id or name">
+							<input class="form-control" type="text" (keyup)="searchCourse()" name="search" [(ngModel)]="searchText"
+								autocomplete="off" placeholder="&#61442;  Start searching a Course Image by id or name">
 						</div>
 						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right"
-								routerLink="/podcast/add">Add Podcast</button></div>
+								routerLink="/course/add">Add Course</button></div>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -33,9 +32,9 @@
 						<thead>
 							<tr>
 								<th>SL No</th>
-								<th>Podcast Name</th>
+								<th>Course Name</th>
 								<th>Format</th>
-								<th>Podcast Image/Video</th>
+								<th>Course Image/Video</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -49,31 +48,31 @@
 						<tbody>
 							<td colspan="6" *ngIf="msg_danger">
 								<div class="alert alert-dismissable" style="text-align: center;">
-									Podcast List is Empty
+									Course List is Empty
 								</div>
 							</td>
-							<tr *ngFor="let listPodcast of PodcastData | filter:searchText | activefilter:isactive; let i = index">
+							<tr *ngFor="let listCourse of CourseData | filter:searchText | activefilter:isactive; let i = index">
 								<td *ngIf="currentPage == 1">{{i+1}}</td>
 								<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
-								<td>{{listPodcast.name}}</td>
-								<td *ngIf="listPodcast.media_data">{{listPodcast.media_data[0].file_type}}</td>
-								<td *ngIf="listPodcast.media_data">
-									<img *ngIf="listPodcast.media_data && listPodcast.media_data[0].file_type =='image'"
-										src="{{imagePath}}/podcast/{{listPodcast.media_data[0].src}}" alt="logo"
+								<td>{{listCourse.name}}</td>
+								<td *ngIf="listCourse.media_data">{{listCourse.media_data[0].file_type}}</td>
+								<td *ngIf="listCourse.media_data">
+									<img *ngIf="listCourse.media_data && listCourse.media_data[0].file_type =='image'"
+										src="{{imagePath}}/course/{{listCourse.media_data[0].src}}" alt="logo"
 										style="height: 100px;width: 100px;">
-									<video *ngIf="listPodcast.media_data && listPodcast.media_data[0].file_type =='video'" width="100"
+									<video *ngIf="listCourse.media_data && listCourse.media_data[0].file_type =='video'" width="100"
 										height="100" controls>
-										<source src="{{imagePath}}/podcast/{{listPodcast.media_data[0].src}}" type="video/mp4">
+										<source src="{{imagePath}}/course/{{listCourse.media_data[0].src}}" type="video/mp4">
 									</video>
 								</td>
-								<td>{{listPodcast.status == true ? 'Active':'Deactive'}}</td>
-								<td>{{listPodcast.isApproved == true ? 'Yes':'No'}}</td>
-								<td>{{listPodcast.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listCourse.status == true ? 'Active':'Deactive'}}</td>
+								<td>{{listCourse.isApproved == true ? 'Yes':'No'}}</td>
+								<td>{{listCourse.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
 								<td>
-									<a routerLink="/podcast/edit/{{listPodcast._id}}" style="cursor:pointer"><i
+									<a routerLink="/course/edit/{{listCourse._id}}" style="cursor:pointer"><i
 											class="fa fa-pencil-square-o" aria-hidden="true"></i>
 									</a>
-									<a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listPodcast)"><i
+									<a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listCourse)"><i
 											class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</td>
 							</tr>
@@ -88,25 +87,25 @@
 		</div>
 	</div>
 
-	<!-- Podcast Delete Popup -->
+	<!-- Course Delete Popup -->
 	<ng-template #content let-modal style="z-index: 0;">
 		<div class="modal-header">
-			<h4 class="modal-title" id="modal-title">Podcast Image deletion</h4>
+			<h4 class="modal-title" id="modal-title">Course Image deletion</h4>
 			<button type="button" class="btn btn-danger" aria-describedby="modal-title"
 				(click)="modal.dismiss('Cross click')">close</button>
 		</div>
 		<div class="modal-body">
-			<p *ngIf="selectedPodcast">
-				<strong>Are you sure you want to delete <span class="text-primary">"{{selectedPodcast.name}}"</span> Podcast
+			<p *ngIf="selectedCourse">
+				<strong>Are you sure you want to delete <span class="text-primary">"{{selectedCourse.name}}"</span> Course
 					Image?</strong>
 			</p>
 			<p>
-				All information associated to this Podcast Image will be permanently deleted.
+				All information associated to this Course Image will be permanently deleted.
 				<span class="text-danger">This operation can not be undone.</span>
 			</p>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Cancel</button>
-			<button type="button" class="btn btn-primary" (click)="deletePodcast()">Ok</button>
+			<button type="button" class="btn btn-primary" (click)="deleteCourse()">Ok</button>
 		</div>
 	</ng-template>

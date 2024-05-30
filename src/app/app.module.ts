@@ -20,7 +20,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { AngMusicPlayerModule } from  'ang-music-player';
 import { NgToggleModule } from 'ng-toggle-button';
 import { PipemoduleModule } from './pipemodule.module';
 
@@ -42,7 +42,8 @@ import { PipemoduleModule } from './pipemodule.module';
     NgSelectModule,
     Ng2SearchPipeModule,
     NgToggleModule,
-    PipemoduleModule.forRoot()
+    PipemoduleModule.forRoot(),
+    AngMusicPlayerModule
   ],
   declarations: [
     AppComponent,

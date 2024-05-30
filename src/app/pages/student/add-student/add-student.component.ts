@@ -7,34 +7,29 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 // Services
-import { PodcastService } from '../../../providers/podcast/podcast.service';
+import { StudentService } from '../../../providers/student/student.service';
 import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
-import { PodcastcategoryService } from 'src/app/providers/podcastcategory/podcastcategory.service';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { AudioService } from '../../../providers/audio/audio.service';
-import * as moment from 'moment';
 
 @Component({
-  selector: 'app-add-podcast',
-  templateUrl: './add-podcast.component.html',
-  styleUrls: ['./add-podcast.component.scss']
+  selector: 'app-add-student',
+  templateUrl: './add-student.component.html',
+  styleUrls: ['./add-student.component.scss']
 })
-export class AddPodcastComponent implements OnInit {
+export class AddStudentComponent implements OnInit {
 
   @ViewChild('uploader', { read: ElementRef }) fileInput: ElementRef;
 	// File Upload
 	options: UploaderOptions;
 	uploadInput: EventEmitter<UploadInput>;
-	podcastImage: any;
-	podcastVideo: any;
+	studentImage: any;
+	studentVideo: any;
 	imagePath: any;
 	imageArr: any = [];
 	// Data Assign
 	artData: any;
 	countryData: any;
-	addpodcastForm: FormGroup;
-	addAudioForm: FormGroup;
+	addstudentForm: FormGroup;
 	throw_msg: any;
 	submitted: boolean = false;
 	msg_success: boolean = false;
@@ -60,62 +55,26 @@ export class AddPodcastComponent implements OnInit {
 	deletedMediaFile: any = [];
 	isMediaEdit = false;
 	mediaID: any;
-	podcastData: any = [];
-	categoryData: any = [];
-	editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '200px',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      {class: 'career_box', name: 'Rajdhani sans-serif'},
-    ],
-  } 
-	submittedAudio:boolean = false;
-	isAudioEdit = false;
-	audioFile : any;
-	audioID = '';
-	deletedAudioFile:any = [];
-	audioData: any;
-	isAudioFileDeleted = false;
-	deletedAudioData:any = [];
-	audioList = [];
-	audioImageFile: any;
-	tempAudio = [];
-	podcastAudio = [];
+	studentData: any;
+	courseData: any = [];
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		private formBuilder: FormBuilder,
-		private podcastService: PodcastService,
+		private studentService: StudentService,
 		private modalService: NgbModal,
 		private mediaService: MediaService,
 		private toastr: ToastrManager,
-		public responseService: ResponseService,
-		public categorySerice : PodcastcategoryService,
-		public audioService : AudioService
+		public responseService: ResponseService
 	) {
 		this.uploadInput = new EventEmitter<UploadInput>();
 		this.options = { concurrency: 0, allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'] };
-		this.addpodcastForm = this.formBuilder.group({
+		this.addstudentForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			status: [true, Validators.required],
-			podcast_category: ["", Validators.required],
-			event_date: ['', Validators.required],
-			description: ['', Validators.required],
-			short_desc: [''],
-			url_key: ['', Validators.required],
-			video_url: ['', Validators.required],
+			email: ['', Validators.required],
+			contact: ['', Validators.required],
+			course: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/';
@@ -138,27 +97,13 @@ export class AddPodcastComponent implements OnInit {
 			loop: [true],
 			full_screen: [''],
 		});
-		this.addAudioForm = this.formBuilder.group({
-			title: ['', Validators.required],
-			status: [true, Validators.required],
-			description: [''],
-			link: ['', Validators.required],
-			image: [''],
-			date: [''],
-			artist: [''],
-			duration: [''],
-			mediaType: [''],
-			apple_podcast: [''],
-			spotify_link: [''],
-		});
 	}
 
 	public hasError = (controlName: string, errorName: string) => {
-		return this.addpodcastForm.controls[controlName].hasError(errorName);
+		return this.addstudentForm.controls[controlName].hasError(errorName);
 	};
 
 	ngOnInit(): void {
-		this.get_categorydata();
 		this.id = this.route.snapshot.paramMap.get('id');
 		if (this.isEdit) {
 			this.patchingdata(this.id);
@@ -167,34 +112,25 @@ export class AddPodcastComponent implements OnInit {
 		else {
 			this.applyAction = 'Add';
 		}
+		this.get_coursedata();
 	}
 
 	patchingdata(id: any) {
 		let obj = { id: id };
-		this.podcastService.getPodcastWithId(obj).subscribe(
+		this.studentService.getStudentWithId(obj).subscribe(
 			(response) => {
 				if (response.code == 200) {
 					let data = response?.result;
-					this.podcastData = response.result;
-					this.podcastImage = data?.image;
+					this.studentData = response.result;
+					this.studentImage = data?.image;
 					this.mediaData = data?.media_data[0];
-					this.audioData = data?.audio_data[0];
-					this.addpodcastForm.patchValue({
+					this.addstudentForm.patchValue({
 						name: data?.name,
 						status: data?.status,
-						podcast_category:data?.podcast_category,
-						description: data?.description,
-						short_desc: data?.short_desc,
-						url_key: data?.url_key,
-						event_date: moment(data?.publication_date).format('YYYY-MM-DD'),
-						video_url: data?.video_url,
+						email: data?.email,
+						contact: data?.contact,
+						course: data?.course,
 					});
-					let audioObj = {
-						url: this.imagePath+"audio/"+this.audioData.link,
-						title: this.audioData.title,
-						cover: this.imagePath+"audio-image/"+this.audioData.image,
-					}
-					this.audioList.push(audioObj);
 				} else {
 
 				}
@@ -202,22 +138,35 @@ export class AddPodcastComponent implements OnInit {
 		);
 	}
 
+	get_coursedata()
+  {
+    this.studentService.getCourseData({}).subscribe(
+      (response)=> {  
+        if (response.code == 200) 
+        {
+          if(response.result != null && response.result != '')
+          {
+            this.courseData  = response.result;
+          }
+          
+        }
+      },
+    );
+  }
+
 	onSubmit() {
 		this.submitted = true;
-		let obj = this.addpodcastForm.value;
+		let obj = this.addstudentForm.value;
 		let id = this.id;
 		obj['token'] = this.token;
-		if (this.addpodcastForm.invalid) {
+		if (this.addstudentForm.invalid) {
 			return;
 		}
 		if (this.mediaData) {
 			obj['image'] = this.mediaData._id;
 		}
-		if (this.audioData) {
-			obj['audio'] = this.audioData._id;
-		}
 		if (!this.isEdit) {
-			this.podcastService.addPodcast(obj).subscribe(
+			this.studentService.addStudent(obj).subscribe(
 				(response) => {
 					if (response.code == 200) {
 						this.throw_msg = response.message
@@ -230,7 +179,7 @@ export class AddPodcastComponent implements OnInit {
 							this.deleteMediaFile();
 						}
 						setTimeout(() => {
-							this.router.navigate(['/podcast/view']);
+							this.router.navigate(['/student/view']);
 						}, 2000);
 					}
 					else {
@@ -242,7 +191,7 @@ export class AddPodcastComponent implements OnInit {
 			);
 		}
 		else {
-			this.podcastService.editPodcastdata(obj, id).subscribe(
+			this.studentService.editStudentdata(obj, id).subscribe(
 				(response) => {
 					if (response.code == 200) {
 						this.throw_msg = response.message
@@ -255,7 +204,7 @@ export class AddPodcastComponent implements OnInit {
 							this.deleteMediaFile();
 						}
 						setTimeout(() => {
-							this.router.navigate(['/podcast/view']);
+							this.router.navigate(['/student/view']);
 						}, 2000);
 					} else {
 						this.CreateErrorResponse(response);
@@ -266,7 +215,7 @@ export class AddPodcastComponent implements OnInit {
 	}
 
 	onCancel() {
-		this.router.navigate(['/podcast/view']);
+		this.router.navigate(['/student/view']);
 	}
 
 	openMedia(content: any) {
@@ -343,7 +292,7 @@ export class AddPodcastComponent implements OnInit {
 		if (output.type === 'allAddedToQueue') {
 			const event: UploadInput = {
 				type: 'uploadAll',
-				url: environment.baseUrl + '/api/podcast/addimage',
+				url: environment.baseUrl + '/api/student/addimage',
 				method: 'POST',
 				data: {},
 			};
@@ -463,7 +412,7 @@ export class AddPodcastComponent implements OnInit {
 								window.location.reload();
 							}, 1000);
 							this.mediaData.src = response.result.src;
-							if (this.podcastData.media_data && this.podcastData.media_data.length > 0) {
+							if (this.studentData.media_data && this.studentData.media_data.length > 0) {
 								this.patchingdata(this.id);
 							}
 							this.modalService.dismissAll();
@@ -512,7 +461,7 @@ export class AddPodcastComponent implements OnInit {
 	deleteMediaData() {
 		if (this.deletedMediaData) {
 			var mylist = { id: this.deletedMediaData._id, file: this.deletedMediaData.src };
-			this.podcastService.deleteMediaData(mylist).subscribe(
+			this.studentService.deleteMediaData(mylist).subscribe(
 				(response) => {
 					if (response.code == 200) {
 						this.modalService.dismissAll();
@@ -528,7 +477,7 @@ export class AddPodcastComponent implements OnInit {
 		if (this.isUploaded && this.deletedMediaFile && this.deletedMediaFile.length > 0) {
 			let obj = {};
 			obj['files'] = this.deletedMediaFile;
-			this.podcastService.deletefile(obj).subscribe(
+			this.studentService.deletefile(obj).subscribe(
 				(response) => {
 					if (response.code == 200) {
 						this.isUploaded = false;
@@ -566,284 +515,5 @@ export class AddPodcastComponent implements OnInit {
 			);
 		}
 	}
-
-	get_categorydata()
-  {
-    this.categorySerice.getCategoryData({}).subscribe(
-      (response)=> {  
-        if (response.code == 200) 
-        {
-          if(response.result != null && response.result != '')
-          {
-            this.categoryData  = response.result;
-          }
-          
-        }
-      },
-    );
-  }
-
-
-	//Uploading Audio Files
-
-	openAudio(content: any) {
-		this.addAudioForm = this.formBuilder.group({
-			title: ['', Validators.required],
-			status: [true, Validators.required],
-			description: [''],
-			link: ['', Validators.required],
-			date: [''],
-			artist: [''],
-			duration: [''],
-			audioType: [''],
-			apple_podcast: [''],
-			spotify_link: [''],
-		});
-		this.audioFile = '';
-		this.isAudioEdit = false;
-		this.audioID = '';
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
-			.result.then((result) => {
-				this.closeResult = `Closed with: ${result}`;
-			}, (reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			});
-	}
-
-	editAudio(content: any, audioData, type) {
-		this.isAudioEdit = true;
-		this.audioImageFile = audioData.image;
-		this.audioFile = audioData.link
-		this.audioID = audioData._id;
-		this.addAudioForm.patchValue({
-			title: audioData.title,
-			status: audioData.status,
-			description: audioData.description,
-			link: audioData.link,
-			date: moment(audioData.date).format('YYYY-MM-DD'),
-			artist: audioData.artist,
-			duration: audioData.duration,
-			audioType: audioData.audioType,
-			apple_podcast: audioData.apple_podcast,
-			spotify_link: audioData.spotify_link,
-		});
-		let audioObj = {
-			url: this.imagePath+"audio/"+audioData.link,
-			title: this.audioData.title,
-			cover: this.imagePath+"audio-image/"+audioData.image,
-		}
-		this.tempAudio.push(audioObj);
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
-			.result.then((result) => {
-				this.closeResult = `Closed with: ${result}`;
-			}, (reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			});
-	}
-
-	public hasAudioFormError = (controlName: string, errorName: string) => {
-		return this.addAudioForm.controls[controlName].hasError(errorName);
-	};
-
-	onUploadAudioFile(output: UploadOutput): void {
-		if (output.type === 'allAddedToQueue') {
-			const event: UploadInput = {
-				type: 'uploadAll',
-				url: environment.baseUrl + '/api/audio/addAudioFile',
-				method: 'POST',
-				data: {},
-			};
-			this.uploadInput.emit(event);
-		}
-		else if (output.type === 'done' && typeof output.file !== 'undefined') {
-			this.isUploaded = true;
-			if (this.audioFile) {
-				this.deletedAudioFile.push(this.audioFile);
-				this.isAudioFileDeleted = true;
-			}
-			this.audioFile = output.file.response.result;
-			let audioObj = {
-				url: this.imagePath+"audio/"+this.audioFile,
-				title: this.addAudioForm.value.title,
-				cover: this.imagePath+"audio-image/"+this.audioImageFile,
-			}
-			this.tempAudio.push(audioObj);
-			this.submittedAudio = false;
-			this.addAudioForm.patchValue({
-				link: this.audioFile
-			});
-		}
-	}
-
-	onUploadImageFile(output: UploadOutput): void {
-		if (output.type === 'allAddedToQueue') {
-			const event: UploadInput = {
-				type: 'uploadAll',
-				url: environment.baseUrl + '/api/audio/addImageFile',
-				method: 'POST',
-				data: {},
-			};
-			this.uploadInput.emit(event);
-		}
-		else if (output.type === 'done' && typeof output.file !== 'undefined') {
-			this.isUploaded = true;
-			if (this.audioImageFile) {
-				this.deletedAudioFile.push(this.audioFile);
-				this.isAudioFileDeleted = true;
-			}
-			this.audioImageFile = output.file.response.result;
-			this.submittedAudio = false;
-			this.addAudioForm.patchValue({
-				image: this.audioImageFile
-			});
-		}
-	}
-
-	onSubmitAudio() {
-		let obj = this.addAudioForm.value;
-		let id = this.audioID;
-		obj['token'] = this.token;
-		obj['link'] = this.audioFile;
-		obj['image'] = this.audioImageFile;
-		this.submittedAudio = true;
-		if (this.addAudioForm.invalid) {
-			return;
-		}
-		if (!this.isAudioEdit) {
-			this.audioService.addAudio(obj).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.submittedAudio = false;
-						if (this.deletedAudioFile.length > 0) {
-							this.deleteAudioFile();
-						}
-						this.toastr.successToastr(response.message);
-						if (this.addAudioForm.value.sequence_number) {
-							this.temp_sequence_number = this.addAudioForm.value.sequence_number
-						} else {
-							this.temp_sequence_number = this.temp_sequence_number + 1;
-						}
-						this.audioData = response.result;
-						let audioObj = {
-							url: this.imagePath+"audio/"+this.audioData.link,
-							title: this.audioData.title,
-							cover: this.imagePath+"audio-image/"+this.audioData.image,
-						}
-						this.audioList.push(audioObj);
-						this.audioFile = '';
-						this.addAudioForm = this.formBuilder.group({
-							title: ['', Validators.required],
-							status: [true, Validators.required],
-							description: [''],
-							link: ['', Validators.required],
-							date: [''],
-							artist: [''],
-							duration: [''],
-							audioType: [''],
-							apple_podcast: [''],
-							spotify_link: [''],
-						});
-						this.modalService.dismissAll();
-					}
-					else {
-						this.toastr.errorToastr(response.message);
-					}
-				},
-			);
-		}
-		else {
-			if (id) {
-				this.audioService.editAudiodata(obj, id).subscribe(
-					(response) => {
-						if (response.code == 200) {
-							this.throw_msg = response.message
-							this.msg_success = true;
-							this.toastr.successToastr(response.message);
-							if (this.audioData) {
-								this.deletedAudioFile.push(this.audioData.src);
-								this.deleteAudioFile();
-							}
-							setTimeout(() => {
-								this.audioData.src = response.result.src;
-								window.location.reload();
-							}, 1000);
-							this.audioData.src = response.result.src;
-							if (this.podcastData.audio_data && this.podcastData.audio_data.length > 0) {
-								this.patchingdata(this.id);
-							}
-							this.modalService.dismissAll();
-						} else {
-							this.throw_msg = response.message
-							this.msg_danger = true;
-							this.toastr.errorToastr(response.message);
-						}
-					},
-				);
-			}
-		}
-	}
-
-	onCancelAudio() {
-		this.addAudioForm = this.formBuilder.group({
-			title: ['', Validators.required],
-			status: [true, Validators.required],
-			description: [''],
-			link: ['', Validators.required],
-			date: [''],
-			artist: [''],
-			duration: [''],
-			audioType: [''],
-			apple_podcast: [''],
-			spotify_link: [''],
-		});
-		this.modalService.dismissAll();
-		this.deletedAudioFile.push(this.audioFile);
-		this.deleteAudioFile();
-	}
-
-	deleteAudio(i, type) {
-		this.images.splice(i, 1);
-		this.isAudioFileDeleted = true;
-		this.deletedAudioData = this.audioData;
-		this.audioData = null;
-		this.audioList = [];
-	}
-
-	deleteAudioData() {
-		if (this.deletedAudioData) {
-			var mylist = { id: this.deletedAudioData._id, file: this.deletedAudioData.src };
-			this.audioService.deleteAudioData(mylist).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.modalService.dismissAll();
-						this.deletedAudioFile = [];
-						this.isAudioFileDeleted = false;
-					}
-				},
-			);
-		}
-	}
-
-	deleteAudioFile() {
-		if (this.isUploaded && this.deletedAudioFile && this.deletedAudioFile.length > 0) {
-			let obj = {};
-			obj['files'] = this.deletedAudioFile;
-			this.audioService.deletefile(obj).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.isUploaded = false;
-						this.audioFile = '';
-						this.deletedAudioFile = [];
-					}
-				},
-			);
-		}
-	}
-
-	
-
-  play() {
-    console.log("play");
-  }
 
 }

@@ -127,5 +127,25 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'socialactivity',
 		loadChildren: () => import("./../../pages/socialactivity/socialactivity.module").then((m) => m.SocialactivityModule),
 		data: { title: 'Social Activity Module' },
+	},
+	{
+		path: 'course',
+		loadChildren: () => import("./../../pages/course/course.module").then((m) => m.CourseModule),
+		data: { title: 'Course Module' },
+	},
+	{
+		path: 'tvshow',
+		loadChildren: () => import("./../../pages/tvshow/tvshow.module").then((m) => m.TvshowModule),
+		data: { title: 'Tv Show Module' },
+	},
+	{
+		path: 'student',
+		loadChildren: () => import("./../../pages/student/student.module").then((m) => m.StudentModule),
+		data: { title: 'Student Module' },
+	},
+	{
+		path: 'podcast-category',
+		loadChildren: () => import("./../../pages/podcast-category/podcast-category.module").then((m) => m.PodcastCategoryModule),
+		data: { title: 'Podcast Category Module' },
 	}
 ];

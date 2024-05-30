@@ -9,19 +9,19 @@ import { BlogModule } from '../blog/blog.module';// search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgToggleModule } from 'ng-toggle-button';
 import { PipemoduleModule } from '../../pipemodule.module';
-import { PodcastRoutingModule } from './podcast-routing.module';
-import { AddPodcastComponent } from './add-podcast/add-podcast.component';
-import { ViewPodcastComponent } from './view-podcast/view-podcast.component';
-import { AngMusicPlayerModule } from  'ang-music-player';
+import { StudentRoutingModule } from './student-routing.module';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { ViewStudentComponent } from './view-student/view-student.component';
+
 
 @NgModule({
   declarations: [
-    AddPodcastComponent,
-    ViewPodcastComponent
+    AddStudentComponent,
+    ViewStudentComponent
   ],
   imports: [
     CommonModule,
-    PodcastRoutingModule,
+    StudentRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -31,8 +31,7 @@ import { AngMusicPlayerModule } from  'ang-music-player';
     BlogModule,
     Ng2SearchPipeModule,
     NgToggleModule,
-    PipemoduleModule,
-    AngMusicPlayerModule
+    PipemoduleModule
   ]
 })
-export class PodcastModule { }
+export class StudentModule { }
