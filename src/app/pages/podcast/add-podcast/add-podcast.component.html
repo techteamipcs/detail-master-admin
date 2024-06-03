@@ -91,7 +91,7 @@
 										</a>
 									</div>
 								</div>
-								<!-- <span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
+								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
 							</div>
 							<hr>
 							<div class="form-group">
@@ -112,7 +112,7 @@
 										</a>
 									</div>
 								</div>
-								<!-- <span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
+								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Video URL</label>
@@ -136,6 +136,69 @@
 								</select>
 								<span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select
 									Status</span>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col">
+											<div class="card shadow">
+													<div class="card-header border-0">
+															<h3 class="mb-0">Related Podcast</h3>
+													</div>
+													<div class="col-md-12">
+															<div class="row">
+																	<div class="col-md-6">
+																			<input class="form-control mt-4" type="text"
+																					(keyup)="searchPodcast()"
+																					formControlName="searchText"
+																					name="searchText" [(ngModel)]="searchText"
+																					autocomplete="off"
+																					placeholder="&#61442;  Start searching a Podcast by id or name">
+																	</div>
+																	<div class="col-md-6"><button type="button"
+																					class="btn btn-primary pull-right"
+																					(click)="open(content)">Add Podcast</button>
+																	</div>
+															</div>
+															<div class="col-md-6">
+																	<h4 class="title"></h4>
+															</div>
+													</div>
+													<div class="table-responsive">
+															<table class="table align-items-center table-flush">
+																	<thead>
+																			<tr>
+																				<th>SL No</th>
+																				<th>Name</th>
+																				<th>Status</th>
+																				<th>Action</th>
+																			</tr>
+																	</thead>
+																	<tbody>
+																			<td colspan="5"
+																					*ngIf="relatedPodcastData && relatedPodcastData.length == 0">
+																					<div class="alert alert-dismissable"
+																							style="text-align: center;">
+																							Related Podcasts is Empty
+																					</div>
+																			</td>
+																			<tr *ngFor="let cData of relatedPodcastData | filter:searchText; let i = index">
+																					<td *ngIf="currentPage == 1">{{i+1}}</td>
+																					<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
+																					<td>{{cData.name}}</td>
+																					<td>{{cData.status == true ? 'Enabled':'Disable'}}</td>
+																					<td>
+																							<a style="cursor:pointer;padding-left: 15px;"
+																									(click)="removePodast(cData._id,i)"><i
+																											class="fa fa-trash-o"
+																											aria-hidden="true"></i></a>
+																					</td>
+																			</tr>
+																	</tbody>
+															</table>
+													</div>
+											</div>
+									</div>
+							</div>
 							</div>
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Submit</button>
@@ -377,5 +440,70 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Add Related Podcasts</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+					<span aria-hidden="true">&times;</span>
+			</button>
+	</div>
+	<div class="modal-body">
+			<!-- Page content -->
+			<div class="container">
+					<!-- Table -->
+					<div class="row">
+							<div class="col">
+									<div class="card shadow">
+											<!-- <div class="card-header border-0">
+													<h3 class="mb-0">Podcasts</h3>
+											</div> -->
+											<div class="col-md-12">
+													<div class="row">
+															<div class="col-md-6">
+																	<input class="form-control mt-4" type="text" (keyup)="searchPodcast()" name="search"
+																			[(ngModel)]="searchText" autocomplete="off"
+																			placeholder="&#61442;  Start searching a Podcast by id or name">
+															</div>
+													</div>
+											</div>
+											<div class="table-responsive">
+													<table class="table align-items-center table-flush">
+															<thead>
+																	<tr>
+																			<th>SL No</th>
+																			<th>Name</th>
+																			<th>Status</th>
+																			<th>Action</th>
+																	</tr>
+															</thead>
+															<tbody>
+																	<tr *ngFor="let cData of podcasts | filter:searchText; let i = index">
+																			<td *ngIf="currentPage == 1">{{i+1}}</td>
+																			<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
+																			<td>{{cData.name}}</td>
+																			<td>{{cData.status == true ? 'Enabled':'Disable'}}</td>
+																			<td>
+																					<a style="cursor:pointer;padding-left: 15px;"
+																							(click)="addRelatedPodcast(cData,i)"><i class="fa fa-plus"
+																									aria-hidden="true"></i></a>
+																			</td>
+																	</tr>
+															</tbody>
+													</table>
+													<div class="pcommece-pagination" *ngIf="totalRecord > 0 && !searchText">
+															<app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
+																	(changePage)="onListChangePage($event)"></app-pagination>
+													</div>
+											</div>
+									</div>
+							</div>
+					</div>
+			</div>
+	</div>
+	<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
 	</div>
 </ng-template>

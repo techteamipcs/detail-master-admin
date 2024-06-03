@@ -43,6 +43,17 @@ export class PodcastService {
       );
   };
 
+  getRelatedPodcast = (moreData:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/getrelatedPodcast';
+    return this.http
+      .post(endpoint, moreData,this.getRequestHeaders())
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+  };
+
   // update 
   editPodcastdata = (moreData:any,Id:any): Observable<any> => {
     let endpoint = environment.baseUrl+'/api/podcast/editPodcastdata';
@@ -55,29 +66,6 @@ export class PodcastService {
       })
     );
   };
-
-// export
-exportPodcast = (data:any): Observable<any> => {
-  const endpoint = environment.baseUrl+'/api/podcast/exportpodcast';
-  return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
-    catchError((err) => {
-      return throwError(err);
-    })
-  );
-};
-
-// import
-importallPodcast = (file: File): Observable<any> => {
-  const formData: FormData = new FormData();
-  formData.append('csvFile', file);
-  const endpoint = environment.baseUrl+'/api/podcast/importpodcast';
-  return this.http.post(endpoint, formData,this.getRequestHeaders()).pipe(
-    catchError((err) => {
-      return throwError(err);
-    })
-  );
-};
-
 
   deletepodcast = (data:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/podcast/deletepodcast';

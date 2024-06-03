@@ -119,53 +119,6 @@ export class ViewPodcastComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  importPodcast()
-  {
-    this.progress = 0;
-
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-
-      if (file) {
-        this.currentFile = file;
-        this.podcastservice.importallPodcast(this.currentFile).subscribe(
-            (response)=> {
-              if (response.code == 200) 
-              {
-                console.log('file uploaded sucessfully');
-                this.toastr.successToastr("podcast Image Imported sucessfully");
-                setTimeout(()=>{                           
-                  window.location.reload();
-                },2000);  
-                this.selectedFiles;
-              
-              } else {
-                this.toastr.errorToastr(response.message);
-              }
-            },
-          );
-      }
-    }
-  }
-
-  exportPodcast()
-  {
-    if(confirm("Are you sure to Export this Podcast"))
-    {
-      var obj = {};
-      this.podcastservice.exportPodcast(obj).subscribe(
-        (response)=> {
-          if (response) 
-          {   
-            if(response.filepath){
-              window.location.href = response.filepath;
-            }
-          }
-        },
-      );
-    }
-  }
-
 	deleteAllPodcasts()
   {
     if(confirm("Are you sure to delete All Podcasts"))

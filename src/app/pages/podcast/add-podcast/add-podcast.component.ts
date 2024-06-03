@@ -93,6 +93,14 @@ export class AddPodcastComponent implements OnInit {
 	audioImageFile: any;
 	tempAudio = [];
 	podcastAudio = [];
+	currentPage: number  = 1;
+  initialized: boolean = false;
+  currentLimit: number = 10;
+  totalRecord: number  = 0;
+	relatedPodcastData:any = [];
+	relatedProdcast:any = [];
+	searchText = '';
+	podcasts:any = [];
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -116,6 +124,7 @@ export class AddPodcastComponent implements OnInit {
 			short_desc: [''],
 			url_key: ['', Validators.required],
 			video_url: ['', Validators.required],
+			searchText:['']
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/';
@@ -195,6 +204,11 @@ export class AddPodcastComponent implements OnInit {
 						cover: this.imagePath+"audio-image/"+this.audioData.image,
 					}
 					this.audioList.push(audioObj);
+					if(data?.related_podcast){
+            this.relatedPodcastData = data?.related_podcast;
+          } else {
+            this.relatedPodcastData = [];
+          }
 				} else {
 
 				}
@@ -216,6 +230,7 @@ export class AddPodcastComponent implements OnInit {
 		if (this.audioData) {
 			obj['audio'] = this.audioData._id;
 		}
+		obj['related_podcast'] = this.relatedPodcastData;
 		if (!this.isEdit) {
 			this.podcastService.addPodcast(obj).subscribe(
 				(response) => {
@@ -845,5 +860,68 @@ export class AddPodcastComponent implements OnInit {
   play() {
     console.log("play");
   }
+
+	open(content: any) {
+    this.get_related_podcast();
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass : "myCustomModalClass",size: 'lg', backdrop: 'static' })
+      .result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+  }
+
+	get_related_podcast()
+  {
+    const obj = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      related_podcast: this.relatedPodcastData,
+      existedpodcast: this.id
+    };
+    this.podcastService.getRelatedPodcast(obj).subscribe(
+        (response)=> {
+          if (response.code == 200) 
+          {
+            if(response.result != null && response.result != '')
+            {
+              this.podcasts = response.result; 
+              this.totalRecord = response?.count;
+              window.scroll(0,0); 
+            }
+            else
+            {
+              this.podcasts = []; 
+            }
+           
+          }
+        },
+      );
+  }
+
+	removePodast(id,index){
+    this.relatedPodcastData.splice(index,1);
+  }
+
+	addRelatedPodcast(product,index){
+    this.relatedPodcastData.push(product);
+    this.get_related_podcast();
+  }
+
+	searchPodcast(){
+    if(this.searchText){
+      this.currentLimit = 1000;
+      this.currentPage = 1; 
+    } else {
+      this.currentLimit = 10;
+    }
+    this.get_related_podcast();
+  }
+
+	onListChangePage(event:any) {
+    this.currentPage = event;
+    this.get_related_podcast();
+  }
+	
 
 }
