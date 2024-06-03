@@ -569,7 +569,7 @@ export class AddPodcastComponent implements OnInit {
 
 	get_categorydata()
   {
-    this.categorySerice.getCategoryData({}).subscribe(
+    this.categorySerice.getallCategory({}).subscribe(
       (response)=> {  
         if (response.code == 200) 
         {

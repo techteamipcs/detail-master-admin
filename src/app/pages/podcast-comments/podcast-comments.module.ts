@@ -4,26 +4,28 @@ import { HttpClientModule,HttpResponse } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { CategoryRoutingModule } from './category-routing.module';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { ViewCategoryComponent } from './view-category/view-category.component';
 import { BlogModule } from '../blog/blog.module';
+import { NgbModule,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { PodcastCommentsRoutingModule } from './podcast-comments-routing.module';
+import { AddCommentsComponent } from './add-comments/add-comments.component';
+import { ViewCommentsComponent } from './view-comments/view-comments.component';
 
 
 @NgModule({
   declarations: [
-    AddCategoryComponent,
-    ViewCategoryComponent
+    AddCommentsComponent,
+    ViewCommentsComponent
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule,
+    PodcastCommentsRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgxUploaderModule,
     AngularEditorModule,
-    BlogModule
+    BlogModule,
+    NgbModule
   ]
 })
-export class CategoryModule { }
+export class PodcastCommentsModule { }

@@ -100,7 +100,9 @@
 									<div class="col-lg-3 col-md-4 col-6" *ngIf="audioData">
 										<a class="cursor:pointer;text-center" (click)="deleteAudio(i,'media')">
 											<i class="fa fa-trash-o" aria-hidden="true"></i></a>
-										<a class="d-block mb-4 h-100" (click)="editAudio(audio,audioData,'media')">
+										<a class="cursor:pointer;text-center" (click)="editAudio(audio,audioData,'media')">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+										<a class="d-block mb-4 h-100">
 											<ang-music-player [audioList]=audioList></ang-music-player>
 										</a>
 									</div>
@@ -114,8 +116,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Video URL</label>
-								<textarea name="video_url" formControlName="video_url" class="form-control" rows="4"
-									placeholder="Video URL"></textarea>
+								<input type="text" name="video_url" formControlName="video_url" class="form-control">
 								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video URL is
 									required</span>
 							</div>

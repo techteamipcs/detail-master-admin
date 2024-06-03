@@ -6,30 +6,30 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { environment } from '../../../../environments/environment';
 // Services
-import { PodcastcategoryService } from '../../../providers/podcastcategory/podcastcategory.service';
+import { PodcastcommentsService } from '../../../providers/podcastcomments/podcastcomments.service';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.scss']
+  selector: 'app-add-comments',
+  templateUrl: './add-comments.component.html',
+  styleUrls: ['./add-comments.component.scss']
 })
-export class AddCategoryComponent implements OnInit {
+export class AddCommentsComponent implements OnInit {
 
   @ViewChild('uploader', { read: ElementRef }) fileInput: ElementRef;
   // File Upload
   options: UploaderOptions;
   uploadInput: EventEmitter<UploadInput>;
-  categoryImage:any;
+  commentsImage:any;
   imagePath : any;
   
   // Data Assign
 
-  addCategoryForm:FormGroup;
+  addCommentsForm:FormGroup;
   throw_msg:any; 
   submitted: boolean = false;
   msg_success: boolean = false;
   msg_danger: boolean = false;
-  categorytexist:any;
+  commentstexist:any;
 
   // Edit Action Here
   applyAction: any;
@@ -58,22 +58,27 @@ export class AddCategoryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private categoryService:PodcastcategoryService,
+    private commentsService:PodcastcommentsService,
     private toastr: ToastrManager
   )
   { 
     this.uploadInput = new EventEmitter<UploadInput>();
-    this.addCategoryForm = this.formBuilder.group({
-      name: ['',Validators.required],
-      status: ['false',Validators.required],
-      description: ['',Validators.required],
-      url_key: ['',Validators.required]
+    this.addCommentsForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      phone: ['', Validators.required],
+      message: [''],
+      podcast: [''],
+      status: [true],
+      isApproved: [true],
+      ratings: [0],
      });
      this.imagePath = environment.baseUrl+'/public/';   
   }
 
   public hasError = (controlName: string, errorName: string) => { 
-    return this.addCategoryForm.controls[controlName].hasError(errorName);
+    return this.addCommentsForm.controls[controlName].hasError(errorName);
   };
 
   ngOnInit(): void {
@@ -91,16 +96,21 @@ export class AddCategoryComponent implements OnInit {
 
   patchingdata(id:any) { 
     let obj = {id:id};
-    this.categoryService.getCategoryWithId(obj).subscribe(
+    this.commentsService.getCommentsWithId(obj).subscribe(
       (response) => {
         if (response.code == 200) {
           let data = response?.result;
-          this.categoryImage = data?.image;
-          this.addCategoryForm.patchValue({
-            name: data?.name,
-            description: data?.description,
-            status:data?.isDeleted, 
-            url_key: data?.url_key
+          this.commentsImage = data?.image;
+          this.addCommentsForm.patchValue({
+            firstname: data?.firstname,
+            lastname: data?.lastname,
+            email:data?.email, 
+            phone:data?.phone, 
+            message: data?.message,
+            isApproved: data?.isApproved,
+            ratings: data?.ratings,
+            podcast: data?.podcast,
+            status: data?.status            
           });
        }else{
           
@@ -111,17 +121,17 @@ export class AddCategoryComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
-    let obj = this.addCategoryForm.value;
+    let obj = this.addCommentsForm.value;
     let id  = this.id;
     
-    obj['image'] = this.categoryImage; 
-    if (this.addCategoryForm.invalid){
+    obj['image'] = this.commentsImage; 
+    if (this.addCommentsForm.invalid){
       return;
     }
     
     if (!this.isEdit)
     {
-      this.categoryService.addCategory(obj).subscribe(
+      this.commentsService.addComments(obj).subscribe(
         (response) => {
           if(response.code == 200) 
           { 
@@ -129,12 +139,12 @@ export class AddCategoryComponent implements OnInit {
             // this.msg_success = true;
             this.toastr.successToastr(response.message);
             setTimeout(()=>{                           
-              this.router.navigate(['/podcast-category/view']);
+              this.router.navigate(['/podcast-comments/view']);
             },2000);
           } 
           else if(response.code == 400) 
           {    
-              this.categorytexist  = response.message;
+              this.commentstexist  = response.message;
               // this.throw_msg  = response.message
               // this.msg_danger = true;
               this.toastr.errorToastr(response.message);
@@ -145,7 +155,7 @@ export class AddCategoryComponent implements OnInit {
     }
     else
     {
-      this.categoryService.editCategorydata(obj,id).subscribe(
+      this.commentsService.editCommentsdata(obj,id).subscribe(
         (response) => {
           if(response.code == 200) 
           {
@@ -153,7 +163,7 @@ export class AddCategoryComponent implements OnInit {
             // this.msg_success = true;
             this.toastr.successToastr(response.message);
             setTimeout(()=>{                           
-                this.router.navigate(['/podcast-category/view']);
+                this.router.navigate(['/podcast-comments/view']);
             },2000);  
           } else {
             this.toastr.errorToastr(response.message);
@@ -178,12 +188,12 @@ export class AddCategoryComponent implements OnInit {
     } 
     else if(output.type === 'done' && typeof output.file !== 'undefined')
     {  
-      this.categoryImage = output.file.response.result;
+      this.commentsImage = output.file.response.result;
     }
   }
 
   onCancel(){
-    this.router.navigate(['/podcast-category/view']);
+    this.router.navigate(['/podcast-comments/view']);
   }
 
 }

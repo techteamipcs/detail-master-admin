@@ -7,12 +7,12 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PodcastcategoryService {
+export class PodcastcommentsService {
 
   constructor(private http: HttpClient) { }
 
-  addCategory = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/podcast/addcategory';
+  addComments = (moreData:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/addcomments';
     return this.http
       .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
@@ -22,8 +22,8 @@ export class PodcastcategoryService {
       );
   };
 
-  getCategoryDetails = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/podcast/adminsidecategories';
+  getCommentsDetails = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/adminsidecomments';
     return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
@@ -31,8 +31,8 @@ export class PodcastcategoryService {
     );
   }; 
 
-  getCategoryWithId = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/podcast/getCategoryWithId';
+  getCommentsWithId = (moreData:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/getCommentsWithId';
     return this.http
       .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
@@ -42,8 +42,8 @@ export class PodcastcategoryService {
       );
   };
 
-  editCategorydata = (moreData:any,Id:any): Observable<any> => {
-    let endpoint = environment.baseUrl+'/api/podcast/editCategorydata';
+  editCommentsdata = (moreData:any,Id:any): Observable<any> => {
+    let endpoint = environment.baseUrl+'/api/podcast/editCommentsdata';
     if (Id) {
       endpoint += `?id=${Id}`;
     }
@@ -54,8 +54,8 @@ export class PodcastcategoryService {
     );
   };
 
-  deletecategory = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/podcast/deletecategory';
+  deletecomments = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/deletecomments';
     return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
@@ -63,7 +63,7 @@ export class PodcastcategoryService {
     );
   };
 
-  getCategoryData = (data:any): Observable<any> => {
+  getCommentsData = (data:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/podcast/adminsidecategories';
     return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
       catchError((err) => {
@@ -72,8 +72,8 @@ export class PodcastcategoryService {
     ); 
   };
 
-  getallCategory = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/podcast/getAllCategory';
+  getallComments = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/podcast/getAllComments';
     return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);

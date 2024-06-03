@@ -147,5 +147,10 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'podcast-category',
 		loadChildren: () => import("./../../pages/podcast-category/podcast-category.module").then((m) => m.PodcastCategoryModule),
 		data: { title: 'Podcast Category Module' },
+	},
+	{
+		path: 'podcast-comments',
+		loadChildren: () => import("./../../pages/podcast-comments/podcast-comments.module").then((m) => m.PodcastCommentsModule),
+		data: { title: 'Podcast Comments Module' },
 	}
 ];
