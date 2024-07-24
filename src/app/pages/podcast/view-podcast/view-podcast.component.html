@@ -57,7 +57,7 @@
 								<td *ngIf="currentPage == 1">{{i+1}}</td>
 								<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
 								<td>{{listPodcast.name}}</td>
-								<td *ngIf="listPodcast.media_data">{{listPodcast.media_data[0].file_type}}</td>
+								<td >{{listPodcast.type}}</td>
 								<td *ngIf="listPodcast.media_data">
 									<img *ngIf="listPodcast.media_data && listPodcast.media_data[0].file_type =='image'"
 										src="{{imagePath}}/podcast/{{listPodcast.media_data[0].src}}" alt="logo"
@@ -80,7 +80,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="pcommece-pagination" *ngIf="totalRecord > 0 && !searchText">
+					<div class="drminnie-pagination" *ngIf="totalRecord > 0 && !searchText">
 						<app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
 							(changePage)="onListChangePage($event)"></app-pagination>
 					</div>

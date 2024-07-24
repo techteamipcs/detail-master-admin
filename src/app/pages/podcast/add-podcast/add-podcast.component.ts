@@ -123,8 +123,9 @@ export class AddPodcastComponent implements OnInit {
 			description: ['', Validators.required],
 			short_desc: [''],
 			url_key: ['', Validators.required],
-			video_url: ['', Validators.required],
-			searchText:['']
+			video_url: [''],
+			searchText:[''],
+			type:['']
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/';
@@ -191,6 +192,7 @@ export class AddPodcastComponent implements OnInit {
 					this.addpodcastForm.patchValue({
 						name: data?.name,
 						status: data?.status,
+						type: data?.type,
 						podcast_category:data?.podcast_category,
 						description: data?.description,
 						short_desc: data?.short_desc,

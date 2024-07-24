@@ -68,9 +68,46 @@
 								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
 									required</span>
 							</div>
-							<hr>
 							<div class="form-group">
-								<h4 class="text-lg-start">Podcast Image/Video <span class="required">*</span></h4>
+								<label for="exampleInputEmail1">Type</label>
+								<select name="type" formControlName="type" class="form-control">
+									<option value="">Select Podcast Type</option>
+									<option value="Audio">Audio</option>
+									<option value="Video">Video</option>
+								</select>
+								<span *ngIf="submitted && hasError('type','required')" class="alert-danger">Please Select Podcast Type</span>
+							</div>
+							<hr>
+							<div class="form-group" *ngIf="addpodcastForm.value.type == 'Audio'">
+								<h4 class="text-lg-start">Podcast Audio <span class="required">*</span></h4>
+								<div class="row text-lg-start">
+									<div class="col-lg-3 col-md-4 col-6" *ngIf="audioData">
+										<a class="cursor:pointer;text-center" (click)="deleteAudio(i,'media')">
+											<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+										<a class="cursor:pointer;text-center" (click)="editAudio(audio,audioData,'media')">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+										<a class="d-block mb-4 h-100">
+											<ang-music-player [audioList]=audioList></ang-music-player>
+										</a>
+									</div>
+									<div class="col-lg-3 col-md-4 col-6" *ngIf="!audioData">
+										<a (click)="openAudio(audio)" class="d-block mb-4 h-100">
+											<img src="{{url}}/img/addimage.svg" class="img-fluid img-thumbnail" width="150" height="150">
+										</a>
+									</div>
+								</div>
+								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
+							</div>
+							<div class="form-group" *ngIf="addpodcastForm.value.type == 'Video'">
+								<label for="exampleInputEmail1">Youtube Video URL Key</label>
+								<p>Ex: https://www.youtube.com/watch?v=wiur_AGatGU</p>
+								<input type="text" name="video_url" formControlName="video_url" class="form-control" placeholder="wiur_AGatGU">
+								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video URL is
+									required</span>
+							</div>
+							<hr *ngIf="addpodcastForm.value.type">
+							<div class="form-group">
+								<h4 class="text-lg-start">Podcast Display Image/Video <span class="required">*</span></h4>
 								<div class="row text-lg-start">
 									<div class="col-lg-3 col-md-4 col-6" *ngIf="mediaData">
 										<a class="cursor:pointer;text-center" (click)="deleteMedia(i,'media')">
@@ -92,33 +129,6 @@
 									</div>
 								</div>
 								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
-							</div>
-							<hr>
-							<div class="form-group">
-								<h4 class="text-lg-start">Podcast Audio <span class="required">*</span></h4>
-								<div class="row text-lg-start">
-									<div class="col-lg-3 col-md-4 col-6" *ngIf="audioData">
-										<a class="cursor:pointer;text-center" (click)="deleteAudio(i,'media')">
-											<i class="fa fa-trash-o" aria-hidden="true"></i></a>
-										<a class="cursor:pointer;text-center" (click)="editAudio(audio,audioData,'media')">
-											<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-										<a class="d-block mb-4 h-100">
-											<ang-music-player [audioList]=audioList></ang-music-player>
-										</a>
-									</div>
-									<div class="col-lg-3 col-md-4 col-6" *ngIf="!audioData">
-										<a (click)="openAudio(audio)" class="d-block mb-4 h-100">
-											<img src="{{url}}/img/addimage.svg" class="img-fluid img-thumbnail" width="150" height="150">
-										</a>
-									</div>
-								</div>
-								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">Video URL</label>
-								<input type="text" name="video_url" formControlName="video_url" class="form-control">
-								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video URL is
-									required</span>
 							</div>
 							<hr>
 							<div class="form-group">
@@ -493,7 +503,7 @@
 																	</tr>
 															</tbody>
 													</table>
-													<div class="pcommece-pagination" *ngIf="totalRecord > 0 && !searchText">
+													<div class="drminnie-pagination" *ngIf="totalRecord > 0 && !searchText">
 															<app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
 																	(changePage)="onListChangePage($event)"></app-pagination>
 													</div>
