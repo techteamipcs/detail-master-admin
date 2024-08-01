@@ -8,11 +8,11 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent,canActivate: [AuthGuard]},
-    { path: 'user-profile',   component: UserProfileComponent,canActivate: [AuthGuard] },
-    { path: 'tables',         component: TablesComponent,canActivate: [AuthGuard] },
-    { path: 'icons',          component: IconsComponent,canActivate: [AuthGuard] },
-    { path: 'maps',           component: MapsComponent,canActivate: [AuthGuard] },
+	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+	{ path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+	{ path: 'tables', component: TablesComponent, canActivate: [AuthGuard] },
+	{ path: 'icons', component: IconsComponent, canActivate: [AuthGuard] },
+	{ path: 'maps', component: MapsComponent, canActivate: [AuthGuard] },
 	{
 		path: 'page',
 		loadChildren: () => import("./../../pages/page/page.module").then((m) => m.PageModule),
@@ -152,5 +152,10 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'podcast-comments',
 		loadChildren: () => import("./../../pages/podcast-comments/podcast-comments.module").then((m) => m.PodcastCommentsModule),
 		data: { title: 'Podcast Comments Module' },
+	},
+	{
+		path: 'about',
+		loadChildren: () => import("./../../pages/about/about.module").then((m) => m.AboutModule),
+		data: { title: 'About Module' },
 	}
 ];

@@ -1,0 +1,115 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 400px;  background-size: cover; background-position: center top;">
+  <span class="mask bg-gradient-info opacity-8"></span>
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <!-- <h1 class="display-2 text-white">Hello {{user.username}}</h1> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">About</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addaboutForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+            <div class="box-body">
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Title sign</label>
+                <input type="text" name="title_sign" autocomplete="off" formControlName="title_sign"
+                  class="form-control" placeholder="about title_sign">
+                <span *ngIf="submitted && hasError('title_sign','required')" class="alert-danger">about title_sign
+                  is
+                  required</span>
+              </div>
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Title name</label>
+                <input type="text" name="title_name" autocomplete="off" formControlName="title_name"
+                  class="form-control" placeholder="title_name">
+                <span *ngIf="submitted && hasError('title_name','required')" class="alert-danger">title_name is
+                  required</span>
+              </div>
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Desc short</label>
+                <input type="text" name="desc_short" autocomplete="off" formControlName="desc_short"
+                  class="form-control" placeholder="Conatct Email Password">
+                <span *ngIf="submitted && hasError('desc_short','required')" class="alert-danger">desc_short</span>
+              </div>
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Desc long</label>
+                <input type="text" name="desc_long" autocomplete="off" formControlName="desc_long" class="form-control"
+                  placeholder="desc_long">
+                <span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">desc_long is
+                  required</span>
+              </div>
+
+
+
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Video url</label>
+                <input type="text" name="video_url" autocomplete="off" formControlName="video_url" class="form-control"
+                  placeholder="Video Url">
+                <span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video Url is
+                  required</span>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Video Desc</label>
+                <input type="text" name="video_desc" autocomplete="off" formControlName="video_desc"
+                  class="form-control" placeholder="video_desc">
+                <span *ngIf="submitted && hasError('video_desc','required')" class="alert-danger">video_desc is
+                  required</span>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Upload image_banner</label><br>
+                <input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFileBanner($event)"
+                  [uploadInput]="uploadInput" /><br>
+                <a *ngIf="image_banner" href="{{imagePath}}about/{{image_banner}}" target="_blank">{{image_banner}}</a>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label for="exampleInputEmail1">Upload image_desc</label><br>
+                <input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFileDesc($event)"
+                  [uploadInput]="uploadInput" /><br>
+                <a *ngIf="image_desc" href="{{imagePath}}about/{{image_desc}}" target="_blank">{{image_desc}}</a>
+              </div>
+
+
+              <!-- <div class="form-group">
+                <label for="exampleInputEmail1">Status</label>
+                <select name="status" formControlName="status" class="form-control">
+                  <option value="false">Active</option>
+                  <option value="true">InActive</option>
+                </select>
+              </div> -->
+
+              <div class="form-group">
+                <label for="status"> Status</label>
+                <select name="status" formControlName="status" class="form-control">
+                  <option value="">Select Status</option>
+                  <option value="active">Active</option>
+                  <option value="deactive">Deactive</option>
+                </select>
+                <span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select Status</span>
+              </div>
+
+            </div>
+            <div class="box-footer col-lg-12">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

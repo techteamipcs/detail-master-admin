@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5008',
-  Url: 'http://localhost:4306',
-  // Url: 'https://aetriosolutions.com/admin',
-  // baseUrl:'https://aetriosolutions.com:5006',
+  Url: 'http://localhost:4308',
+  // Url: 'https://www.dr-minnie.com/admin',
+  // baseUrl:'https://www.dr-minnie.com:5008',
 };
 
 /*
