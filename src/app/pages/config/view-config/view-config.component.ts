@@ -47,7 +47,7 @@ export class ViewConfigComponent implements OnInit {
   qrCode = null;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
   QRcodeImage :any = '';
-  qrcodeurl:any = 'http://aetriosolutions.com/';
+  qrcodeurl:any = 'https://www.dr-minnie.com/';
   @ViewChild('qrcode', { static: true }) qrcode: ElementRef;
   isUpdate:any = false;
   user:any;
