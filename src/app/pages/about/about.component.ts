@@ -199,7 +199,7 @@ export class AboutComponent implements OnInit {
     this.submitted = true;
     let obj = this.addaboutForm.value;
     let id = this.AboutData[0]._id;
-    obj['drminnie-admin-token'] = this.token;
+    obj['token'] = this.token;
     obj['image_banner'] = this.image_banner;
     // obj['image_desc'] = this.image_desc;
 
@@ -224,6 +224,7 @@ export class AboutComponent implements OnInit {
           }
           setTimeout(() => {
             this.router.navigate(['/about']);
+            this.toastr.successToastr(response.message);
           }, 2000);
         }
         else {
