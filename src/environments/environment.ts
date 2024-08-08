@@ -3,11 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:5008',
-  Url: 'http://localhost:4308',
-  // Url: 'https://www.dr-minnie.com/admin',
-  // baseUrl:'https://www.dr-minnie.com:5008',
+	production: false,
+
+	// live
+	// Url: 'https://www.dr-minnie.com/admin',
+	// baseUrl:'https://www.dr-minnie.com:5008',
+
+	// local
+	baseUrl: 'http://localhost:5008',
+	Url: 'http://localhost:4308',
+
 };
 
 /*
