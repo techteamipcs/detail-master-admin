@@ -199,6 +199,9 @@ export class AboutComponent implements OnInit {
     this.submitted = true;
     let obj = this.addaboutForm.value;
     let id = this.AboutData[0]._id;
+		if(id === null || id.trim() === "") {
+			this.onSubmitNew();
+		}
     obj['token'] = this.token;
     obj['image_banner'] = this.image_banner;
     // obj['image_desc'] = this.image_desc;
@@ -229,6 +232,46 @@ export class AboutComponent implements OnInit {
         }
         else {
           this.throw_msg = response.message
+          this.msg_danger = true;
+          this.CreateErrorResponse(response);
+        }
+      },
+    );
+  }
+
+	onSubmitNew() {
+    this.submitted = true;
+    let obj = this.addaboutForm.value;
+    obj['token'] = this.token;
+    obj['image_banner'] = this.image_banner;
+
+    if (this.mediaData) {
+      obj['image_desc'] = this.mediaData._id;
+    }
+
+    if (this.addaboutForm.invalid) {
+      return;
+    }
+
+    // Call the service method to create a new entry
+    this.aboutService.addAboutData(obj).subscribe(
+      (response) => {
+        if (response.code == 200) {
+          this.throw_msg = response.message;
+          this.msg_success = true;
+          this.isUploaded = true;
+					if (this.isMediaDeleted) {
+            this.deleteMediaData();
+          }
+          if (this.isMediaFileDeleted) {
+            this.deleteMediaFile();
+          }
+          setTimeout(() => {
+            this.router.navigate(['/about']);
+            this.toastr.successToastr(response.message);
+          }, 2000);
+        } else {
+          this.throw_msg = response.message;
           this.msg_danger = true;
           this.CreateErrorResponse(response);
         }

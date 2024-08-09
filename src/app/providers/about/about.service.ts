@@ -33,6 +33,17 @@ export class AboutService {
     );
   };
 
+	addAboutData = (moreData:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/about/addabout';
+    return this.http
+      .post(endpoint, moreData,this.getRequestHeaders())
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+  };
+
   deletefile = (data: any): Observable<any> => {
     const endpoint = environment.baseUrl + '/api/achievement/deletefile';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
