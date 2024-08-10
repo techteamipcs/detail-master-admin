@@ -131,6 +131,15 @@
 								<!-- <span *ngIf="submitted && hasError('podcast_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
 							</div>
 							<hr>
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Upload Podcast Image 2</label><br>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFileImage2($event)"
+									[uploadInput]="uploadInput" /><br>
+								<img src="{{imagePath}}podcast/{{podcastImage2}}" class="img-fluid img-thumbnail"
+									*ngIf="mediaData && mediaData.file_type == 'image'" width="200" height="350">
+
+							</div>
+							<hr>
 							<div class="form-group">
 								<label for="exampleInputEmail1">URL Key</label>
 								<input type="text" name="url_key" formControlName="url_key" class="form-control">

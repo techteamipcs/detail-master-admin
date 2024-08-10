@@ -27,6 +27,7 @@ export class AddPodcastComponent implements OnInit {
 	options: UploaderOptions;
 	uploadInput: EventEmitter<UploadInput>;
 	podcastImage: any;
+	podcastImage2: any;
 	podcastVideo: any;
 	imagePath: any;
 	imageArr: any = [];
@@ -80,7 +81,7 @@ export class AddPodcastComponent implements OnInit {
     fonts: [
       {class: 'career_box', name: 'Rajdhani sans-serif'},
     ],
-  } 
+  }
 	submittedAudio:boolean = false;
 	isAudioEdit = false;
 	audioFile : any;
@@ -101,6 +102,7 @@ export class AddPodcastComponent implements OnInit {
 	relatedProdcast:any = [];
 	searchText = '';
 	podcasts:any = [];
+	selectedFile: any;
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -187,6 +189,7 @@ export class AddPodcastComponent implements OnInit {
 					let data = response?.result;
 					this.podcastData = response.result;
 					this.podcastImage = data?.image;
+					this.podcastImage2 = data?.image_2;
 					this.mediaData = data?.media_data[0];
 					this.audioData = data?.audio_data[0];
 					this.addpodcastForm.patchValue({
@@ -229,6 +232,7 @@ export class AddPodcastComponent implements OnInit {
 		if (this.mediaData) {
 			obj['image'] = this.mediaData._id;
 		}
+		obj['image_2'] = this.podcastImage2;
 		if (this.audioData) {
 			obj['audio'] = this.audioData._id;
 		}
@@ -587,14 +591,14 @@ export class AddPodcastComponent implements OnInit {
 	get_categorydata()
   {
     this.categorySerice.getallCategory({}).subscribe(
-      (response)=> {  
-        if (response.code == 200) 
+      (response)=> {
+        if (response.code == 200)
         {
           if(response.result != null && response.result != '')
           {
             this.categoryData  = response.result;
           }
-          
+
         }
       },
     );
@@ -857,7 +861,7 @@ export class AddPodcastComponent implements OnInit {
 		}
 	}
 
-	
+
 
   play() {
     console.log("play");
@@ -883,19 +887,19 @@ export class AddPodcastComponent implements OnInit {
     };
     this.podcastService.getRelatedPodcast(obj).subscribe(
         (response)=> {
-          if (response.code == 200) 
+          if (response.code == 200)
           {
             if(response.result != null && response.result != '')
             {
-              this.podcasts = response.result; 
+              this.podcasts = response.result;
               this.totalRecord = response?.count;
-              window.scroll(0,0); 
+              window.scroll(0,0);
             }
             else
             {
-              this.podcasts = []; 
+              this.podcasts = [];
             }
-           
+
           }
         },
       );
@@ -913,7 +917,7 @@ export class AddPodcastComponent implements OnInit {
 	searchPodcast(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
@@ -924,6 +928,23 @@ export class AddPodcastComponent implements OnInit {
     this.currentPage = event;
     this.get_related_podcast();
   }
-	
+
+	onUploadFileImage2(output: UploadOutput): void {
+    this.selectedFile = output;
+    if (output.type === 'allAddedToQueue') {
+      const event: UploadInput = {
+        type: 'uploadAll',
+        url: environment.baseUrl + '/api/podcast/addimage',
+        method: 'POST',
+        data: {},
+      };
+      this.uploadInput.emit(event);
+    }
+    else if (output.type === 'done' && typeof output.file !== 'undefined') {
+      this.podcastImage2 = output.file.response.result;
+      this.throw_msg = output.file.response.message;
+      this.msg_success = true;
+    }
+  }
 
 }
