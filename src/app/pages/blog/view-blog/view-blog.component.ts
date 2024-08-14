@@ -19,7 +19,7 @@ export class ViewBlogComponent implements OnInit {
   // pagination
   currentPage: number  = 1;
   initialized: boolean = false;
-  currentLimit: number = 5;
+  currentLimit: number = 20;
   totalRecord: number  = 0;
   searchText = '';
   config = {
@@ -56,7 +56,7 @@ export class ViewBlogComponent implements OnInit {
     private blogService:BlogService
   ) {
     this.imagePath = environment.baseUrl+'/public/';
-     
+
    }
 
   ngOnInit(): void {
@@ -75,18 +75,18 @@ export class ViewBlogComponent implements OnInit {
     };
     this.blogService.getblogDetails(obj).subscribe(
         (response)=> {
-          if (response.code == 200) 
+          if (response.code == 200)
           {
             if(response.result != null && response.result != '')
-            { 
-              this.blogData     = response.result;  
-              this.totalRecord  = response?.count; 
+            {
+              this.blogData     = response.result;
+              this.totalRecord  = response?.count;
             }
             else
             {
               this.msg_danger   = true;
             }
-           
+
           }
         },
       );
@@ -95,7 +95,7 @@ export class ViewBlogComponent implements OnInit {
   onListChangePage(event:any) {
     this.currentPage = event;
     this.get_blogData();
-  } 
+  }
 
   deleteblog(listid:any)
   {
@@ -104,8 +104,8 @@ export class ViewBlogComponent implements OnInit {
       var mylist = {id:listid};
       this.blogService.deleteblog(mylist).subscribe(
         (response)=> {
-          if(response.code == 200) 
-          {    
+          if(response.code == 200)
+          {
             this.get_blogData();
             this.router.navigate(['/blog/view']);
           }
@@ -117,7 +117,7 @@ export class ViewBlogComponent implements OnInit {
   searchBlog(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
