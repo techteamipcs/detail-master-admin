@@ -33,7 +33,7 @@
                                 All</button> -->
                             <button type="button" class="btn btn-primary pull-right" (click)="sendAllopen(content1)" >Send
                                 All</button>
-                                <!-- <a style="cursor:pointer;padding-left: 15px;" 
+                                <!-- <a style="cursor:pointer;padding-left: 15px;"
                                     (click)="sendAllopen(content1)"><i class="fa fa-envelope-o"
                                             aria-hidden="true"></i></a> -->
                         </div>
@@ -122,8 +122,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
-                        <angular-editor name="content" formControlName="content" [config]="editorConfig">
-                        </angular-editor>
+                        <!-- <angular-editor name="content" formControlName="content" [config]="editorConfig"> </angular-editor> -->
+												<textarea name="content" formControlName="content" class="form-control"></textarea>
                         <span *ngIf="submitted && hasError('content','required')" class="alert-danger">Content is
                             required</span>
                     </div>
@@ -173,8 +173,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
-                        <angular-editor name="content" formControlName="content" [config]="editorConfig">
-                        </angular-editor>
+                        <!-- <angular-editor name="content" formControlName="content" [config]="editorConfig"> </angular-editor> -->
+												<textarea name="content" formControlName="content" class="form-control"></textarea>
                         <span *ngIf="submitted && hasError('content','required')" class="alert-danger">Content is
                             required</span>
                     </div>
