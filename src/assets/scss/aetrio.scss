@@ -69,4 +69,53 @@
 @import "custom/vendors";
 
 // Angular Differences
-@import "angular-differences/angular-differences"
+@import "angular-differences/angular-differences";
+
+.nav-link {
+	color: #323232 !important;
+}
+
+.nav-link i.ni {
+	color: #323232 !important;
+}
+
+.navbar-vertical .navbar-nav .nav-link.active {
+	background-color: #eae3e1;
+	font-weight: 600;
+}
+
+.bg-gradient-info {
+	background: transparent !important;
+}
+
+.btn-info {
+	background-color: #423f3f;
+	border-color: #423f3f;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active {
+	background-color: #a2999b !important;
+	border-color: #a2999b !important;
+}
+
+.drminnie-pagination {
+	background-color: #eae3e1 !important;
+}
+
+
+.custom-btn:hover,
+.custom-btn:focus,
+.custom-btn:active {
+	background-color: #a2999b !important;
+	border-color: #a2999b !important;
+}
+
+.icon-shape {
+	background-color: #323232 !important;
+}
+
+.card-body .text-success {
+	color :#423f3f !important;
+}

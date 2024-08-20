@@ -99,7 +99,7 @@ export class ViewBlogComponent implements OnInit {
 
   deleteblog(listid:any)
   {
-    if(confirm("Are you sure to delete this blog"))
+    if(confirm("Are you sure to delete this News"))
     {
       var mylist = {id:listid};
       this.blogService.deleteblog(mylist).subscribe(
