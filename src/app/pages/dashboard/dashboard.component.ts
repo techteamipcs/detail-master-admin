@@ -96,17 +96,17 @@ export class DashboardComponent implements OnInit {
   }
 
   dashboard_data()
-  { 
+  {
     this.dashboardService.getboardDetails({}).subscribe(
         (response)=> {
-          if (response.code == 200) 
+          if (response.code == 200)
           {
               this.allpage_count =  response.count_page;
               this.blog_count    =  response.count_blog;
               this.tag_count     =  response.count_tag;
               this.author_count  =  response.count_author;
               this.testimonial_count = response.count_testimonial;
-              this.program_count  =  response.count_program; 
+              this.program_count  =  response.count_program;
               this.contact_count  =  response.count_contact;
               this.career_count   =  response.count_career;
               this.user_count     =  response.count_user;
