@@ -7,6 +7,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 
+
 export const AdminLayoutRoutes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 	{ path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
@@ -157,5 +158,10 @@ export const AdminLayoutRoutes: Routes = [
 		path: 'about',
 		loadChildren: () => import("./../../pages/about/about.module").then((m) => m.AboutModule),
 		data: { title: 'About Module' },
+	},
+	{
+		path:'achievement-category',
+		loadChildren: () => import("./../../pages/achievement-category/achievement-category.module").then((m) => m.AchievementCategoryModule),
+		data: {title: 'Achievement Module'}
 	}
 ];

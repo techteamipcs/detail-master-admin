@@ -12,13 +12,13 @@ import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
 
 @Component({
-  selector: 'app-add-achievement',
-  templateUrl: './add-achievement.component.html',
-  styleUrls: ['./add-achievement.component.scss']
+	selector: 'app-add-achievement',
+	templateUrl: './add-achievement.component.html',
+	styleUrls: ['./add-achievement.component.scss']
 })
 export class AddAchievementComponent implements OnInit {
 
-  @ViewChild('uploader', { read: ElementRef }) fileInput: ElementRef;
+	@ViewChild('uploader', { read: ElementRef }) fileInput: ElementRef;
 	// File Upload
 	options: UploaderOptions;
 	uploadInput: EventEmitter<UploadInput>;
@@ -56,6 +56,7 @@ export class AddAchievementComponent implements OnInit {
 	isMediaEdit = false;
 	mediaID: any;
 	achievementData: any;
+	categoryData: any = [];
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -73,6 +74,7 @@ export class AddAchievementComponent implements OnInit {
 			status: [true, Validators.required],
 			description: ['', Validators.required],
 			short_desc: ['', Validators.required],
+			achievement_category: ["", Validators.required],
 			url_key: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
@@ -103,6 +105,7 @@ export class AddAchievementComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
+		this.get_categorydata();
 		this.id = this.route.snapshot.paramMap.get('id');
 		if (this.isEdit) {
 			this.patchingdata(this.id);
@@ -128,6 +131,7 @@ export class AddAchievementComponent implements OnInit {
 						description: data?.description,
 						short_desc: data?.short_desc,
 						url_key: data?.url_key,
+						achievement_category:data?.achievement_category
 					});
 				} else {
 
@@ -496,6 +500,18 @@ export class AddAchievementComponent implements OnInit {
 				},
 			);
 		}
+	}
+
+	get_categorydata() {
+		this.achievementService.getallCategory({}).subscribe(
+			(response) => {
+				if (response.code == 200) {
+					if (response.result != null && response.result != '') {
+						this.categoryData = response.result;
+					}
+				}
+			},
+		);
 	}
 
 }

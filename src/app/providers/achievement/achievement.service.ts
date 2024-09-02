@@ -18,7 +18,7 @@ export class AchievementService {
       })
     );
   };
-  
+
   addAchievement = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/achievement/addachievement';
     return this.http
@@ -42,7 +42,7 @@ export class AchievementService {
       );
   };
 
-  // update 
+  // update
   editAchievementdata = (moreData:any,Id:any): Observable<any> => {
     let endpoint = environment.baseUrl+'/api/achievement/editAchievementdata';
     if (Id) {
@@ -108,6 +108,15 @@ importallAchievement = (file: File): Observable<any> => {
 
   deleteMediaData = (data:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/achievement/deletemediadata';
+    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+	getallCategory = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/achievement/getAllCategory';
     return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
