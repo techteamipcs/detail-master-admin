@@ -77,6 +77,13 @@
 								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is
 									required</span>
 							</div>
+							<div class="form-group" >
+								<label for="exampleInputEmail1">Youtube Video URL Key</label>
+								<p>Ex: https://www.youtube.com/watch?v=wiur_AGatGU</p>
+								<input type="text" name="video" formControlName="video" class="form-control" placeholder="wiur_AGatGU">
+								<span *ngIf="submitted && hasError('video','required')" class="alert-danger">Video URL is
+									required</span>
+							</div>
 							<div class="form-group">
 								<h4 class="text-lg-start">Achievement Image/Video <span class="required">*</span></h4>
 								<div class="row text-lg-start">

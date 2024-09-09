@@ -74,6 +74,7 @@ export class AddAchievementComponent implements OnInit {
 			status: [true, Validators.required],
 			description: ['', Validators.required],
 			short_desc: ['', Validators.required],
+			video: ['', ],
 			achievement_category: ["", Validators.required],
 			url_key: ['', Validators.required],
 		});
@@ -130,6 +131,7 @@ export class AddAchievementComponent implements OnInit {
 						status: data?.status,
 						description: data?.description,
 						short_desc: data?.short_desc,
+						video: data?.video,
 						url_key: data?.url_key,
 						achievement_category:data?.achievement_category
 					});
