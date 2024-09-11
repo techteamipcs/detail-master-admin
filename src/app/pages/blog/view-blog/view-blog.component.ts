@@ -19,7 +19,7 @@ export class ViewBlogComponent implements OnInit {
   // pagination
   currentPage: number  = 1;
   initialized: boolean = false;
-  currentLimit: number = 20;
+  currentLimit: number = 10;
   totalRecord: number  = 0;
   searchText = '';
   config = {
