@@ -70,7 +70,7 @@ export class ViewAchievementComponent implements OnInit {
     private modalService: NgbModal,
     private activeModal: NgbActiveModal
 	) {
-		this.imagePath = environment.baseUrl + '/public/';
+		this.imagePath = environment.baseUrl + '/public/achievement/';
 		this.token = localStorage.getItem('token');
 	}
 
@@ -130,15 +130,15 @@ export class ViewAchievementComponent implements OnInit {
         this.currentFile = file;
         this.achievementservice.importallAchievement(this.currentFile).subscribe(
             (response)=> {
-              if (response.code == 200) 
+              if (response.code == 200)
               {
                 console.log('file uploaded sucessfully');
                 this.toastr.successToastr("achievement Image Imported sucessfully");
-                setTimeout(()=>{                           
+                setTimeout(()=>{
                   window.location.reload();
-                },2000);  
+                },2000);
                 this.selectedFiles;
-              
+
               } else {
                 this.toastr.errorToastr(response.message);
               }
@@ -155,8 +155,8 @@ export class ViewAchievementComponent implements OnInit {
       var obj = {};
       this.achievementservice.exportAchievement(obj).subscribe(
         (response)=> {
-          if (response) 
-          {   
+          if (response)
+          {
             if(response.filepath){
               window.location.href = response.filepath;
             }
@@ -173,8 +173,8 @@ export class ViewAchievementComponent implements OnInit {
       var mylist = {};
       this.achievementservice.deleteallachievements(mylist).subscribe(
         (response)=> {
-          if (response.code == 200) 
-          {   
+          if (response.code == 200)
+          {
             this.get_AchievementData();
 						this.toastr.successToastr(response.message);
             window.location.reload();
@@ -188,7 +188,7 @@ export class ViewAchievementComponent implements OnInit {
 	searchAchievement(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
@@ -250,7 +250,7 @@ export class ViewAchievementComponent implements OnInit {
         this.config.labels.unchecked = 'Deactive';
       } else {
         this.isactive = true;
-        
+
       }
     }
 	}

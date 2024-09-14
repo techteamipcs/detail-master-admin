@@ -33,8 +33,8 @@
 							<tr>
 								<th>SL No</th>
 								<th>Impact Name</th>
-								<th>Format</th>
-								<th>Impact Image/Video</th>
+								<!-- <th>Format</th> -->
+								<th>Impact Image</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -55,7 +55,7 @@
 								<td *ngIf="currentPage == 1">{{i+1}}</td>
 								<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
 								<td>{{listSocialactivity.name}}</td>
-								<td *ngIf="listSocialactivity.media_data">{{listSocialactivity.media_data[0].file_type}}</td>
+								<!-- <td *ngIf="listSocialactivity.media_data">{{listSocialactivity.media_data[0].file_type}}</td>
 								<td *ngIf="listSocialactivity.media_data">
 									<img *ngIf="listSocialactivity.media_data && listSocialactivity.media_data[0].file_type =='image'"
 										src="{{imagePath}}/socialactivity/{{listSocialactivity.media_data[0].src}}" alt="logo"
@@ -64,7 +64,8 @@
 										height="100" controls>
 										<source src="{{imagePath}}/socialactivity/{{listSocialactivity.media_data[0].src}}" type="video/mp4">
 									</video>
-								</td>
+								</td> -->
+								<td><img src="{{imagePath}}{{listSocialactivity.image}}" alt="logo" style="height: 100px;width: 100px;"></td>
 								<td>{{listSocialactivity.status == true ? 'Active':'Deactive'}}</td>
 								<td>{{listSocialactivity.isApproved == true ? 'Yes':'No'}}</td>
 								<td>{{listSocialactivity.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>

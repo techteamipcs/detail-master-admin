@@ -77,7 +77,7 @@
 								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is
 									required</span>
 							</div>
-							<div class="form-group" >
+							<div class="form-group">
 								<label for="exampleInputEmail1">Youtube Video URL Key</label>
 								<p>Ex: https://www.youtube.com/watch?v=wiur_AGatGU</p>
 								<input type="text" name="video" formControlName="video" class="form-control" placeholder="wiur_AGatGU">
@@ -85,6 +85,14 @@
 									required</span>
 							</div>
 							<div class="form-group">
+								<label for="exampleInputEmail1">Image</label><br>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
+									[uploadInput]="uploadInput" accept="image/*" /><br>
+								<img *ngIf="achievementImage" alt="logo" style="height: 100px; width: 100px;margin-top: 5px;"
+									src="{{imagePath}}achievement/{{achievementImage}}">
+							</div>
+
+							<!-- <div class="form-group">
 								<h4 class="text-lg-start">Achievement Image/Video <span class="required">*</span></h4>
 								<div class="row text-lg-start">
 									<div class="col-lg-3 col-md-4 col-6" *ngIf="mediaData">
@@ -106,8 +114,8 @@
 										</a>
 									</div>
 								</div>
-								<!-- <span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
-							</div>
+
+							</div> -->
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Submit</button>
 								<button type="button" class="btn btn-danger" routerLink="/achievement/view">Cancel</button>
@@ -122,7 +130,7 @@
 
 
 <!-- Image| Model Popup -->
-<ng-template #media let-modal>
+<!-- <ng-template #media let-modal>
 	<div class="modal-header">
 		<h2 class="modal-title" id="modal-basic-title">Upload Image/Video</h2>
 		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -252,4 +260,4 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
 	</div>
-</ng-template>
+</ng-template> -->

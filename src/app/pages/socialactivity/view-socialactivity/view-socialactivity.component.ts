@@ -70,7 +70,7 @@ export class ViewSocialactivityComponent implements OnInit {
     private modalService: NgbModal,
     private activeModal: NgbActiveModal
 	) {
-		this.imagePath = environment.baseUrl + '/public/';
+		this.imagePath = environment.baseUrl + '/public/socialactivity/';
 		this.token = localStorage.getItem('token');
 	}
 
@@ -130,15 +130,15 @@ export class ViewSocialactivityComponent implements OnInit {
         this.currentFile = file;
         this.socialactivityservice.importallSocialactivity(this.currentFile).subscribe(
             (response)=> {
-              if (response.code == 200) 
+              if (response.code == 200)
               {
                 console.log('file uploaded sucessfully');
                 this.toastr.successToastr("socialactivity Image Imported sucessfully");
-                setTimeout(()=>{                           
+                setTimeout(()=>{
                   window.location.reload();
-                },2000);  
+                },2000);
                 this.selectedFiles;
-              
+
               } else {
                 this.toastr.errorToastr(response.message);
               }
@@ -155,8 +155,8 @@ export class ViewSocialactivityComponent implements OnInit {
       var obj = {};
       this.socialactivityservice.exportSocialactivity(obj).subscribe(
         (response)=> {
-          if (response) 
-          {   
+          if (response)
+          {
             if(response.filepath){
               window.location.href = response.filepath;
             }
@@ -173,8 +173,8 @@ export class ViewSocialactivityComponent implements OnInit {
       var mylist = {};
       this.socialactivityservice.deleteallsocialactivitys(mylist).subscribe(
         (response)=> {
-          if (response.code == 200) 
-          {   
+          if (response.code == 200)
+          {
             this.get_SocialactivityData();
 						this.toastr.successToastr(response.message);
             window.location.reload();
@@ -188,7 +188,7 @@ export class ViewSocialactivityComponent implements OnInit {
 	searchSocialactivity(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
@@ -250,7 +250,7 @@ export class ViewSocialactivityComponent implements OnInit {
         this.config.labels.unchecked = 'Deactive';
       } else {
         this.isactive = true;
-        
+
       }
     }
 	}

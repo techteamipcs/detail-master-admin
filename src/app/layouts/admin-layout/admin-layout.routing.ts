@@ -163,5 +163,10 @@ export const AdminLayoutRoutes: Routes = [
 		path:'achievement-category',
 		loadChildren: () => import("./../../pages/achievement-category/achievement-category.module").then((m) => m.AchievementCategoryModule),
 		data: {title: 'Achievement Module'}
-	}
+	},
+	{
+		path: 'homegallery',
+		loadChildren: () => import("./../../pages/home-gallery/home-gallery.module").then((m) => m.GalleryModule),
+		data: { title: 'Home Gallery Module' },
+	},
 ];
