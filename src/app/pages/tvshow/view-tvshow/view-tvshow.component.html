@@ -35,13 +35,14 @@
 								<th>Name</th>
 								<!-- <th>Format</th> -->
 								<th>Image</th>
+								<th>Website</th>
 								<!-- <th>Approved</th> -->
 								<th>Created At</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
-									[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
-									[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
-									(click)="changeStatus()" required></ng-toggle> <a (click)="resetFilter()"
-									class="btn btn-sm btn-info mr-4">Reset</a></th>
+										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
+										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
+										(click)="changeStatus()" required></ng-toggle> <a (click)="resetFilter()"
+										class="btn btn-sm btn-info mr-4">Reset</a></th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -65,9 +66,8 @@
 										<source src="{{imagePath}}/tvshow/{{listTvshow.media_data[0].src}}" type="video/mp4">
 									</video>
 								</td> -->
-								<td><img src="{{imagePath}}{{listTvshow.image}}" alt="logo"
-									style="height: 100px;width: 100px;"></td>
-
+								<td><img src="{{imagePath}}{{listTvshow.image}}" alt="logo" style="height: 100px;width: 100px;"></td>
+								<td>{{listTvshow.short_desc}}</td>
 								<!-- <td>{{listTvshow.isApproved == true ? 'Yes':'No'}}</td> -->
 								<td>{{listTvshow.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
 								<td>{{listTvshow.status == true ? 'Active':'Deactive'}}</td>

@@ -6,8 +6,8 @@
 	<div class="container-fluid d-flex align-items-center">
 		<div class="row">
 			<div class="col-lg-12 col-md-10">
-				<h1 class="display-2 text-white" *ngIf="id">Update/Edit YMS  </h1>
-				<h1 class="display-2 text-white" *ngIf="!id">Add New YMS  </h1>
+				<h1 class="display-2 text-white" *ngIf="id">Update/Edit YMS </h1>
+				<h1 class="display-2 text-white" *ngIf="!id">Add New YMS </h1>
 			</div>
 		</div>
 	</div>
@@ -50,33 +50,36 @@
 								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Name is
 									required</span>
 							</div>
-							<!-- <div class="form-group">
-								<label for="exampleInputEmail1">Short Title</label>
-								<input type="text" name="short_desc" formControlName="short_desc" class="form-control">
-								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Short Description is
-									required</span>
-							</div>
+
 							<div class="form-group">
 								<label for="exampleInputEmail1">Description</label>
 								<textarea name="description" formControlName="description" class="form-control"></textarea>
 								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
 									required</span>
-							</div>-->
+							</div>
+
 							<div class="form-group">
-								<label for="exampleInputEmail1">URL Key</label>
-								<input type="text" name="url_key" formControlName="url_key" placeholder="Url Key" class="form-control">
-								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is	required</span>
+								<label for="exampleInputEmail1">External Link</label>
+								<input type="text" name="short_desc" formControlName="short_desc" class="form-control" placeholder="https://www.example.com" >
+								<!-- <span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">External Link is
+									required</span> -->
 							</div>
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Upload Image</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
 									[uploadInput]="uploadInput" accept="image/*" />
-								<label for="" *ngIf="tvshowImage">{{tvshowImage}}</label><br>
+								<label for="" *ngIf="tvshowImage">Filename : <p> {{tvshowImage}}</p></label><br>
 								<img *ngIf="tvshowImage" alt="logo" style="height: 100px; width: 100px;margin-top: 5px;"
 									src="{{imagePath}}{{tvshowImage}}">
 							</div>
 
+							<div class="form-group">
+								<label for="exampleInputEmail1">URL Key</label>
+								<input type="text" name="url_key" formControlName="url_key" placeholder="Url Key" class="form-control">
+								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is
+									required</span>
+							</div>
 							<!-- <div class="form-group">
 								<h4 class="text-lg-start">Tvshow Image/Video <span class="required">*</span></h4>
 								<div class="row text-lg-start">
