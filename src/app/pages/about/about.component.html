@@ -55,7 +55,7 @@
 
 
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Video url</label>
+								<label for="exampleInputEmail1">Video URL</label>
 								<input type="text" name="video_url" autocomplete="off" formControlName="video_url" class="form-control"
 									placeholder="Youtube Url">
 								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video Url is
@@ -63,7 +63,7 @@
 							</div>
 
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Video Desc</label>
+								<label for="exampleInputEmail1">Video Description</label>
 								<input type="text" name="video_desc" autocomplete="off" formControlName="video_desc"
 									class="form-control" placeholder="Video Description">
 								<span *ngIf="submitted && hasError('video_desc','required')" class="alert-danger">Video Description is
@@ -71,11 +71,11 @@
 							</div>
 
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Upload image_banner</label><br>
+								<label for="exampleInputEmail1">Upload Image</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFileBanner($event)"
 									[uploadInput]="uploadInput" /><br>
 								<img src="{{imagePath}}about/{{image_banner}}" class="img-fluid img-thumbnail"
-									*ngIf="mediaData && mediaData.file_type == 'image'" width="200" height="350">
+									*ngIf="mediaData" width="200" height="350">
 
 							</div>
 
@@ -142,7 +142,7 @@
 		</div>
 	</div>
 </div>
-<ng-template #media let-modal>
+<!-- <ng-template #media let-modal>
 	<div class="modal-header">
 		<h2 class="modal-title" id="modal-basic-title">Upload Image/Video</h2>
 		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -272,4 +272,4 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
 	</div>
-</ng-template>
+</ng-template> -->

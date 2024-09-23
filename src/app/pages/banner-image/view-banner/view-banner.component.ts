@@ -14,7 +14,7 @@ import { MediaService } from '../../../providers/media/media.service';
 })
 export class ViewBannerComponent implements OnInit {
 
-  
+
 	msg_danger: boolean = false;
 	BannerData: any;
 	imagePath: any;
@@ -63,7 +63,7 @@ export class ViewBannerComponent implements OnInit {
       unchecked: '#ffffff',
     },
   };
-  
+
 	constructor(
 		private router: Router,
 		// private loginService: LoginService,
@@ -73,7 +73,7 @@ export class ViewBannerComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private mediaService: MediaService,
 	) {
-		this.imagePath = environment.baseUrl + '/public/';
+		this.imagePath = environment.baseUrl + '/public/banner/';
 		this.token = localStorage.getItem('token');
 	}
 
@@ -133,15 +133,15 @@ export class ViewBannerComponent implements OnInit {
         this.currentFile = file;
         this.bannerservice.importallBanner(this.currentFile).subscribe(
             (response)=> {
-              if (response.code == 200) 
+              if (response.code == 200)
               {
                 console.log('file uploaded sucessfully');
                 this.toastr.successToastr("banner Image Imported sucessfully");
-                setTimeout(()=>{                           
+                setTimeout(()=>{
                   window.location.reload();
-                },2000);  
+                },2000);
                 this.selectedFiles;
-              
+
               } else {
                 this.toastr.errorToastr(response.message);
               }
@@ -158,8 +158,8 @@ export class ViewBannerComponent implements OnInit {
       var obj = {};
       this.bannerservice.exportBanner(obj).subscribe(
         (response)=> {
-          if (response) 
-          {   
+          if (response)
+          {
             if(response.filepath){
               window.location.href = response.filepath;
             }
@@ -176,8 +176,8 @@ export class ViewBannerComponent implements OnInit {
       var mylist = {};
       this.bannerservice.deleteallbanners(mylist).subscribe(
         (response)=> {
-          if (response.code == 200) 
-          {   
+          if (response.code == 200)
+          {
             this.get_BannerData();
 						this.toastr.successToastr(response.message);
             this.modalService.dismissAll();
@@ -191,7 +191,7 @@ export class ViewBannerComponent implements OnInit {
 	searchBanner(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
@@ -253,7 +253,7 @@ export class ViewBannerComponent implements OnInit {
         this.config.labels.unchecked = 'Deactive';
       } else {
         this.isactive = true;
-        
+
       }
     }
 	}

@@ -6,8 +6,8 @@
 	<div class="container-fluid d-flex align-items-center">
 		<div class="row">
 			<div class="col-lg-12 col-md-10">
-				<h1 class="display-2 text-white" *ngIf="id">Update/Edit Award  </h1>
-				<h1 class="display-2 text-white" *ngIf="!id">Add New Award  </h1>
+				<h1 class="display-2 text-white" *ngIf="id">Update/Edit Award </h1>
+				<h1 class="display-2 text-white" *ngIf="!id">Add New Award </h1>
 			</div>
 		</div>
 	</div>
@@ -50,26 +50,22 @@
 								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Award Name is
 									required</span>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Short Title</label>
 								<input type="text" name="short_desc" formControlName="short_desc" class="form-control">
 								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Short Description is
 									required</span>
-							</div>
-							<div class="form-group">
+							</div> -->
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Description</label>
 								<textarea name="description" formControlName="description" class="form-control"></textarea>
 								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
 									required</span>
-							</div>
+							</div> -->
+
 							<div class="form-group">
-								<label for="exampleInputEmail1">URL Key</label>
-								<input type="text" name="url_key" formControlName="url_key" class="form-control">
-								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is	required</span>
-							</div>
-							<div class="form-group">
-								<h4 class="text-lg-start">Award Image/Video <span class="required">*</span></h4>
-								<div class="row text-lg-start">
+								<h4 class="text-lg-start">Award Image <span class="required">*</span></h4>
+								<!-- <div class="row text-lg-start">
 									<div class="col-lg-3 col-md-4 col-6" *ngIf="mediaData">
 										<a class="cursor:pointer;text-center" (click)="deleteMedia(i,'media')">
 											<i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -88,8 +84,31 @@
 											<img src="{{url}}/img/addimage.svg" class="img-fluid img-thumbnail" width="150" height="150">
 										</a>
 									</div>
-								</div>
+								</div> -->
 								<!-- <span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
+								<!-- <div class="form-group col-lg-12">
+									<label for="exampleInputEmail1">Upload Image</label><br>
+									<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
+										[uploadInput]="uploadInput" /><br>
+									<img src="{{imagePath}}award/{{awardImage}}" class="img-fluid img-thumbnail" *ngIf="awardImage"
+										width="200" height="350">
+								</div> -->
+
+								<div class="form-group">
+									<label for="exampleInputEmail1">Upload Image</label><br>
+									<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
+										[uploadInput]="uploadInput" accept="image/*" />
+									<label for="" *ngIf="awardImage">{{awardImage}}</label><br>
+									<img *ngIf="awardImage" alt="logo" style="height: 100px; width: 100px;margin-top: 5px;"
+										src="{{imagePath}}{{awardImage}}">
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">URL Key</label>
+								<input type="text" name="url_key" formControlName="url_key" class="form-control">
+								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is
+									required</span>
 							</div>
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Submit</button>
@@ -105,7 +124,7 @@
 
 
 <!-- Image| Model Popup -->
-<ng-template #media let-modal>
+<!-- <ng-template #media let-modal>
 	<div class="modal-header">
 		<h2 class="modal-title" id="modal-basic-title">Upload Image/Video</h2>
 		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -235,4 +254,4 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
 	</div>
-</ng-template>
+</ng-template> -->

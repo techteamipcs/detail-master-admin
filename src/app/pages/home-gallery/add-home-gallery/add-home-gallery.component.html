@@ -6,7 +6,7 @@
 	<div class="container-fluid d-flex align-items-center">
 		<div class="row">
 			<div class="col-lg-7 col-md-10">
-				<h1 class="display-2 text-white">Gallery Images </h1>
+				<h1 class="display-2 text-white">Home Gallery Images </h1>
 				<p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with
 					your work
 					and manage your projects or assigned tasks</p>
@@ -22,7 +22,7 @@
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0">Edit Gallery</h3>
+							<h3 class="mb-0">Edit Home Gallery</h3>
 						</div>
 					</div>
 					<div class="alert alert-success alert-dismissable" style="margin-left: 0;" *ngIf="msg_success">
@@ -46,25 +46,25 @@
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Description Short</label>
+								<label for="exampleInputEmail1">Description</label>
 								<input type="text" name="desc_short" autocomplete="off" formControlName="desc_short"
-									class="form-control" placeholder="Gallery Description short">
+									class="form-control" placeholder="Gallery Description">
 								<span *ngIf="submitted && hasError('desc_short','required')" class="alert-danger">Gallery Description
-									Short
+
 									is required</span>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Description Long</label>
 								<input type="text" name="desc_long" autocomplete="off" formControlName="desc_long" class="form-control"
 									placeholder="Gallery Description Long">
 								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Gallery Description
 									Long
 									is required</span>
-							</div>
+							</div> -->
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Gallery Featured Image</label><br>
+								<label for="exampleInputEmail1">Home Gallery Featured Image</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
 									[uploadInput]="uploadInput" accept="image/*" />
 								<label for="" *ngIf="galleryImage">{{galleryImage}}</label><br>

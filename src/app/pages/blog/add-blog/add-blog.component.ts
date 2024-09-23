@@ -67,19 +67,19 @@ export class AddBlogComponent implements OnInit {
 		this.uploadInput = new EventEmitter<UploadInput>();
 		this.addBlogForm = this.formBuilder.group({
 			name: ['', Validators.required],
-			tag: ['', Validators.required],
+			tag: [''],
 			blog_category: [''],
-			author: ['', Validators.required],
+			author: [''],
 			video_link: [''],
 			source_link: [''],
-			featured: ['', Validators.required],
+			featured: [false,''],
 			status: [true, Validators.required],
 			content_html: ['', Validators.required],
 			meta_description: ['', Validators.required],
 			meta_title: ['', Validators.required],
 			meta_keywords: ['', Validators.required],
 		});
-		this.imagePath = environment.baseUrl + '/public/';
+		this.imagePath = environment.baseUrl + '/public/media/';
 	}
 
 	public hasError = (controlName: string, errorName: string) => {
@@ -130,6 +130,11 @@ export class AddBlogComponent implements OnInit {
 		let obj = this.addBlogForm.value;
 		let id = this.id;
 		obj['image'] = this.blogImage;
+
+		// custom values send for tags and author
+		obj['tag'] = this.tagData[0]._id;
+		obj['author'] = this.authorData[0]._id;
+
 		if (this.addBlogForm.invalid) {
 			return;
 		}
@@ -176,7 +181,7 @@ export class AddBlogComponent implements OnInit {
 		if (output.type === 'allAddedToQueue') {
 			const event: UploadInput = {
 				type: 'uploadAll',
-				url: environment.baseUrl + '/api/home/addimage',
+				url: environment.baseUrl + '/api/blog/addimage',
 				method: 'POST',
 				data: {},
 			};

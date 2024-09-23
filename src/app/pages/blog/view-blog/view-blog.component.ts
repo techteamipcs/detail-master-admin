@@ -55,7 +55,7 @@ export class ViewBlogComponent implements OnInit {
     private router: Router,
     private blogService:BlogService
   ) {
-    this.imagePath = environment.baseUrl+'/public/';
+    this.imagePath = environment.baseUrl+'/public/media/';
 
    }
 

@@ -11,7 +11,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni ni-chart-pie-35 text-primary', class: '' },
     { path: '/about', title: 'About',  icon:'ni ni-paper-diploma text-black', class: '' },
     { path: '/achievement/view', title: 'Achievement',  icon:'ni ni-archive-2 text-black', class: '' },
-    // { path: '/award/view', title: 'Award',  icon:'ni ni-archive-2 text-red', class: '' },
+    { path: '/award/view', title: 'Award',  icon:'ni ni-archive-2 text-red', class: '' },
     { path: '/banner-images/view', title: 'Banners',  icon: 'ni ni-image text-orange', class: '' },
 
     // { path: '/catalog/view', title: 'Catalog',  icon:'ni-align-left-2 text-red', class: '' },
@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [
 		{ path: '/socialactivity/view', title: 'Impact',  icon: 'ni ni-settings text-red', class: '' },
 		{ path: '/blog/view', title: 'Media',  icon:'ni ni-book-bookmark text-blue', class: '' },
     // { path: '/project/view', title: 'Projects',  icon:'ni ni-paper-diploma text-black', class: '' },
-    { path: '/podcast/view', title: 'Podcast',  icon: 'ni-bullet-list-67 text-red', class: '' },
+    // { path: '/podcast/view', title: 'Podcast',  icon: 'ni-bullet-list-67 text-red', class: '' },
     { path: '/page/view', title: 'SEO Pages',  icon: 'ni-align-left-2 text-blue', class: '' },
 
     // { path: '/student/view', title: 'Students',  icon:'ni-bullet-list-67 text-red', class: '' },
@@ -36,7 +36,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user-profile', title: 'User profile',  icon:'ni ni-single-02 text-yellow', class: '' },
     // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/auth/view-user', title: 'Users',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' }
+    // { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' }
 ];
 
 @Component({

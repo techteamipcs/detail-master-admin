@@ -33,15 +33,19 @@
 							<tr>
 								<th>SL No</th>
 								<th>Award Name</th>
-								<th>Format</th>
-								<th>Award Image/Video</th>
-								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
+								<!-- <th>Format</th> -->
+								<th>Award Image</th>
+
+								<!-- <th>Approved</th> -->
+								<th>Created At</th>
+								<th>Status
+									<ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
-										(click)="changeStatus()" required></ng-toggle> <a (click)="resetFilter()"
-										class="btn btn-sm btn-info mr-4">Reset</a></th>
-								<th>Approved</th>
-								<th>Created At</th>
+										(click)="changeStatus()" required>
+									</ng-toggle>
+									<a (click)="resetFilter()" class="btn btn-sm btn-info mr-4">Reset</a>
+								</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -55,8 +59,8 @@
 								<td *ngIf="currentPage == 1">{{i+1}}</td>
 								<td *ngIf="currentPage != 1">{{i+1+((currentPage - 1) * currentLimit)}}</td>
 								<td>{{listAward.name}}</td>
-								<td *ngIf="listAward.media_data">{{listAward.media_data[0].file_type}}</td>
-								<td *ngIf="listAward.media_data">
+								<!-- <td *ngIf="listAward.media_data">{{listAward.media_data[0].file_type}}</td> -->
+								<!-- <td *ngIf="listAward.media_data">
 									<img *ngIf="listAward.media_data && listAward.media_data[0].file_type =='image'"
 										src="{{imagePath}}/award/{{listAward.media_data[0].src}}" alt="logo"
 										style="height: 100px;width: 100px;">
@@ -64,13 +68,15 @@
 										height="100" controls>
 										<source src="{{imagePath}}/award/{{listAward.media_data[0].src}}" type="video/mp4">
 									</video>
-								</td>
-								<td>{{listAward.status == true ? 'Active':'Deactive'}}</td>
-								<td>{{listAward.isApproved == true ? 'Yes':'No'}}</td>
+								</td> -->
+								<td><img src="{{imagePath}}{{listAward.image}}" alt="logo"
+									style="height: 100px;width: 100px;"></td>
+								<!-- <td>{{listAward.isApproved == true ? 'Yes':'No'}}</td> -->
 								<td>{{listAward.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listAward.status == true ? 'Active':'Deactive'}}</td>
 								<td>
-									<a routerLink="/award/edit/{{listAward._id}}" style="cursor:pointer"><i
-											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+									<a routerLink="/award/edit/{{listAward._id}}" style="cursor:pointer"><i class="fa fa-pencil-square-o"
+											aria-hidden="true"></i>
 									</a>
 									<a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listAward)"><i
 											class="fa fa-trash-o" aria-hidden="true"></i></a>

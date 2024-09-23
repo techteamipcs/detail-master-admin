@@ -6,8 +6,8 @@
 	<div class="container-fluid d-flex align-items-center">
 		<div class="row">
 			<div class="col-lg-12 col-md-10">
-				<h1 class="display-2 text-white" *ngIf="id">Update/Edit Tvshow  </h1>
-				<h1 class="display-2 text-white" *ngIf="!id">Add New Tvshow  </h1>
+				<h1 class="display-2 text-white" *ngIf="id">Update/Edit YMS  </h1>
+				<h1 class="display-2 text-white" *ngIf="!id">Add New YMS  </h1>
 			</div>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0">Edit Tvshow</h3>
+							<h3 class="mb-0">Edit YMS</h3>
 						</div>
 					</div>
 					<div class="alert alert-success alert-dismissable" style="margin-left: 0;" *ngIf="msg_success">
@@ -46,11 +46,11 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">Name</label>
 								<input type="text" name="name" autocomplete="off" formControlName="name" class="form-control"
-									placeholder="Tvshow Name">
-								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Tvshow Name is
+									placeholder="Name">
+								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Name is
 									required</span>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Short Title</label>
 								<input type="text" name="short_desc" formControlName="short_desc" class="form-control">
 								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Short Description is
@@ -61,13 +61,23 @@
 								<textarea name="description" formControlName="description" class="form-control"></textarea>
 								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
 									required</span>
-							</div>
+							</div>-->
 							<div class="form-group">
 								<label for="exampleInputEmail1">URL Key</label>
-								<input type="text" name="url_key" formControlName="url_key" class="form-control">
+								<input type="text" name="url_key" formControlName="url_key" placeholder="Url Key" class="form-control">
 								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">Url Key is	required</span>
 							</div>
+
 							<div class="form-group">
+								<label for="exampleInputEmail1">Upload Image</label><br>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
+									[uploadInput]="uploadInput" accept="image/*" />
+								<label for="" *ngIf="tvshowImage">{{tvshowImage}}</label><br>
+								<img *ngIf="tvshowImage" alt="logo" style="height: 100px; width: 100px;margin-top: 5px;"
+									src="{{imagePath}}{{tvshowImage}}">
+							</div>
+
+							<!-- <div class="form-group">
 								<h4 class="text-lg-start">Tvshow Image/Video <span class="required">*</span></h4>
 								<div class="row text-lg-start">
 									<div class="col-lg-3 col-md-4 col-6" *ngIf="mediaData">
@@ -89,8 +99,8 @@
 										</a>
 									</div>
 								</div>
-								<!-- <span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span> -->
-							</div>
+								<span *ngIf="submitted && hasError('product_gallery','required')" class="alert-danger">Gallery Images is required</span>
+							</div> -->
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Submit</button>
 								<button type="button" class="btn btn-danger" routerLink="/tvshow/view">Cancel</button>
@@ -105,7 +115,7 @@
 
 
 <!-- Image| Model Popup -->
-<ng-template #media let-modal>
+<!-- <ng-template #media let-modal>
 	<div class="modal-header">
 		<h2 class="modal-title" id="modal-basic-title">Upload Image/Video</h2>
 		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -235,4 +245,4 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
 	</div>
-</ng-template>
+</ng-template> -->

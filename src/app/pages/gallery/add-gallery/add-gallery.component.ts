@@ -25,11 +25,11 @@ export class AddGalleryComponent implements OnInit {
   imageArr: any = [];
 
   // Data Assign
-  
+
   artData: any;
   countryData: any;
   addgalleryForm:FormGroup;
-  throw_msg:any; 
+  throw_msg:any;
   submitted: boolean = false;
   msg_success: boolean = false;
   msg_danger: boolean = false;
@@ -64,23 +64,23 @@ export class AddGalleryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private galleryService:GalleryService
   )
-  { 
+  {
     this.uploadInput = new EventEmitter<UploadInput>();
     this.addgalleryForm = this.formBuilder.group({
       name: ['',Validators.required],
       status:[true,Validators.required],
      });
      this.token = localStorage.getItem('token');
-     this.imagePath = environment.baseUrl+'/public/';
+     this.imagePath = environment.baseUrl+'/public/footergallery/';
   }
 
-  public hasError = (controlName: string, errorName: string) => { 
+  public hasError = (controlName: string, errorName: string) => {
     return this.addgalleryForm.controls[controlName].hasError(errorName);
   };
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.isEdit) 
+    if (this.isEdit)
     {
       this.patchingdata(this.id);
       this.applyAction = 'Update';
@@ -91,7 +91,7 @@ export class AddGalleryComponent implements OnInit {
     }
   }
 
-  patchingdata(id:any) { 
+  patchingdata(id:any) {
     let obj = {id:id};
     this.galleryService.getGalleryWithId(obj).subscribe(
       (response) => {
@@ -103,7 +103,7 @@ export class AddGalleryComponent implements OnInit {
             status: data?.status
           });
        }else{
-          
+
         }
       },
     );
@@ -114,7 +114,7 @@ export class AddGalleryComponent implements OnInit {
     let obj = this.addgalleryForm.value;
     let id  = this.id;
     obj['token'] = this.token;
-    obj['image'] = this.galleryImage;  
+    obj['image'] = this.galleryImage;
     if (this.addgalleryForm.invalid){
       return;
     }
@@ -122,19 +122,19 @@ export class AddGalleryComponent implements OnInit {
     {
       this.galleryService.addGallery(obj).subscribe(
         (response) => {
-          if(response.code == 200) 
-          { 
-            this.throw_msg   = response.message 
+          if(response.code == 200)
+          {
+            this.throw_msg   = response.message
             this.msg_success = true;
-            setTimeout(()=>{                            
+            setTimeout(()=>{
               this.router.navigate(['/gallery/view']);
-            },2000); 
+            },2000);
           }
-          else if(response.code == 400) 
-          {   
+          else if(response.code == 400)
+          {
               this.throw_msg    = response.message
               this.msg_danger = true;
-          } 
+          }
         },
       );
     }
@@ -142,32 +142,32 @@ export class AddGalleryComponent implements OnInit {
     {
       this.galleryService.editGallerydata(obj,id).subscribe(
         (response) => {
-          if(response.code == 200) 
+          if(response.code == 200)
           {
-            this.throw_msg = response.message 
+            this.throw_msg = response.message
             this.msg_success = true;
-            setTimeout(()=>{                           
+            setTimeout(()=>{
                 this.router.navigate(['/gallery/view']);
-            },2000);  
-          } 
+            },2000);
+          }
         },
       );
     }
   }
 
-  onUploadOutput(output: UploadOutput): void { 
+  onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue')
     {
-      const event: UploadInput = { 
-        type: 'uploadAll', 
+      const event: UploadInput = {
+        type: 'uploadAll',
         url: environment.baseUrl+'/api/gallery/addimage',
         method: 'POST',
-        data: {}, 
+        data: {},
       };
       this.uploadInput.emit(event);
-    } 
+    }
     else if(output.type === 'done' && typeof output.file !== 'undefined')
-    {  
+    {
       this.galleryImage = output.file.response.result;
     }
   }

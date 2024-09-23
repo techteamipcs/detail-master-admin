@@ -63,7 +63,7 @@ export class ViewGalleryComponent implements OnInit {
     private galleryService:GalleryService
   )
   {
-    this.imagePath = environment.baseUrl+'/public/';
+    this.imagePath = environment.baseUrl+'/public/footergallery/';
     this.token     = localStorage.getItem('token');
     this.config.switchColor.checked = '#dcdcdc';
     this.config.color.checked = '#dcdcdc';
@@ -77,7 +77,7 @@ export class ViewGalleryComponent implements OnInit {
 
   get_GalleryData()
   {
-    const obj = { 
+    const obj = {
       limit: this.currentLimit,
       page: this.currentPage,
       vendor_id: this.vendorid,
@@ -85,19 +85,19 @@ export class ViewGalleryComponent implements OnInit {
     };
     this.galleryService.getGalleryDetails(obj).subscribe(
         (response)=> {
-          if (response.code == 200) 
+          if (response.code == 200)
           {
             if(response.result != null && response.result != '')
             {
-              this.GalleryData = response.result; 
-              this.totalRecord = response?.count; 
+              this.GalleryData = response.result;
+              this.totalRecord = response?.count;
               window.scroll(0,0);
             }
             else
             {
               this.msg_danger   = true;
             }
-           
+
           }
         },
       );
@@ -106,13 +106,13 @@ export class ViewGalleryComponent implements OnInit {
   changeVendorList(event:any) {
     this.vendorid = event.currentTarget.value;
     this.get_GalleryData();
-  } 
+  }
 
   onListChangePage(event:any) {
     this.currentPage = event;
     this.get_GalleryData();
   }
-  
+
   deleteGallery(listid:any)
   {
     if(confirm("Are you sure to delete this product"))
@@ -120,8 +120,8 @@ export class ViewGalleryComponent implements OnInit {
       var mylist = {id:listid};
       this.galleryService.deletegallery(mylist).subscribe(
         (response)=> {
-          if (response.code == 200) 
-          {   
+          if (response.code == 200)
+          {
             this.get_GalleryData();
             this.router.navigate(['/gallery/view']);
           }
@@ -133,7 +133,7 @@ export class ViewGalleryComponent implements OnInit {
   searchGallery(){
     if(this.searchText){
       this.currentLimit = 1000;
-      this.currentPage = 1; 
+      this.currentPage = 1;
     } else {
       this.currentLimit = 10;
     }
@@ -166,5 +166,5 @@ export class ViewGalleryComponent implements OnInit {
     this.config.labels.unchecked = 'Change';
     this.isactive = 'none';
 	}
-  
+
 }

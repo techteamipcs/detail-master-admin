@@ -72,8 +72,8 @@ export class AddAchievementComponent implements OnInit {
 		this.addachievementForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			status: [true, Validators.required],
-			description: ['', Validators.required],
-			short_desc: ['', Validators.required],
+			description: ['',],
+			short_desc: ['',],
 			video: ['',],
 			achievement_category: ["", Validators.required],
 			url_key: ['', Validators.required],

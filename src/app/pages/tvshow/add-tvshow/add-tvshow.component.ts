@@ -22,6 +22,7 @@ export class AddTvshowComponent implements OnInit {
 	// File Upload
 	options: UploaderOptions;
 	uploadInput: EventEmitter<UploadInput>;
+	selectedFile: any;
 	tvshowImage: any;
 	tvshowVideo: any;
 	imagePath: any;
@@ -67,35 +68,35 @@ export class AddTvshowComponent implements OnInit {
 		public responseService: ResponseService
 	) {
 		this.uploadInput = new EventEmitter<UploadInput>();
-		this.options = { concurrency: 0, allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'] };
+		// this.options = { concurrency: 0, allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'] };
 		this.addtvshowForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			status: [true, Validators.required],
-			description: ['', Validators.required],
-			short_desc: ['', Validators.required],
+			description: [''],
+			short_desc: [''],
 			url_key: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
-		this.imagePath = environment.baseUrl + '/public/';
-		this.url = environment.Url + '/assets';
-		this.addmediaForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			status: [true, Validators.required],
-			sequence_number: [''],
-			src: ['', Validators.required],
-			format: [''],
-			file_type: ['image'],
-			alt: [''],
-			role: [''],
-			resolution: [''],
-			size: [''],
-			height: [''],
-			width: [''],
-			mute: ['muted'],
-			autoplay: [true],
-			loop: [true],
-			full_screen: [''],
-		});
+		this.imagePath = environment.baseUrl + '/public/tvshow/';
+		// this.url = environment.Url + '/assets';
+		// this.addmediaForm = this.formBuilder.group({
+		// 	name: ['', Validators.required],
+		// 	status: [true, Validators.required],
+		// 	sequence_number: [''],
+		// 	src: ['', Validators.required],
+		// 	format: [''],
+		// 	file_type: ['image'],
+		// 	alt: [''],
+		// 	role: [''],
+		// 	resolution: [''],
+		// 	size: [''],
+		// 	height: [''],
+		// 	width: [''],
+		// 	mute: ['muted'],
+		// 	autoplay: [true],
+		// 	loop: [true],
+		// 	full_screen: [''],
+		// });
 	}
 
 	public hasError = (controlName: string, errorName: string) => {
@@ -141,12 +142,13 @@ export class AddTvshowComponent implements OnInit {
 		let obj = this.addtvshowForm.value;
 		let id = this.id;
 		obj['token'] = this.token;
+		obj['image'] = this.tvshowImage;
 		if (this.addtvshowForm.invalid) {
 			return;
 		}
-		if (this.mediaData) {
-			obj['image'] = this.mediaData._id;
-		}
+		// if (this.mediaData) {
+		// 	obj['image'] = this.mediaData._id;
+		// }
 		if (!this.isEdit) {
 			this.tvshowService.addTvshow(obj).subscribe(
 				(response) => {
@@ -154,12 +156,12 @@ export class AddTvshowComponent implements OnInit {
 						this.throw_msg = response.message
 						this.msg_success = true;
 						this.isUploaded = true;
-						if (this.isMediaDeleted) {
-							this.deleteMediaData();
-						}
-						if (this.isMediaFileDeleted) {
-							this.deleteMediaFile();
-						}
+						// if (this.isMediaDeleted) {
+						// 	this.deleteMediaData();
+						// }
+						// if (this.isMediaFileDeleted) {
+						// 	this.deleteMediaFile();
+						// }
 						setTimeout(() => {
 							this.router.navigate(['/tvshow/view']);
 						}, 2000);
@@ -179,12 +181,12 @@ export class AddTvshowComponent implements OnInit {
 						this.throw_msg = response.message
 						this.msg_success = true;
 						this.isUploaded = true;
-						if (this.isMediaDeleted) {
-							this.deleteMediaData();
-						}
-						if (this.isMediaFileDeleted) {
-							this.deleteMediaFile();
-						}
+						// if (this.isMediaDeleted) {
+						// 	this.deleteMediaData();
+						// }
+						// if (this.isMediaFileDeleted) {
+						// 	this.deleteMediaFile();
+						// }
 						setTimeout(() => {
 							this.router.navigate(['/tvshow/view']);
 						}, 2000);
@@ -200,276 +202,295 @@ export class AddTvshowComponent implements OnInit {
 		this.router.navigate(['/tvshow/view']);
 	}
 
-	openMedia(content: any) {
-		this.addmediaForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			status: [true, Validators.required],
-			sequence_number: [''],
-			src: ['', Validators.required],
-			format: [''],
-			file_type: ['image'],
-			alt: [''],
-			role: [''],
-			resolution: [''],
-			size: [''],
-			height: [''],
-			width: [''],
-			mute: ['muted'],
-			autoplay: [true],
-			loop: [true],
-			full_screen: [''],
-		});
-		this.mediaFile = '';
-		this.isMediaEdit = false;
-		this.mediaID = '';
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
-			.result.then((result) => {
-				this.closeResult = `Closed with: ${result}`;
-			}, (reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			});
-	}
+	onUploadImage(output: UploadOutput): void {
+		this.selectedFile = output;
 
-	editMedia(content: any, mediaData, type) {
-		this.isMediaEdit = true;
-		this.mediaFile = mediaData.src;
-		this.mediaID = mediaData._id;
-		this.addmediaForm.patchValue({
-			name: mediaData.name,
-			status: mediaData.status,
-			sequence_number: mediaData.sequence_number,
-			src: mediaData.src,
-			format: mediaData.format,
-			file_type: mediaData.file_type,
-			alt: mediaData.alt,
-			role: mediaData.role,
-			resolution: mediaData.resolution,
-			size: mediaData.size,
-			height: mediaData.height,
-			width: mediaData.width,
-			mute: mediaData.mute,
-			autoplay: mediaData.autoplay,
-			loop: mediaData.loop,
-			full_screen: mediaData.full_screen,
-		});
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
-			.result.then((result) => {
-				this.closeResult = `Closed with: ${result}`;
-			}, (reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			});
-	}
-
-	private getDismissReason(reason: any): string {
-		if (reason === ModalDismissReasons.ESC) {
-			return 'by pressing ESC';
-		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-			return 'by clicking on a backdrop';
-		} else {
-			return `with: ${reason}`;
-		}
-	}
-
-	onUploadOutput(output: UploadOutput, typeofImage): void {
 		if (output.type === 'allAddedToQueue') {
 			const event: UploadInput = {
 				type: 'uploadAll',
-				url: environment.baseUrl + '/api/tvshow/addimage',
+				url: `${environment.baseUrl}/api/tvshow/addimage`,
 				method: 'POST',
 				data: {},
 			};
 			this.uploadInput.emit(event);
-		}
-		else if (output.type === 'done' && typeof output.file !== 'undefined') {
-			this.isUploaded = true;
-			this.fileFormat = output.file.type;
-			if (this.mediaFile) {
-				this.deletedMediaFile.push(this.mediaFile);
-				this.isMediaFileDeleted = true;
-			}
-			this.mediaFile = output.file.response.result;
-			this.addmediaForm.value.resolution = output.file.size;
-			this.submittedMedia = false;
-			this.addmediaForm.patchValue({
-				src: this.mediaFile
-			});
+		} else if (output.type === 'done' && output.file) {
+			const { response } = output.file;
+			this.tvshowImage = response.result;
+			this.throw_msg = response.message;
+			this.msg_success = true;
 		}
 	}
 
-	selectImageRole(event, role) {
-		if (role == 'base') {
-			this.addmediaForm.patchValue({
-				height: 1100,
-				width: 1100,
-			});
-		} else if (role == 'small') {
-			this.addmediaForm.patchValue({
-				height: 309,
-				width: 309,
-			});
-		} else if (role == 'thumbnail') {
-			this.addmediaForm.patchValue({
-				height: 150,
-				width: 150,
-			});
-		}
-	}
+	// openMedia(content: any) {
+	// 	this.addmediaForm = this.formBuilder.group({
+	// 		name: ['', Validators.required],
+	// 		status: [true, Validators.required],
+	// 		sequence_number: [''],
+	// 		src: ['', Validators.required],
+	// 		format: [''],
+	// 		file_type: ['image'],
+	// 		alt: [''],
+	// 		role: [''],
+	// 		resolution: [''],
+	// 		size: [''],
+	// 		height: [''],
+	// 		width: [''],
+	// 		mute: ['muted'],
+	// 		autoplay: [true],
+	// 		loop: [true],
+	// 		full_screen: [''],
+	// 	});
+	// 	this.mediaFile = '';
+	// 	this.isMediaEdit = false;
+	// 	this.mediaID = '';
+	// 	this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
+	// 		.result.then((result) => {
+	// 			this.closeResult = `Closed with: ${result}`;
+	// 		}, (reason) => {
+	// 			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+	// 		});
+	// }
 
-	public hasMediaFormError = (controlName: string, errorName: string) => {
-		return this.addmediaForm.controls[controlName].hasError(errorName);
-	};
+	// editMedia(content: any, mediaData, type) {
+	// 	this.isMediaEdit = true;
+	// 	this.mediaFile = mediaData.src;
+	// 	this.mediaID = mediaData._id;
+	// 	this.addmediaForm.patchValue({
+	// 		name: mediaData.name,
+	// 		status: mediaData.status,
+	// 		sequence_number: mediaData.sequence_number,
+	// 		src: mediaData.src,
+	// 		format: mediaData.format,
+	// 		file_type: mediaData.file_type,
+	// 		alt: mediaData.alt,
+	// 		role: mediaData.role,
+	// 		resolution: mediaData.resolution,
+	// 		size: mediaData.size,
+	// 		height: mediaData.height,
+	// 		width: mediaData.width,
+	// 		mute: mediaData.mute,
+	// 		autoplay: mediaData.autoplay,
+	// 		loop: mediaData.loop,
+	// 		full_screen: mediaData.full_screen,
+	// 	});
+	// 	this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "myCustomModalClass", size: 'lg', backdrop: 'static' })
+	// 		.result.then((result) => {
+	// 			this.closeResult = `Closed with: ${result}`;
+	// 		}, (reason) => {
+	// 			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+	// 		});
+	// }
 
-	onSubmitMedia(type) {
-		let obj = this.addmediaForm.value;
-		let id = this.mediaID;
-		obj['token'] = this.token;
-		obj['src'] = this.mediaFile;
-		obj['format'] = this.fileFormat;
-		this.submittedMedia = true;
-		if (this.addmediaForm.invalid) {
-			return;
-		}
-		if (!this.isMediaEdit) {
-			this.mediaService.addMedia(obj).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.submittedMedia = false;
-						if (this.deletedMediaFile.length > 0) {
-							this.deleteMediaFile();
-						}
-						this.toastr.successToastr(response.message);
-						if (this.addmediaForm.value.sequence_number) {
-							this.temp_sequence_number = this.addmediaForm.value.sequence_number
-						} else {
-							this.temp_sequence_number = this.temp_sequence_number + 1;
-						}
-						this.images.push({
-							media_id: response.result._id,
-							file_name: response.result.name,
-							sequence_number: this.addmediaForm.value.sequence_number
-						});
-						this.mediaData = response.result;
-						this.mediaFile = '';
-						this.isUploaded = false;
-						this.addmediaForm = this.formBuilder.group({
-							name: ['', Validators.required],
-							status: [true, Validators.required],
-							sequence_number: [''],
-							src: ['', Validators.required],
-							format: [''],
-							file_type: ['image'],
-							alt: [''],
-							role: [''],
-							resolution: [''],
-							size: [''],
-							height: [''],
-							width: [''],
-							mute: ['muted'],
-							autoplay: [true],
-							loop: [true],
-							full_screen: [''],
-						});
-						this.modalService.dismissAll();
-					}
-					else {
-						this.toastr.errorToastr(response.message);
-					}
-				},
-			);
-		}
-		else {
-			if (id) {
-				this.mediaService.editMediadata(obj, id).subscribe(
-					(response) => {
-						if (response.code == 200) {
-							this.throw_msg = response.message
-							this.msg_success = true;
-							this.toastr.successToastr(response.message);
-							if (this.mediaData) {
-								this.deletedMediaFile.push(this.mediaData.src);
-								this.deleteMediaFile();
-							}
-							setTimeout(() => {
-								this.mediaData.src = response.result.src;
-								window.location.reload();
-							}, 1000);
-							this.mediaData.src = response.result.src;
-							if (this.tvshowData.media_data && this.tvshowData.media_data.length > 0) {
-								this.patchingdata(this.id);
-							}
-							this.modalService.dismissAll();
-						} else {
-							this.throw_msg = response.message
-							this.msg_danger = true;
-							this.toastr.errorToastr(response.message);
-						}
-					},
-				);
-			}
-		}
-	}
+	// private getDismissReason(reason: any): string {
+	// 	if (reason === ModalDismissReasons.ESC) {
+	// 		return 'by pressing ESC';
+	// 	} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+	// 		return 'by clicking on a backdrop';
+	// 	} else {
+	// 		return `with: ${reason}`;
+	// 	}
+	// }
 
-	onCancelMedia() {
-		this.addmediaForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			status: [true, Validators.required],
-			sequence_number: [''],
-			src: ['', Validators.required],
-			format: [''],
-			file_type: ['image'],
-			alt: [''],
-			role: [''],
-			resolution: [''],
-			size: [''],
-			height: [''],
-			width: [''],
-			mute: ['muted'],
-			autoplay: [true],
-			loop: [true],
-			full_screen: [''],
-		});
-		this.modalService.dismissAll();
-		this.deletedMediaFile.push(this.mediaFile);
-		this.deleteMediaFile();
-	}
+	// onUploadOutput(output: UploadOutput, typeofImage): void {
+	// 	if (output.type === 'allAddedToQueue') {
+	// 		const event: UploadInput = {
+	// 			type: 'uploadAll',
+	// 			url: environment.baseUrl + '/api/tvshow/addimage',
+	// 			method: 'POST',
+	// 			data: {},
+	// 		};
+	// 		this.uploadInput.emit(event);
+	// 	}
+	// 	else if (output.type === 'done' && typeof output.file !== 'undefined') {
+	// 		this.isUploaded = true;
+	// 		this.fileFormat = output.file.type;
+	// 		if (this.mediaFile) {
+	// 			this.deletedMediaFile.push(this.mediaFile);
+	// 			this.isMediaFileDeleted = true;
+	// 		}
+	// 		this.mediaFile = output.file.response.result;
+	// 		this.addmediaForm.value.resolution = output.file.size;
+	// 		this.submittedMedia = false;
+	// 		this.addmediaForm.patchValue({
+	// 			src: this.mediaFile
+	// 		});
+	// 	}
+	// }
 
-	deleteMedia(i, type) {
-		this.images.splice(i, 1);
-		this.isMediaDeleted = true;
-		this.deletedMediaData = this.mediaData;
-		this.mediaData = null;
-	}
+	// selectImageRole(event, role) {
+	// 	if (role == 'base') {
+	// 		this.addmediaForm.patchValue({
+	// 			height: 1100,
+	// 			width: 1100,
+	// 		});
+	// 	} else if (role == 'small') {
+	// 		this.addmediaForm.patchValue({
+	// 			height: 309,
+	// 			width: 309,
+	// 		});
+	// 	} else if (role == 'thumbnail') {
+	// 		this.addmediaForm.patchValue({
+	// 			height: 150,
+	// 			width: 150,
+	// 		});
+	// 	}
+	// }
 
-	deleteMediaData() {
-		if (this.deletedMediaData) {
-			var mylist = { id: this.deletedMediaData._id, file: this.deletedMediaData.src };
-			this.tvshowService.deleteMediaData(mylist).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.modalService.dismissAll();
-						this.deletedMediaFile = [];
-						this.isMediaFileDeleted = false;
-					}
-				},
-			);
-		}
-	}
+	// public hasMediaFormError = (controlName: string, errorName: string) => {
+	// 	return this.addmediaForm.controls[controlName].hasError(errorName);
+	// };
 
-	deleteMediaFile() {
-		if (this.isUploaded && this.deletedMediaFile && this.deletedMediaFile.length > 0) {
-			let obj = {};
-			obj['files'] = this.deletedMediaFile;
-			this.tvshowService.deletefile(obj).subscribe(
-				(response) => {
-					if (response.code == 200) {
-						this.isUploaded = false;
-						this.mediaFile = '';
-						this.deletedMediaFile = [];
-					}
-				},
-			);
-		}
-	}
+	// onSubmitMedia(type) {
+	// 	let obj = this.addmediaForm.value;
+	// 	let id = this.mediaID;
+	// 	obj['token'] = this.token;
+	// 	obj['src'] = this.mediaFile;
+	// 	obj['format'] = this.fileFormat;
+	// 	this.submittedMedia = true;
+	// 	if (this.addmediaForm.invalid) {
+	// 		return;
+	// 	}
+	// 	if (!this.isMediaEdit) {
+	// 		this.mediaService.addMedia(obj).subscribe(
+	// 			(response) => {
+	// 				if (response.code == 200) {
+	// 					this.submittedMedia = false;
+	// 					if (this.deletedMediaFile.length > 0) {
+	// 						this.deleteMediaFile();
+	// 					}
+	// 					this.toastr.successToastr(response.message);
+	// 					if (this.addmediaForm.value.sequence_number) {
+	// 						this.temp_sequence_number = this.addmediaForm.value.sequence_number
+	// 					} else {
+	// 						this.temp_sequence_number = this.temp_sequence_number + 1;
+	// 					}
+	// 					this.images.push({
+	// 						media_id: response.result._id,
+	// 						file_name: response.result.name,
+	// 						sequence_number: this.addmediaForm.value.sequence_number
+	// 					});
+	// 					this.mediaData = response.result;
+	// 					this.mediaFile = '';
+	// 					this.isUploaded = false;
+	// 					this.addmediaForm = this.formBuilder.group({
+	// 						name: ['', Validators.required],
+	// 						status: [true, Validators.required],
+	// 						sequence_number: [''],
+	// 						src: ['', Validators.required],
+	// 						format: [''],
+	// 						file_type: ['image'],
+	// 						alt: [''],
+	// 						role: [''],
+	// 						resolution: [''],
+	// 						size: [''],
+	// 						height: [''],
+	// 						width: [''],
+	// 						mute: ['muted'],
+	// 						autoplay: [true],
+	// 						loop: [true],
+	// 						full_screen: [''],
+	// 					});
+	// 					this.modalService.dismissAll();
+	// 				}
+	// 				else {
+	// 					this.toastr.errorToastr(response.message);
+	// 				}
+	// 			},
+	// 		);
+	// 	}
+	// 	else {
+	// 		if (id) {
+	// 			this.mediaService.editMediadata(obj, id).subscribe(
+	// 				(response) => {
+	// 					if (response.code == 200) {
+	// 						this.throw_msg = response.message
+	// 						this.msg_success = true;
+	// 						this.toastr.successToastr(response.message);
+	// 						if (this.mediaData) {
+	// 							this.deletedMediaFile.push(this.mediaData.src);
+	// 							this.deleteMediaFile();
+	// 						}
+	// 						setTimeout(() => {
+	// 							this.mediaData.src = response.result.src;
+	// 							window.location.reload();
+	// 						}, 1000);
+	// 						this.mediaData.src = response.result.src;
+	// 						if (this.tvshowData.media_data && this.tvshowData.media_data.length > 0) {
+	// 							this.patchingdata(this.id);
+	// 						}
+	// 						this.modalService.dismissAll();
+	// 					} else {
+	// 						this.throw_msg = response.message
+	// 						this.msg_danger = true;
+	// 						this.toastr.errorToastr(response.message);
+	// 					}
+	// 				},
+	// 			);
+	// 		}
+	// 	}
+	// }
+
+	// onCancelMedia() {
+	// 	this.addmediaForm = this.formBuilder.group({
+	// 		name: ['', Validators.required],
+	// 		status: [true, Validators.required],
+	// 		sequence_number: [''],
+	// 		src: ['', Validators.required],
+	// 		format: [''],
+	// 		file_type: ['image'],
+	// 		alt: [''],
+	// 		role: [''],
+	// 		resolution: [''],
+	// 		size: [''],
+	// 		height: [''],
+	// 		width: [''],
+	// 		mute: ['muted'],
+	// 		autoplay: [true],
+	// 		loop: [true],
+	// 		full_screen: [''],
+	// 	});
+	// 	this.modalService.dismissAll();
+	// 	this.deletedMediaFile.push(this.mediaFile);
+	// 	this.deleteMediaFile();
+	// }
+
+	// deleteMedia(i, type) {
+	// 	this.images.splice(i, 1);
+	// 	this.isMediaDeleted = true;
+	// 	this.deletedMediaData = this.mediaData;
+	// 	this.mediaData = null;
+	// }
+
+	// deleteMediaData() {
+	// 	if (this.deletedMediaData) {
+	// 		var mylist = { id: this.deletedMediaData._id, file: this.deletedMediaData.src };
+	// 		this.tvshowService.deleteMediaData(mylist).subscribe(
+	// 			(response) => {
+	// 				if (response.code == 200) {
+	// 					this.modalService.dismissAll();
+	// 					this.deletedMediaFile = [];
+	// 					this.isMediaFileDeleted = false;
+	// 				}
+	// 			},
+	// 		);
+	// 	}
+	// }
+
+	// deleteMediaFile() {
+	// 	if (this.isUploaded && this.deletedMediaFile && this.deletedMediaFile.length > 0) {
+	// 		let obj = {};
+	// 		obj['files'] = this.deletedMediaFile;
+	// 		this.tvshowService.deletefile(obj).subscribe(
+	// 			(response) => {
+	// 				if (response.code == 200) {
+	// 					this.isUploaded = false;
+	// 					this.mediaFile = '';
+	// 					this.deletedMediaFile = [];
+	// 				}
+	// 			},
+	// 		);
+	// 	}
+	// }
 
 	CreateErrorResponse(responseData) {
 		if (responseData) {

@@ -42,7 +42,7 @@ export class AddSocialactivityComponent implements OnInit {
 	mediaData: any;
 	images: any = [];
 	closeResult: any = '';
-	addmediaForm: FormGroup;
+	// addmediaForm: FormGroup;
 	submittedMedia: boolean = false;
 	fileFormat: any;
 	temp_sequence_number = 0;
@@ -72,30 +72,30 @@ export class AddSocialactivityComponent implements OnInit {
 			name: ['', Validators.required],
 			status: [true, Validators.required],
 			description: ['', Validators.required],
-			short_desc: ['', Validators.required],
+			short_desc: [''],
 			url_key: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/';
 		this.url = environment.Url + '/assets';
-		this.addmediaForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			status: [true, Validators.required],
-			sequence_number: [''],
-			src: ['', Validators.required],
-			format: [''],
-			file_type: ['image'],
-			alt: [''],
-			role: [''],
-			resolution: [''],
-			size: [''],
-			height: [''],
-			width: [''],
-			mute: ['muted'],
-			autoplay: [true],
-			loop: [true],
-			full_screen: [''],
-		});
+		// this.addmediaForm = this.formBuilder.group({
+		// 	name: ['', Validators.required],
+		// 	status: [true, Validators.required],
+		// 	sequence_number: [''],
+		// 	src: ['', Validators.required],
+		// 	format: [''],
+		// 	file_type: ['image'],
+		// 	alt: [''],
+		// 	role: [''],
+		// 	resolution: [''],
+		// 	size: [''],
+		// 	height: [''],
+		// 	width: [''],
+		// 	mute: ['muted'],
+		// 	autoplay: [true],
+		// 	loop: [true],
+		// 	full_screen: [''],
+		// });
 	}
 
 	public hasError = (controlName: string, errorName: string) => {

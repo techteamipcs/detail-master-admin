@@ -35,7 +35,8 @@
                                           <th>SL No</th>
                                           <th>Gallery Name</th>
                                           <th>Gallery Image</th>
-                                          <th>Status <ng-toggle
+                                          <th>Created At</th>
+																					<th>Status <ng-toggle
                                             [(ngModel)]="isactive"
                                             [disabled]="config.disabled"
                                             [width]="config.width"
@@ -49,7 +50,7 @@
                                             (click)="changeStatus()"
                                             required
                                     ></ng-toggle> <a (click)="resetFilter()" class="btn btn-sm btn-info mr-4">Reset</a></th>
-                                          <th>Created At</th>
+
                                           <th>Action</th>
                                       </tr>
                                   </thead>
@@ -65,8 +66,9 @@
                                           <td>{{listGallery.name}}</td>
                                           <td><img src="{{imagePath}}{{listGallery.image}}" alt="logo"
                                                   style="height: 100px;width: 100px;"></td>
-                                          <td>{{listGallery.status == true ? 'Active':'Deactive'}}</td>
+
                                           <td>{{listGallery.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+																					<td>{{listGallery.status == true ? 'Active':'Deactive'}}</td>
                                           <td>
                                               <a routerLink="/gallery/edit/{{listGallery._id}}"
                                                   style="cursor:pointer"><i class="fa fa-pencil-square-o"

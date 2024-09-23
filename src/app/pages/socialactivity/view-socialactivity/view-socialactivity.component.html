@@ -35,13 +35,14 @@
 								<th>Impact Name</th>
 								<!-- <th>Format</th> -->
 								<th>Impact Image</th>
+								<th>Created At</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
 										(click)="changeStatus()" required></ng-toggle> <a (click)="resetFilter()"
 										class="btn btn-sm btn-info mr-4">Reset</a></th>
-								<th>Approved</th>
-								<th>Created At</th>
+								<!-- <th>Approved</th> -->
+
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -66,9 +67,10 @@
 									</video>
 								</td> -->
 								<td><img src="{{imagePath}}{{listSocialactivity.image}}" alt="logo" style="height: 100px;width: 100px;"></td>
-								<td>{{listSocialactivity.status == true ? 'Active':'Deactive'}}</td>
-								<td>{{listSocialactivity.isApproved == true ? 'Yes':'No'}}</td>
+
+								<!-- <td>{{listSocialactivity.isApproved == true ? 'Yes':'No'}}</td> -->
 								<td>{{listSocialactivity.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listSocialactivity.status == true ? 'Active':'Deactive'}}</td>
 								<td>
 									<a routerLink="/socialactivity/edit/{{listSocialactivity._id}}" style="cursor:pointer"><i
 											class="fa fa-pencil-square-o" aria-hidden="true"></i>
