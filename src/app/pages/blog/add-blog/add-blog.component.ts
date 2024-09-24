@@ -7,6 +7,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { environment } from '../../../../environments/environment';
 // Services
 import { BlogService } from '../../../providers/blog/blog.service';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-add-blog',
@@ -73,6 +74,7 @@ export class AddBlogComponent implements OnInit {
 			video_link: [''],
 			source_link: [''],
 			featured: [false,''],
+			date: ['', Validators.required],
 			status: [true, Validators.required],
 			content_html: ['', Validators.required],
 			meta_description: ['', Validators.required],
@@ -112,6 +114,7 @@ export class AddBlogComponent implements OnInit {
 						video_link: data?.video_link,
 						source_link: data?.source_link,
 						featured: data?.featured,
+						date: moment(data?.date).format('YYYY-MM-DD'),
 						status: data?.status,
 						content_html: data?.content,
 						meta_description: data?.meta_description,

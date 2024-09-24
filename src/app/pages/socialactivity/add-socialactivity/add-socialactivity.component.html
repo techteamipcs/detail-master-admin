@@ -44,6 +44,14 @@
 									Status</span>
 							</div>
 							<div class="form-group">
+								<label for="exampleInputEmail1">Date</label>
+								<input type="date" name="date" autocomplete="off" formControlName="date" class="form-control"
+									placeholder="Date">
+								<span *ngIf="submitted && hasError('date','required')" class="alert-danger">Date is
+									required</span>
+							</div>
+
+							<div class="form-group">
 								<label for="exampleInputEmail1">Name</label>
 								<input type="text" name="name" autocomplete="off" formControlName="name" class="form-control"
 									placeholder="Name">
@@ -56,9 +64,17 @@
 								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Short Description is
 									required</span>
 							</div> -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Description</label>
 								<textarea name="description" formControlName="description" class="form-control" placeholder="Description" ></textarea>
+								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
+									required</span>
+							</div> -->
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Description</label>
+								<angular-editor name="description" formControlName="description"
+									[config]="editorConfig"></angular-editor>
 								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
 									required</span>
 							</div>

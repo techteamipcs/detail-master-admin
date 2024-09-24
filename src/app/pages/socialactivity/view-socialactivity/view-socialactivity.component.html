@@ -35,7 +35,7 @@
 								<th>Impact Name</th>
 								<!-- <th>Format</th> -->
 								<th>Impact Image</th>
-								<th>Created At</th>
+								<th>Date</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -69,7 +69,7 @@
 								<td><img src="{{imagePath}}{{listSocialactivity.image}}" alt="logo" style="height: 100px;width: 100px;"></td>
 
 								<!-- <td>{{listSocialactivity.isApproved == true ? 'Yes':'No'}}</td> -->
-								<td>{{listSocialactivity.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listSocialactivity.date | date: 'dd/MMM/yyyy'}}</td>
 								<td>{{listSocialactivity.status == true ? 'Active':'Deactive'}}</td>
 								<td>
 									<a routerLink="/socialactivity/edit/{{listSocialactivity._id}}" style="cursor:pointer"><i

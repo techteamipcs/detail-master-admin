@@ -10,6 +10,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { SocialactivityService } from '../../../providers/socialactivity/socialactivity.service';
 import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-socialactivity',
@@ -56,6 +58,24 @@ export class AddSocialactivityComponent implements OnInit {
 	isMediaEdit = false;
 	mediaID: any;
 	socialactivityData: any;
+	editorConfig: AngularEditorConfig = {
+		editable: true,
+		spellcheck: true,
+		height: 'auto',
+		minHeight: '200px',
+		maxHeight: 'auto',
+		width: 'auto',
+		minWidth: '0',
+		translate: 'yes',
+		enableToolbar: true,
+		showToolbar: true,
+		placeholder: 'Enter text here...',
+		defaultParagraphSeparator: '',
+		defaultFontName: '',
+		defaultFontSize: '',
+
+	}
+
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -74,6 +94,7 @@ export class AddSocialactivityComponent implements OnInit {
 			description: ['', Validators.required],
 			short_desc: [''],
 			url_key: ['', Validators.required],
+			date: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/';
@@ -127,6 +148,7 @@ export class AddSocialactivityComponent implements OnInit {
 						status: data?.status,
 						description: data?.description,
 						short_desc: data?.short_desc,
+						date: moment(data?.date).format('YYYY-MM-DD'),
 						url_key: data?.url_key,
 					});
 				} else {

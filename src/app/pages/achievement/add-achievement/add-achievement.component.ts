@@ -10,6 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { AchievementService } from '../../../providers/achievement/achievement.service';
 import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-add-achievement',
@@ -75,6 +76,7 @@ export class AddAchievementComponent implements OnInit {
 			description: ['',],
 			short_desc: ['',],
 			video: ['',],
+			date: ['', Validators.required],
 			achievement_category: ["", Validators.required],
 			url_key: ['', Validators.required],
 		});
@@ -133,6 +135,7 @@ export class AddAchievementComponent implements OnInit {
 						short_desc: data?.short_desc,
 						video: data?.video,
 						url_key: data?.url_key,
+						date: moment(data?.date).format('YYYY-MM-DD'),
 						achievement_category: data?.achievement_category
 					});
 				} else {

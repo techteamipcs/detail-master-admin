@@ -10,6 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { TvshowService } from '../../../providers/tvshow/tvshow.service';
 import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-tvshow',
@@ -74,6 +75,7 @@ export class AddTvshowComponent implements OnInit {
 			status: [true, Validators.required],
 			description: [''],
 			short_desc: [''],
+			date: ['', Validators.required],
 			url_key: ['', Validators.required],
 		});
 		this.token = localStorage.getItem('token');
@@ -128,6 +130,7 @@ export class AddTvshowComponent implements OnInit {
 						status: data?.status,
 						description: data?.description,
 						short_desc: data?.short_desc,
+						date: moment(data?.date).format('YYYY-MM-DD'),
 						url_key: data?.url_key,
 					});
 				} else {

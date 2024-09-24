@@ -44,7 +44,7 @@
 								<!-- <th>News Tag</th> -->
 								<!-- <th>View Comment</th> -->
 
-								<th>Created At</th>
+								<th>Date</th>
 								<!-- <th>Updated At</th> -->
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
@@ -67,7 +67,7 @@
 								<!-- <td>{{listblog.tagsdata}}</td> -->
 								<!-- <td><a routerLink="/comment/{{listblog._id}}">Show Comment</a></td> -->
 
-								<td>{{listblog.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listblog.date | date: 'dd/MMM/yyyy'}}</td>
 								<!-- <td >{{listblog.updated_at | date: 'dd/MMM/yyyy hh:mm a'}}</td> -->
 								<td>{{listblog.status == true ? 'Active':'Deactive'}}</td>
 								<td>

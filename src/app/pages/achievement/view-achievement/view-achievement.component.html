@@ -39,7 +39,7 @@
 								<th>Achievement Image</th>
 								<th>Category</th>
 								<!-- <th>Approved</th> -->
-								<th>Created At</th>
+								<th>Date</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -75,7 +75,7 @@
 
 
 								<!-- <td>{{listAchievement.isApproved == true ? 'Yes':'No'}}</td> -->
-								<td>{{listAchievement.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listAchievement.date | date: 'dd/MMM/yyyy'}}</td>
 								<td>{{listAchievement.status == true ? 'Active':'Deactive'}}</td>
 								<td>
 									<a routerLink="/achievement/edit/{{listAchievement._id}}" style="cursor:pointer"><i
