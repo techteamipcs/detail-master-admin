@@ -103,6 +103,9 @@ export class AddPodcastComponent implements OnInit {
 	searchText = '';
 	podcasts:any = [];
 	selectedFile: any;
+
+	currentDate: string;
+
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -170,6 +173,9 @@ export class AddPodcastComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
+		const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD to match the input type 'date'
+
 		this.get_categorydata();
 		this.id = this.route.snapshot.paramMap.get('id');
 		if (this.isEdit) {

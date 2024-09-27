@@ -58,6 +58,8 @@ export class AddTvshowComponent implements OnInit {
 	isMediaEdit = false;
 	mediaID: any;
 	tvshowData: any;
+	currentDate: string;
+
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -106,6 +108,9 @@ export class AddTvshowComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
+		const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD to match the input type 'date'
+
 		this.id = this.route.snapshot.paramMap.get('id');
 		if (this.isEdit) {
 			this.patchingdata(this.id);

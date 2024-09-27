@@ -58,6 +58,9 @@ export class AddBlogComponent implements OnInit {
 			{ class: 'blog-descriptiondetail', name: 'Rajdhani sans-serif' },
 		],
 	}
+
+	currentDate: string;
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
@@ -97,6 +100,8 @@ export class AddBlogComponent implements OnInit {
 		if (this.isEdit) {
 			this.patchingdata(this.id);
 		}
+		const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD to match the input type 'date'
 	}
 
 	patchingdata(id: any) {

@@ -47,7 +47,7 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">Date</label>
 								<input type="date" name="date" autocomplete="off" formControlName="date" class="form-control"
-									placeholder="Date">
+									placeholder="Date" [max]="currentDate">
 								<span *ngIf="submitted && hasError('date','required')" class="alert-danger">Date is
 									required</span>
 							</div>

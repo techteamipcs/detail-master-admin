@@ -73,20 +73,20 @@ export class DashboardComponent implements OnInit {
     //   data: chartExample2.data
     // });
 
-    var chartSales = document.getElementById('chart-sales');
+    // var chartSales = document.getElementById('chart-sales');
 
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
+    // this.salesChart = new Chart(chartSales, {
+		// 	type: 'line',
+		// 	options: chartExample1.options,
+		// 	data: chartExample1.data
+		// });
 
-    var chartPages = document.getElementById('chart-pages');
-    this.pageChart = new Chart(chartPages, {
-      type: 'bar',
-      options: chartExample3.options,
-      data: chartExample3.data
-    });
+    // var chartPages = document.getElementById('chart-pages');
+    // this.pageChart = new Chart(chartPages, {
+    //   type: 'bar',
+    //   options: chartExample3.options,
+    //   data: chartExample3.data
+    // });
   }
 
 
@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
                 this.podcast_count,this.socialactivity_count,this.contact_count,this.gallery_count,
                 this.allpage_count,this.subscriber_count,this.testimonial_count,this.user_count,]
               // this.toastr.successToastr(response.message);
-              this.updateChartOptions();
+              // this.updateChartOptions();
           } else {
             this.toastr.errorToastr(response.message);
           }

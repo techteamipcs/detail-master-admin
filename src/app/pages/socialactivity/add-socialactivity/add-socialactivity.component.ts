@@ -75,6 +75,7 @@ export class AddSocialactivityComponent implements OnInit {
 		defaultFontSize: '',
 
 	}
+	currentDate: string;
 
 	constructor(
 		private router: Router,
@@ -124,6 +125,8 @@ export class AddSocialactivityComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
+		const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD to match the input type 'date'
 		this.id = this.route.snapshot.paramMap.get('id');
 		if (this.isEdit) {
 			this.patchingdata(this.id);
