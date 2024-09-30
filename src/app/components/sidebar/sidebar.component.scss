@@ -1,4 +1,12 @@
 .custom-logo {
 	height: 100% !important;
 	max-height: 100% !important;
+	@media(max-width:767px){
+		max-width: 70% !important;
+	}
+}
+.navbar-vertical .navbar-brand{
+	@media(max-width:767px){
+		text-align: center;
+	}
 }

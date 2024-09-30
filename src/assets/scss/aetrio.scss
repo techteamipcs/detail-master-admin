@@ -70,7 +70,9 @@
 
 // Angular Differences
 @import "angular-differences/angular-differences";
-
+body{
+	background-color: #fff;
+}
 .nav-link {
 	color: #323232 !important;
 }
@@ -118,4 +120,22 @@
 
 .card-body .text-success {
 	color :#423f3f !important;
+}
+.user-icon{
+	font-size: 32px;
+}
+.avatar{
+	background-color: transparent;
+}
+a{
+	color: #212121;
+	&:hover {
+    color: #212121 ; 
+	}
+}
+.main-content{
+	min-height: 100vh;
+}
+.container-fluid.mt--7{
+	margin-bottom: 10rem;
 }
