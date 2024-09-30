@@ -47,6 +47,8 @@ export class DashboardComponent implements OnInit {
   cartCountValues:any;
   achievement_count:any;
   award_count:any;
+  media_count:any;
+  homegallery_count:any;
   podcast_count:any;
   socialactivity_count:any;
   constructor( private router: Router,
@@ -117,6 +119,8 @@ export class DashboardComponent implements OnInit {
               this.subscriber_count = response.count_subscriber;
               this.catalog_count = response.count_catalog;
               this.achievement_count = response.count_achievement;
+              this.media_count = response.count_media;
+              this.homegallery_count = response.count_homegallery;
               this.award_count = response.count_award;
               this.podcast_count = response.count_podcast;
               this.socialactivity_count = response.count_socialactivity;

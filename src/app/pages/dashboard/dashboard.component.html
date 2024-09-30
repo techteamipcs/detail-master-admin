@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                    <i class="ni ni-bulb-61"></i>
+                    <i class="ni ni-paper-diploma"></i>
                   </div>
                 </div>
               </div>
@@ -153,16 +153,79 @@
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <i class="ni ni-settings"></i>
+                    <i class="ni ni-notification-70"></i>
                   </div>
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <a [routerLink]="['/service/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
+                <a [routerLink]="['/socialactivity/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
               </p>
             </div>
           </div>
         </div>
+        <div class="col-xl-3 col-lg-6"> 
+          <div class="card card-stats mb-4 mb-xl-0 mt-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Media</h5>
+                  <span class="h2 font-weight-bold mb-0">{{media_count}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="ni ni-tv-2"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <a [routerLink]="['/blog/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0 mt-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Gallery</h5>
+                  <span class="h2 font-weight-bold mb-0">{{gallery_count}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="ni ni-image"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <a [routerLink]="['/gallery/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0 mt-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Home Gallery</h5>
+                  <span class="h2 font-weight-bold mb-0">{{homegallery_count}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="ni ni-album-2"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <a [routerLink]="['/homegallery/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0 mt-4">
             <div class="card-body">
@@ -193,7 +256,7 @@
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="ni ni-active-40"></i>
+                    <i class="ni ni-send"></i>
                   </div>
                 </div>
               </div>
@@ -203,46 +266,27 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-xl-3 col-lg-6">
+        <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0 mt-4">
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Testimonial</h5>
-                  <span class="h2 font-weight-bold mb-0">{{testimonial_count}}</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Contact</h5>
+                  <span class="h2 font-weight-bold mb-0">{{contact_count}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                    <i class="ni ni-caps-small"></i>
+                    <i class="ni ni-collection"></i>
                   </div>
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <a [routerLink]="['/testimonial/view']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
+                <a [routerLink]="['/contact/list']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
               </p>
             </div>
           </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0 mt-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
-                  <span class="h2 font-weight-bold mb-0">{{user_count}}</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <i class="ni ni-circle-08"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <a [routerLink]="['/auth/view-user']"><span class="text-success mr-2"><i class="fa fa-arrow-right"></i> view</span></a>
-              </p>
-            </div>
-          </div>
-        </div> -->
+        </div>
+        
       </div>
     </div>
   </div>

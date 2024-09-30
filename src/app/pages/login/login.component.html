@@ -1,25 +1,27 @@
-<div class="header bg-gradient-info py-7 py-lg-8">
+<div class="loginblock d-flex flex-column justify-content-center align-items-center">
+<div class="header w-100">
   <div class="container">
-    <div class="header-body text-center mb-7">
+    <div class="header-body text-center mb-3">
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Welcome!</h1>
-          <p class="text-lead text-light">Login here to Add/Edit new records</p>
+        <div class="col-lg-12 col-md-12">
+          <h1 class="text-white1">Welcome!</h1>
+          <h1>Dr. Minnie Admin Dashboard</h1>
+          <!-- <p class="text-lead text-light">Login here to Add/Edit new records</p> -->
         </div>
       </div>
     </div>
   </div>
-  <div class="separator separator-bottom separator-skew zindex-100">
+  <!-- <div class="separator separator-bottom separator-skew zindex-100">
     <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
     </svg>
-  </div>
+  </div> -->
 </div>
 <!-- Page content -->
-<div class="container mt--8 pb-5">
+<div class="container ">
   <div class="row justify-content-center">
     <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
+      <div class="card shadow border-0">
         <!-- <div class="card-header bg-transparent pb-5">
           <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
           <div class="btn-wrapper text-center">
@@ -35,6 +37,8 @@
         </div> -->
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
+            
+            <img src="assets/img/brand/dr-minnieadminlogo.png" class="d-block mb-4 mx-auto" alt="">
             <small>Login to your account</small>
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login100-form validate-form">
@@ -58,11 +62,15 @@
                 autocomplete="off">
               </div>
             </div>
-            <div class="custom-control custom-control-alternative custom-checkbox">
+            <!-- <div class="custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
               <label class="custom-control-label" for=" customCheckLogin">
                 <span class="text-muted">Remember me</span>
               </label>
+            </div> -->
+            <div class="custom-control custom-control-alternative custom-checkbox pl-0">
+             
+              <a href="/#/forgot-password" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="text-center">
               <button class="btn btn-primary my-4">Sign in</button>
@@ -70,14 +78,14 @@
           </form>
         </div>
       </div>
-      <div class="row mt-3">
+      <!-- <div class="row mt-3">
         <div class="col-6">
-          <a href="/#/forgot-password" class="text-light"><small>Forgot password?</small></a>
+          <a href="/#/forgot-password" class="text-light1"><small>Forgot password?</small></a>
         </div>
-        <!-- <div class="col-6 text-right">
-          <a href="javascript:void(0)" class="text-light"><small>Create new account</small></a>
-        </div> -->
-      </div>
+        
+      </div> -->
     </div>
   </div>
+  <p class="text-light1 mt-3 text-center"><small >Copyright © 2024 Dr. Minnie All rights reserved</small></p>
+</div>
 </div>

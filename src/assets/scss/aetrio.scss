@@ -73,6 +73,10 @@
 body{
 	background-color: #fff;
 }
+body.bg-default
+{
+    background-color: #eae3e1 !important;
+}
 .nav-link {
 	color: #323232 !important;
 }
@@ -138,4 +142,22 @@ a{
 }
 .container-fluid.mt--7{
 	margin-bottom: 10rem;
+}
+.btn-primary{
+	background-color: transparent !important;
+	border-color: #212529 !important;
+	color: #212529 !important;
+	&:hover{
+		background-color: #212529 !important;
+		color: #fff !important;
+	}
+}
+.btn-danger{
+	background-color: transparent !important;
+	border-color: #212529 !important;
+	color: #212529 !important;
+	&:hover{
+		background-color: #212529 !important;
+		color: #fff !important;
+	}
 }
