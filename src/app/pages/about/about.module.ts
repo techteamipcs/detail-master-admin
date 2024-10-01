@@ -11,12 +11,19 @@ import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 
 import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
+import { EditAboutComponent } from './edit-about/edit-about.component';
+import { ViewAboutComponent } from './view-about/view-about.component';
+import { PipemoduleModule } from 'src/app/pipemodule.module';
+import { NgToggleModule } from 'ng-toggle-button';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
 @NgModule({
   declarations: [
-    AboutComponent
+    AboutComponent,
+    EditAboutComponent,
+    ViewAboutComponent
   ],
   imports: [
     AboutRoutingModule,
@@ -28,8 +35,11 @@ import { AboutComponent } from './about.component';
     AngularEditorModule,
     PageModule,
     BlogModule,
-    NgxQrcodeStylingModule
+    NgxQrcodeStylingModule,
+		Ng2SearchPipeModule,
+    NgToggleModule,
+    PipemoduleModule
   ],
-  
+
 })
 export class AboutModule { }

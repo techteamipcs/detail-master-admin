@@ -1,0 +1,123 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+	<span class="mask bg-gradient-info opacity-8"></span>
+	<div class="container-fluid d-flex align-items-center">
+		<div class="row">
+			<div class="col-lg-7 col-md-10">
+				<!-- <h1 class="display-2 text-white">Hello {{user.username}}</h1> -->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid mt--7">
+	<div class="row">
+		<div class="col-xl-7 order-xl-1 mx-auto">
+			<div class="card bg-secondary shadow">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">About</h3>
+						</div>
+					</div>
+					<div class="alert alert-success alert-dismissable" style="margin-left: 0;" *ngIf="msg_success">
+						{{throw_msg}}
+					</div>
+					<div class="alert alert-danger alert-dismissable" style="margin-left: 0;" *ngIf="msg_danger">
+						{{throw_msg}}
+					</div>
+				</div>
+				<div class="card-body">
+					<form [formGroup]="addForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+						<div class="box-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Status</label>
+								<select name="status" formControlName="status" class="form-control">
+									<option value="">Select Status</option>
+									<option value="true">Active</option>
+									<option value="false">Deactive</option>
+								</select>
+								<span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select
+									Status</span>
+							</div>
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Title sign</label>
+								<input type="text" name="title_sign" autocomplete="off" formControlName="title_sign"
+									class="form-control" placeholder="Title sign">
+								<span *ngIf="submitted && hasError('title_sign','required')" class="alert-danger">Title sign is
+									required</span>
+							</div>
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Title name</label>
+								<input type="text" name="title_name" autocomplete="off" formControlName="title_name"
+									class="form-control" placeholder="Title name">
+								<span *ngIf="submitted && hasError('title_name','required')" class="alert-danger">Title name is
+									required</span>
+							</div>
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Description Short</label>
+								<input type="text" name="desc_short" autocomplete="off" formControlName="desc_short"
+									class="form-control" placeholder="Description short">
+								<span *ngIf="submitted && hasError('desc_short','required')" class="alert-danger">Description
+									short is required</span>
+							</div>
+
+							<!-- <div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Description long</label>
+								<input type="text" name="desc_long" autocomplete="off" formControlName="desc_long" class="form-control"
+									placeholder="Description long">
+								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Description long is
+									required</span>
+							</div> -->
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Description Long</label>
+								<angular-editor name="desc_long" formControlName="desc_long" [config]="editorConfig"></angular-editor>
+								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Description Long is
+									required</span>
+							</div>
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Video URL</label>
+								<input type="text" name="video_url" autocomplete="off" formControlName="video_url" class="form-control"
+									placeholder="Youtube Url">
+								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video Url is
+									required</span>
+							</div>
+
+							<!-- <div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Video Description</label>
+								<input type="text" name="video_desc" autocomplete="off" formControlName="video_desc"
+									class="form-control" placeholder="Video Description">
+								<span *ngIf="submitted && hasError('video_desc','required')" class="alert-danger">Video Description is
+									required</span>
+							</div> -->
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1 ">Upload Image</label><br>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFile($event)"
+									[uploadInput]="uploadInput" class="mb-2" /><br>
+								<img src="{{imagePath}}about/{{imageDataBanner}}" class="img-fluid img-thumbnail" *ngIf="imageDataBanner"
+									width="200" height="350">
+							</div>
+
+							<!-- <div class="form-group col-lg-12">
+								<label for="exampleInputEmail1 ">Upload Image 2</label><br>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFile2($event)"
+									[uploadInput]="uploadInput" class="mb-2" /><br>
+								<img src="{{imagePath}}about/{{imageDataDesc}}" class="img-fluid img-thumbnail" *ngIf="imageDataDesc"
+									width="200" height="350">
+							</div> -->
+
+						</div>
+						<div class="box-footer col-lg-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="button" class="btn btn-danger" routerLink="/about/view">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

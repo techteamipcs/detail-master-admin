@@ -75,6 +75,27 @@ export class AboutComponent implements OnInit {
 	user: any;
 	document: any;
 	selectedFile: any;
+
+	editorConfig: AngularEditorConfig = {
+		editable: true,
+		spellcheck: true,
+		height: 'auto',
+		minHeight: '200px',
+		maxHeight: 'auto',
+		width: 'auto',
+		minWidth: '0',
+		translate: 'yes',
+		enableToolbar: true,
+		showToolbar: true,
+		placeholder: 'Enter text here...',
+		defaultParagraphSeparator: '',
+		defaultFontName: '',
+		defaultFontSize: '',
+		fonts: [
+			{ class: 'career_box', name: 'Rajdhani sans-serif' },
+		],
+	}
+
 	constructor(
 		private router: Router,
 		private aboutService: AboutService,
@@ -93,7 +114,7 @@ export class AboutComponent implements OnInit {
 			desc_short: ['', Validators.required],
 			desc_long: ['', Validators.required],
 			video_url: ['', Validators.required],
-			video_desc: ['', Validators.required],
+			video_desc: [''],
 			image_banner: [''],
 			image_desc: [''],
 			status: ['false', Validators.required],
@@ -167,117 +188,117 @@ export class AboutComponent implements OnInit {
 		);
 	}
 
-	patchingdata(id: any) {
-		let obj = { id: id };
-		this.aboutService.getAboutWithId(obj).subscribe(
-			(response) => {
-				if (response.code == 200) {
-					let data = response?.result;
-					this.AboutData = response.result;
-					this.image_banner = data?.image_banner;
-					this.image_desc = data?.image_desc;
-					this.mediaData = data?.media_data[0];
-					this.addaboutForm.patchValue({
-						name: data?.name,
-						status: data?.status,
-						description: data?.description,
-						short_desc: data?.short_desc,
-						url_key: data?.url_key,
-					});
-				} else {
+	// patchingdata(id: any) {
+	// 	let obj = { id: id };
+	// 	this.aboutService.getAboutWithId(obj).subscribe(
+	// 		(response) => {
+	// 			if (response.code == 200) {
+	// 				let data = response?.result;
+	// 				this.AboutData = response.result;
+	// 				this.image_banner = data?.image_banner;
+	// 				this.image_desc = data?.image_desc;
+	// 				this.mediaData = data?.media_data[0];
+	// 				this.addaboutForm.patchValue({
+	// 					name: data?.name,
+	// 					status: data?.status,
+	// 					description: data?.description,
+	// 					short_desc: data?.short_desc,
+	// 					url_key: data?.url_key,
+	// 				});
+	// 			} else {
 
-				}
-			},
-		);
-	}
+	// 			}
+	// 		},
+	// 	);
+	// }
 
 	public hasError = (controlName: string, errorName: string) => {
 		return this.addaboutForm.controls[controlName].hasError(errorName);
 	};
 
 	onSubmit() {
-		this.submitted = true;
-		let obj = this.addaboutForm.value;
-		let id = this.AboutData[0]._id;
-		if (id === null || id.trim() === "") {
-			this.onSubmitNew();
-		}
-		obj['token'] = this.token;
-		obj['image_banner'] = this.image_banner;
-		// obj['image_desc'] = this.image_desc;
+	// 	this.submitted = true;
+	// 	let obj = this.addaboutForm.value;
+	// 	let id = this.AboutData[0]._id;
+	// 	if (id === null || id.trim() === "") {
+	// 		this.onSubmitNew();
+	// 	}
+	// 	obj['token'] = this.token;
+	// 	obj['image_banner'] = this.image_banner;
+	// 	// obj['image_desc'] = this.image_desc;
 
-		if (this.mediaData) {
-			obj['image_desc'] = this.mediaData._id;
-		}
+	// 	if (this.mediaData) {
+	// 		obj['image_desc'] = this.mediaData._id;
+	// 	}
 
-		if (this.addaboutForm.invalid) {
-			return;
-		}
-		this.aboutService.editaboutdata(obj, id).subscribe(
-			(response) => {
-				if (response.code == 200) {
-					this.throw_msg = response.message
-					this.msg_success = true;
-					this.isUploaded = true;
-					if (this.isMediaDeleted) {
-						this.deleteMediaData();
-					}
-					if (this.isMediaFileDeleted) {
-						this.deleteMediaFile();
-					}
-					setTimeout(() => {
-						this.router.navigate(['/about']);
-						this.toastr.successToastr(response.message);
-					}, 2000);
-				}
-				else {
-					this.throw_msg = response.message
-					this.msg_danger = true;
-					this.CreateErrorResponse(response);
-				}
-			},
-		);
+	// 	if (this.addaboutForm.invalid) {
+	// 		return;
+	// 	}
+	// 	this.aboutService.editaboutdata(obj, id).subscribe(
+	// 		(response) => {
+	// 			if (response.code == 200) {
+	// 				this.throw_msg = response.message
+	// 				this.msg_success = true;
+	// 				this.isUploaded = true;
+	// 				if (this.isMediaDeleted) {
+	// 					this.deleteMediaData();
+	// 				}
+	// 				if (this.isMediaFileDeleted) {
+	// 					this.deleteMediaFile();
+	// 				}
+	// 				setTimeout(() => {
+	// 					this.router.navigate(['/about']);
+	// 					this.toastr.successToastr(response.message);
+	// 				}, 2000);
+	// 			}
+	// 			else {
+	// 				this.throw_msg = response.message
+	// 				this.msg_danger = true;
+	// 				this.CreateErrorResponse(response);
+	// 			}
+	// 		},
+	// 	);
 	}
 
-	onSubmitNew() {
-	  this.submitted = true;
-	  let obj = this.addaboutForm.value;
-	  obj['token'] = this.token;
-	  obj['image_banner'] = this.image_banner;
+	// onSubmitNew() {
+	//   this.submitted = true;
+	//   let obj = this.addaboutForm.value;
+	//   obj['token'] = this.token;
+	//   obj['image_banner'] = this.image_banner;
 
-	  if (this.mediaData) {
-	    obj['image_desc'] = this.mediaData._id;
-	  }
+	//   if (this.mediaData) {
+	//     obj['image_desc'] = this.mediaData._id;
+	//   }
 
-	  if (this.addaboutForm.invalid) {
-	    return;
-	  }
+	//   if (this.addaboutForm.invalid) {
+	//     return;
+	//   }
 
-	  // Call the service method to create a new entry
-	  this.aboutService.addAboutData(obj).subscribe(
-	    (response) => {
-	      if (response.code == 200) {
-	        this.throw_msg = response.message;
-	        this.msg_success = true;
-	        this.isUploaded = true;
-					if (this.isMediaDeleted) {
-	          this.deleteMediaData();
-	        }
-	        if (this.isMediaFileDeleted) {
-	          this.deleteMediaFile();
-	        }
-	        setTimeout(() => {
-	          this.router.navigate(['/about']);
-	          this.toastr.successToastr(response.message);
-	        }, 2000);
-	      } else {
-	        this.throw_msg = response.message;
-	        this.msg_danger = true;
-	        this.CreateErrorResponse(response);
-	      }
-	    },
-	  );
-	}
+	//   // Call the service method to create a new entry
+	//   this.aboutService.addAboutData(obj).subscribe(
+	//     (response) => {
+	//       if (response.code == 200) {
+	//         this.throw_msg = response.message;
+	//         this.msg_success = true;
+	//         this.isUploaded = true;
+	// 				if (this.isMediaDeleted) {
+	//           this.deleteMediaData();
+	//         }
+	//         if (this.isMediaFileDeleted) {
+	//           this.deleteMediaFile();
+	//         }
+	//         setTimeout(() => {
+	//           this.router.navigate(['/about']);
+	//           this.toastr.successToastr(response.message);
+	//         }, 2000);
+	//       } else {
+	//         this.throw_msg = response.message;
+	//         this.msg_danger = true;
+	//         this.CreateErrorResponse(response);
+	//       }
+	//     },
+	//   );
+	// }
 
 
 

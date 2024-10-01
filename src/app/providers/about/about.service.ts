@@ -13,7 +13,7 @@ export class AboutService {
   constructor(private http: HttpClient) { }
 
   getaboutDetails = (data: any): Observable<any> => {
-    const endpoint = environment.baseUrl + '/api/about/viewallabout';
+    const endpoint = environment.baseUrl + '/api/about/viewallAboutus';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
@@ -45,7 +45,7 @@ export class AboutService {
   };
 
   deletefile = (data: any): Observable<any> => {
-    const endpoint = environment.baseUrl + '/api/achievement/deletefile';
+    const endpoint = environment.baseUrl + '/api/about/deletefile';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
@@ -54,7 +54,7 @@ export class AboutService {
   };
 
   deleteMediaData = (data: any): Observable<any> => {
-    const endpoint = environment.baseUrl + '/api/achievement/deletemediadata';
+    const endpoint = environment.baseUrl + '/api/about/deletemediadata';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
         return throwError(err);
@@ -64,6 +64,16 @@ export class AboutService {
 
   getAboutWithId = (moreData: any): Observable<any> => {
     const endpoint = environment.baseUrl + '/api/about/getaboutid';
+    return this.http
+      .post(endpoint, moreData, this.getRequestHeaders())
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+  };
+  getAboutDelete = (moreData: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/about/aboutdelete';
     return this.http
       .post(endpoint, moreData, this.getRequestHeaders())
       .pipe(
