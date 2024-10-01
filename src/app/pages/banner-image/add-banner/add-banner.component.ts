@@ -10,6 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { BannerService } from '../../../providers/banner/banner.service';
 import { MediaService } from '../../../providers/media/media.service';
 import { ResponseService } from '../../../providers/response/response.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
 	selector: 'app-add-banner',
@@ -56,6 +57,23 @@ export class AddBannerComponent implements OnInit {
 	isMediaEdit = false;
 	mediaID: any;
 	bannerData: any;
+	editorConfig: AngularEditorConfig = {
+		editable: true,
+		spellcheck: true,
+		height: 'auto',
+		minHeight: '200px',
+		maxHeight: 'auto',
+		width: 'auto',
+		minWidth: '0',
+		translate: 'yes',
+		enableToolbar: true,
+		showToolbar: true,
+		placeholder: 'Enter text here...',
+		defaultParagraphSeparator: '',
+		defaultFontName: '',
+		defaultFontSize: '',
+
+	}
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -70,6 +88,9 @@ export class AddBannerComponent implements OnInit {
 		this.options = { concurrency: 0, allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'] };
 		this.addbannerForm = this.formBuilder.group({
 			name: ['', Validators.required],
+			name2: ['', Validators.required],
+			name3: ['', Validators.required],
+			pagelist: [''],
 			status: [true, Validators.required],
 			description: ['', Validators.required],
 			short_desc: ['', Validators.required]
@@ -123,7 +144,10 @@ export class AddBannerComponent implements OnInit {
 					this.mediaData = data?.media_data[0];
 					this.addbannerForm.patchValue({
 						name: data?.name,
+						name2: data?.name2,
+						name3: data?.name3,
 						status: data?.status,
+						pagelist: data?.pagelist,
 						description: data?.description,
 						short_desc: data?.short_desc
 					});

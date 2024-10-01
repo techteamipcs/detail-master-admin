@@ -44,14 +44,55 @@
 								<span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select
 									Status</span>
 							</div>
+							<div class="form-group"> 
+								<label for="pagelist">Select page </label>
+								<select name="pagelist" formControlName="pagelist" class="form-control" value="Choose here">
+									<option value="" selected>Choose here</option>
+									<option value="home">Home Page</option>
+									<option value="about">About Page</option>
+									<option value="achievement">Achievement Page</option>
+									<option value="impact">Impact Page</option>
+									<option value="media">Media Page</option>
+								</select>
+								<span *ngIf="submitted && hasError('pagelist','required')" class="alert-danger">Please Select
+									page</span>
+							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">Name</label>
+								<label for="exampleInputEmail1">Title 1</label>
 								<input type="text" name="name" autocomplete="off" formControlName="name" class="form-control"
 									placeholder="Banner Name">
-								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Banner Name is
+								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Banner Title 1 is
 									required</span>
 							</div>
-
+							<div class="form-group">
+								<label for="exampleInputEmail1">Title 2</label>
+								<input type="text" name="name2" autocomplete="off" formControlName="name2" class="form-control"
+									placeholder="Banner Name">
+								<span *ngIf="submitted && hasError('name2','required')" class="alert-danger">Banner Title 2 is
+									required</span>
+							</div>
+							<div class="form-group"> 
+								<label for="exampleInputEmail1">Title 3</label>
+								<input type="text" name="name3" autocomplete="off" formControlName="name3" class="form-control"
+									placeholder="Banner Name">
+								<span *ngIf="submitted && hasError('name3','required')" class="alert-danger">Banner Title 3 is
+									required</span>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Description</label>
+								<angular-editor name="description" formControlName="description"
+									[config]="editorConfig"></angular-editor>
+								<span *ngIf="submitted && hasError('description','required')" class="alert-danger">Description is
+									required</span>
+							</div>
+							<div class="form-group"> 
+								<label for="exampleInputEmail1">Short Description</label>
+								<input type="text" name="short_desc" autocomplete="off" formControlName="short_desc" class="form-control"
+									placeholder="Banner short_desc">
+								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Banner Short Description is
+									required</span>
+							</div>
+							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Upload Image</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
