@@ -75,6 +75,7 @@ export class EditAboutComponent implements OnInit {
 			desc_short: ['', Validators.required],
 			desc_long: ['', Validators.required],
 			video_url: ['', Validators.required],
+			page_section: ['', Validators.required],
 			video_desc: [''],
 			image_banner: [''],
 			image_desc: [''],
@@ -97,42 +98,6 @@ export class EditAboutComponent implements OnInit {
 
 	}
 
-	get_AboutData1() {
-		const obj = {
-			limit: this.currentLimit,
-			page: this.currentPage,
-			token: this.token,
-		};
-		// this.aboutService.getaboutDetails(obj).subscribe(
-		this.aboutService.getAboutWithId(obj).subscribe(
-			(response) => {
-				if (response.code == 200) {
-					if (response.result != null && response.result != '') {
-						this.AboutData = response.result;
-						this.totalRecord = response?.count;
-						let data = this.AboutData[0];
-						this.imageDataBanner = data?.image_banner;
-						this.imageDataDesc = data?.image_desc;
-						this.addForm.patchValue({
-							title_sign: data?.title_sign,
-							title_name: data?.title_name,
-							desc_short: data?.desc_short,
-							desc_long: data?.desc_long,
-							video_url: data?.video_url,
-							video_desc: data?.video_desc,
-							status: data?.status,
-						});
-						window.scroll(0, 0);
-					}
-					else {
-						this.msg_danger = true;
-					}
-
-				}
-			},
-		);
-	}
-
 	patchingdata(id: any) {
 		let obj = { id: id };
 		this.aboutService.getAboutWithId(obj).subscribe(
@@ -149,6 +114,7 @@ export class EditAboutComponent implements OnInit {
 						desc_long: data?.desc_long,
 						video_url: data?.video_url,
 						video_desc: data?.video_desc,
+						page_section: data?.page_section,
 						status: data?.status,
 					});
 					window.scroll(0, 0);
@@ -202,7 +168,9 @@ export class EditAboutComponent implements OnInit {
 							this.router.navigate(['/about/view']);
 						}, 2000);
 					} else {
-						this.toastr.errorToastr(response.error);
+						this.toastr.errorToastr(response.message);
+						// this.throw_msg = response.message
+						// this.msg_danger = true;
 					}
 				},
 			);

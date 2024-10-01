@@ -98,8 +98,8 @@
 								<label for="exampleInputEmail1 ">Upload Image</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFile($event)"
 									[uploadInput]="uploadInput" class="mb-2" /><br>
-								<img src="{{imagePath}}about/{{imageDataBanner}}" class="img-fluid img-thumbnail" *ngIf="imageDataBanner"
-									width="200" height="350">
+								<img src="{{imagePath}}about/{{imageDataBanner}}" class="img-fluid img-thumbnail"
+									*ngIf="imageDataBanner" width="200" height="350">
 							</div>
 
 							<!-- <div class="form-group col-lg-12">
@@ -109,6 +109,14 @@
 								<img src="{{imagePath}}about/{{imageDataDesc}}" class="img-fluid img-thumbnail" *ngIf="imageDataDesc"
 									width="200" height="350">
 							</div> -->
+
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Page-Section-name</label>
+								<input type="text" name="page_section" autocomplete="off" formControlName="page_section"
+									class="form-control" placeholder="Page">
+								<span *ngIf="submitted && hasError('page_section','required')" class="alert-danger">Section is
+									required</span>
+							</div>
 
 						</div>
 						<div class="box-footer col-lg-12">

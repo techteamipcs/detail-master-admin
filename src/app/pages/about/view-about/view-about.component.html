@@ -23,8 +23,8 @@
 								[(ngModel)]="searchText" autocomplete="off"
 								placeholder="&#61442;  Start searching a About Image by id or name">
 						</div>
-						<!-- <div class="col-md-6"><button type="button" class="btn btn-primary pull-right custom-btn"
-								routerLink="/about/add">Add About</button></div> -->
+						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right custom-btn"
+								routerLink="/about/add">Add About</button></div>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -84,8 +84,8 @@
 									<a routerLink="/about/edit/{{listAboutData._id}}" style="cursor:pointer"><i
 											class="fa fa-pencil-square-o" aria-hidden="true"></i>
 									</a>
-									<!-- <a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listAboutData)"><i
-											class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+									<a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listAboutData)"><i
+											class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</td>
 							</tr>
 						</tbody>
@@ -119,6 +119,6 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Cancel</button>
-			<!-- <button type="button" class="btn btn-primary" (click)="deleteAbout()">Ok</button> -->
+			<button type="button" class="btn btn-primary" (click)="deleteAbout()">Ok</button>
 		</div>
 	</ng-template>
