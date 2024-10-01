@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../providers/auth/login.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   showmsg: any;
   loginErrorMsg: string;
   loginError2 = false;
+  baseUrl:any;
   error: { errorTitle: '', errorDesc: '' };
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.baseUrl = environment.baseUrl+'/admin'
   }
 
   ngOnInit(): void {
