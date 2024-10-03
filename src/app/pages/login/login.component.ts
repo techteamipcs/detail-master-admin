@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.baseUrl = environment.baseUrl+'/admin'
+    this.baseUrl = environment.Url
   }
 
   ngOnInit(): void {
