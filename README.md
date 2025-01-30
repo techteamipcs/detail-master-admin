@@ -1,2 +1,2 @@
-# drminiprofile-admin
-Dr.Mini ProfileSpace Website Admin Code Base
+# detail-master-admin
+detail-master-admin
