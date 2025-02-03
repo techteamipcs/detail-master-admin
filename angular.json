@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "drminnie-dashboard-angular": {
+    "detailmaster-dashboard-angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -31,7 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/aetrio.scss",
+              "src/assets/scss/theme.scss",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/animate.css/animate.min.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
@@ -89,15 +89,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "drminnie-dashboard-angular:build",
-            "port":4308
+            "browserTarget": "detailmaster-dashboard-angular:build",
+            "port":4310
           },
           "configurations": {
             "production": {
-              "browserTarget": "drminnie-dashboard-angular:build:production"
+              "browserTarget": "detailmaster-dashboard-angular:build:production"
             },
             "development": {
-              "browserTarget": "drminnie-dashboard-angular:build:development"
+              "browserTarget": "detailmaster-dashboard-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,7 +105,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "drminnie-dashboard-angular:build"
+            "browserTarget": "detailmaster-dashboard-angular:build"
           }
         },
         "test": {
@@ -139,7 +139,7 @@
         }
       }
     },
-    "drminnie-dashboard-angular-e2e": {
+    "detailmaster-dashboard-angular-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -147,11 +147,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "drminnie-dashboard-angular:serve"
+            "devServerTarget": "detailmaster-dashboard-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "drminnie-dashboard-angular:serve:production"
+              "devServerTarget": "detailmaster-dashboard-angular:serve:production"
             }
           }
         },
@@ -167,7 +167,7 @@
       }
     }
   },
-  "defaultProject": "drminnie-dashboard-angular",
+  "defaultProject": "detailmaster-dashboard-angular",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

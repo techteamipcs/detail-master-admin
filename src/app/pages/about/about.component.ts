@@ -140,7 +140,7 @@ export class AboutComponent implements OnInit {
 		//   full_screen: [''],
 		// });
 
-		this.token = localStorage.getItem('drminnie-admin-token');
+		this.token = localStorage.getItem('detailmaster-admin-token');
 		this.imagePath = environment.baseUrl + '/public/';
 		let tempuser = localStorage.getItem('user');
 		this.user = JSON.parse(tempuser);

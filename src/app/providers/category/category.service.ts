@@ -29,14 +29,14 @@ export class CategoryService {
         return throwError(err);
       })
     );
-  }; 
+  };
 
   getCategoryWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/blog/getCategoryWithId';
     return this.http
       .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
@@ -67,7 +67,7 @@ export class CategoryService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

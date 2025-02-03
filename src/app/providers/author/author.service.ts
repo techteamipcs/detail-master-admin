@@ -15,7 +15,7 @@ export class AuthorService {
   addAuthor = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/blog/addauthor';
     return this.http
-      .post(endpoint, moreData,this.getRequestHeaders()) 
+      .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -31,7 +31,7 @@ export class AuthorService {
       })
     );
   };
-  
+
   getAuthorWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/blog/getAuthorWithId';
     return this.http
@@ -87,7 +87,7 @@ export class AuthorService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

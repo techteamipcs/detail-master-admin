@@ -29,14 +29,14 @@ export class PodcastcommentsService {
         return throwError(err);
       })
     );
-  }; 
+  };
 
   getCommentsWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/podcast/getCommentsWithId';
     return this.http
       .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
@@ -69,7 +69,7 @@ export class PodcastcommentsService {
       catchError((err) => {
         return throwError(err);
       })
-    ); 
+    );
   };
 
   getallComments = (data:any): Observable<any> => {
@@ -78,14 +78,14 @@ export class PodcastcommentsService {
       catchError((err) => {
         return throwError(err);
       })
-    ); 
+    );
   };
 
   protected getRequestHeaders(): {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

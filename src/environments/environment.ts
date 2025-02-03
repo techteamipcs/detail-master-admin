@@ -6,12 +6,12 @@ export const environment = {
 	production: false,
 
 	// live
-	// Url: 'https://www.dr-minnie.com/admin',
-	// baseUrl:'https://www.dr-minnie.com:5008',
+	// Url: 'https://build.pixtar.ae/admin',
+	// baseUrl:'https://build.pixtar.ae:5010',
 
 	// local
-	baseUrl: 'http://localhost:5008',
-	Url: 'http://localhost:4308',
+	baseUrl: 'http://localhost:5010',
+	Url: 'http://localhost:4310',
 
 };
 

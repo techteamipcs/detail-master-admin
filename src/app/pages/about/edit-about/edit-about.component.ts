@@ -82,7 +82,7 @@ export class EditAboutComponent implements OnInit {
 			status: [true, Validators.required],
 		});
 		this.uploadInput = new EventEmitter<UploadInput>();
-		this.token = localStorage.getItem('drminnie-admin-token');
+		this.token = localStorage.getItem('detailmaster-admin-token');
 		this.imagePath = environment.baseUrl + '/public/';
 	}
 

@@ -11,13 +11,13 @@ import { environment } from '../../../environments/environment';
 export class LoginService {
 
   constructor(private http: HttpClient) { }
-  
+
   validateLogin = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/users/login';
     return this.http
       .post(endpoint, moreData, { observe: 'response' as 'body' })
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
@@ -123,7 +123,7 @@ export class LoginService {
         return throwError(err);
       })
     );
-  };  
+  };
 
   SendEmailVerification = (data:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/users/SendEmailVerification';
@@ -147,7 +147,7 @@ export class LoginService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

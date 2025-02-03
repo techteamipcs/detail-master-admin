@@ -19,7 +19,7 @@ export class AwardService {
       })
     );
   };
-  
+
   addAward = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/award/addaward';
     return this.http
@@ -43,7 +43,7 @@ export class AwardService {
       );
   };
 
-  // update 
+  // update
   editAwarddata = (moreData:any,Id:any): Observable<any> => {
     let endpoint = environment.baseUrl+'/api/award/editAwarddata';
     if (Id) {
@@ -120,7 +120,7 @@ importallAward = (file: File): Observable<any> => {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

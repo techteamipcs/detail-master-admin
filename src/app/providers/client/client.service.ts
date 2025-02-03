@@ -17,7 +17,7 @@ export class ClientService {
 		headers: HttpHeaders | { [header: string]: string | string[] };
 	} {
 		let headers;
-		const token = localStorage.getItem('drminnie-admin-token');
+		const token = localStorage.getItem('detailmaster-admin-token');
 		headers = new HttpHeaders({
 			Authorization: `Bearer ${token}`,
 		});

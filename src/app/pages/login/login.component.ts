@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     this.loginService.validateLogin(this.loginForm.value).subscribe(
       (response) => {
         if (response.body.code == 200) {
-          localStorage.setItem('drminnie-admin-token', response.body.token);
+          localStorage.setItem('detailmaster-admin-token', response.body.token);
           localStorage.setItem('user', JSON.stringify(response.body));
           // this.router.navigate(['/']);
           this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {

@@ -1,4 +1,4 @@
-.drminnie-pagination {
+.detailmaster-pagination {
   display: inline-block;
   width: 100%;
   text-align: center;
@@ -17,7 +17,7 @@
   .box-title{
     font-size: 60px;
   }
-  
+
   .cdis{
     display: flex;
     align-items: center;

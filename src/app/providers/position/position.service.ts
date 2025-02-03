@@ -29,9 +29,9 @@ export class PositionService {
         return throwError(err);
       })
     );
-  }; 
+  };
 
-  
+
   getPositionWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/position/getpositionWithId';
     return this.http
@@ -68,7 +68,7 @@ export class PositionService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

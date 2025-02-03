@@ -16,13 +16,13 @@ export class EditProfileComponent implements OnInit {
   // Data Assign
 
   addProfileForm:FormGroup;
-  throw_msg:any; 
+  throw_msg:any;
   submitted: boolean = false;
   msg_success: boolean = false;
   msg_danger: boolean = false;
   token: any;
   id:any;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -30,7 +30,7 @@ export class EditProfileComponent implements OnInit {
     private loginService:LoginService,
     private toastr: ToastrManager
   )
-  { 
+  {
     this.addProfileForm = this.formBuilder.group({
       username: ['',Validators.required],
       email: ['',Validators.required],
@@ -38,7 +38,7 @@ export class EditProfileComponent implements OnInit {
       confirmpassword: ['',Validators.required],
       role: ['',Validators.required]
     });
-    this.token = localStorage.getItem('drminnie-admin-token'); 
+    this.token = localStorage.getItem('detailmaster-admin-token');
 
   }
 
@@ -49,10 +49,10 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  patchingdata(id:any) { 
+  patchingdata(id:any) {
     let obj = {id:id};
     this.loginService.getUser(obj).subscribe(
-      (response) => { 
+      (response) => {
         if (response.code == 200) {
           let data = response?.result;
            this.addProfileForm.patchValue({
@@ -61,7 +61,7 @@ export class EditProfileComponent implements OnInit {
             role: data?.role,
           });
        }else{
-          
+
         }
       },
     );
@@ -74,28 +74,28 @@ export class EditProfileComponent implements OnInit {
     if(this.addProfileForm.value.password == this.addProfileForm.value.confirmpassword){
     this.loginService.editProfile(obj).subscribe(
         (response) => {
-          if(response.code == 200) 
+          if(response.code == 200)
           {
-            // this.throw_msg = response.message 
+            // this.throw_msg = response.message
             // this.msg_success = true;
             this.toastr.successToastr(response.message);
-            setTimeout(()=>{                            
+            setTimeout(()=>{
               // localStorage.clear();
               this.router.navigate(['/auth/view-user']);
-            },2000); 
+            },2000);
           } else {
             this.toastr.errorToastr(response.message);
-          } 
+          }
         },
-    ); 
+    );
     } else {
       this.throw_msg = "Please Enter same Password"
       this.msg_danger = true;
-    }    
-    
+    }
+
   }
 
-  public hasError = (controlName: string, errorName: string) => { 
+  public hasError = (controlName: string, errorName: string) => {
     return this.addProfileForm.controls[controlName].hasError(errorName);
   };
 

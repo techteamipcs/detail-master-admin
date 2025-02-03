@@ -28,7 +28,7 @@ export class ViewConfigComponent implements OnInit {
 
   // Data Assign
   addconfigForm:FormGroup;
-  throw_msg:any; 
+  throw_msg:any;
   submitted: boolean = false;
   msg_success: boolean = false;
   msg_danger: boolean = false;
@@ -47,7 +47,7 @@ export class ViewConfigComponent implements OnInit {
   qrCode = null;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
   QRcodeImage :any = '';
-  qrcodeurl:any = 'https://www.dr-minnie.com/';
+  qrcodeurl:any = 'https://www.dr-DetailMaster.com/';
   @ViewChild('qrcode', { static: true }) qrcode: ElementRef;
   isUpdate:any = false;
   user:any;
@@ -84,9 +84,9 @@ export class ViewConfigComponent implements OnInit {
       smtp_user: [''],
       smtp_password: [''],
      });
-     this.token = localStorage.getItem('drminnie-admin-token');
+     this.token = localStorage.getItem('detailmaster-admin-token');
      this.imagePath = environment.baseUrl+'/public/';
-     let tempuser = localStorage.getItem('user'); 
+     let tempuser = localStorage.getItem('user');
     this.user = JSON.parse(tempuser);
   }
 
@@ -96,19 +96,19 @@ export class ViewConfigComponent implements OnInit {
 
   get_ConfigData()
   {
-    const obj = { 
+    const obj = {
       limit: this.currentLimit,
       page: this.currentPage,
       token: this.token,
     };
     this.configService.getConfigDetails(obj).subscribe(
         (response)=> {
-          if (response.code == 200) 
+          if (response.code == 200)
           {
             if(response.result != null && response.result != '')
             {
-              this.ConfigData = response.result; 
-              this.totalRecord = response?.count; 
+              this.ConfigData = response.result;
+              this.totalRecord = response?.count;
               let data = this.ConfigData[0];
               this.configImage = data?.image;
               this.QRcodeImage = data?.qrcode_image;
@@ -139,13 +139,13 @@ export class ViewConfigComponent implements OnInit {
             {
               this.msg_danger   = true;
             }
-           
+
           }
         },
       );
   }
 
-  public hasError = (controlName: string, errorName: string) => { 
+  public hasError = (controlName: string, errorName: string) => {
     return this.addconfigForm.controls[controlName].hasError(errorName);
   };
 
@@ -153,23 +153,23 @@ export class ViewConfigComponent implements OnInit {
     this.submitted = true;
     let obj = this.addconfigForm.value;
     let id  = this.ConfigData[0]._id;
-    obj['drminnie-admin-token'] = this.token;
+    obj['detailmaster-admin-token'] = this.token;
     obj['image'] = this.configImage;
     obj['qrcode_image'] = this.QRcodeImage;
-    obj['documents'] = this.document;  
+    obj['documents'] = this.document;
     if (this.addconfigForm.invalid){
       return;
     }
     this.configService.editConfigdata(obj,id).subscribe(
       (response) => {
-        if(response.code == 200) 
+        if(response.code == 200)
         {
-          this.throw_msg = response.message 
+          this.throw_msg = response.message
           this.msg_success = true;
-          setTimeout(()=>{                           
+          setTimeout(()=>{
               this.router.navigate(['/config/view']);
               this.toastr.successToastr(response.message);
-          },2000);  
+          },2000);
         } else {
           this.toastr.errorToastr(response.message);
         }
@@ -177,29 +177,29 @@ export class ViewConfigComponent implements OnInit {
     );
   }
 
-  onUploadOutput(output: UploadOutput,type): void { 
+  onUploadOutput(output: UploadOutput,type): void {
     if (output.type === 'allAddedToQueue')
     {
-      const event: UploadInput = { 
-        type: 'uploadAll', 
+      const event: UploadInput = {
+        type: 'uploadAll',
         url: environment.baseUrl+'/api/config/addimage',
         method: 'POST',
-        data: {}, 
+        data: {},
       };
       this.uploadInput.emit(event);
-    } 
+    }
     else if(output.type === 'done' && typeof output.file !== 'undefined')
-    {  
+    {
       if(type == "QRcode"){
         this.QRcodeImage = environment.baseUrl+'/public/'+output.file.response.result;
         this.isUpdate = true;
         // this.onUpdate(this.qrcode);
       } else {
         this.configImage.push(output.file.response.result);
-      } 
+      }
     }
   }
-  
+
 
   deleteImage(index:any){
     if(confirm("Are you sure to delete this Image"))
@@ -234,7 +234,7 @@ export class ViewConfigComponent implements OnInit {
    * Download
    */
   onDownload(qrcode: NgxQrcodeStylingComponent): void {
-    qrcode.download('AetrioQR.png').subscribe((res) => {
+    qrcode.download('QR.png').subscribe((res) => {
       // TO DO something!
       console.log('download:', res);
     });
@@ -287,6 +287,6 @@ export class ViewConfigComponent implements OnInit {
 		)
 	}
 
-  
+
 
 }

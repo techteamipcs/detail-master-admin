@@ -12,7 +12,7 @@ export interface Person {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'drminnie-dashboard-angular';
+  title = 'detailmaster-dashboard-angular';
   people: Person[] = [];
   searchTerm: string;
   names = ['Maverick', 'Stanislav', 'Arxero', 'Feruchio', 'Mavericus', 'Arxiour'];

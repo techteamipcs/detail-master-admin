@@ -1,12 +1,12 @@
 /*!
 
 =========================================================
-* Aetrio Dashboard Angular - v1.5.0
+* detailmaster Dashboard Angular - v1.5.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/drminnie-dashboard-angular
+* Product Page: https://www.creative-tim.com/product/detailmaster-dashboard-angular
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/drminnie-dashboard-angular/blob/master/LICENSE.md)
+* Licensed under MIT (https://github.com/creativetimofficial/detailmaster-dashboard-angular/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 

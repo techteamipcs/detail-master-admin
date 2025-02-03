@@ -43,7 +43,7 @@ export class StudentService {
       );
   };
 
-  // update 
+  // update
   editStudentdata = (moreData: any, Id: any): Observable<any> => {
     let endpoint = environment.baseUrl + '/api/student/editStudentdata';
     if (Id) {
@@ -131,7 +131,7 @@ export class StudentService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

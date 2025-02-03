@@ -17,7 +17,7 @@ export class AddUserComponent implements OnInit {
   // Data Assign
 
   addProfileForm:FormGroup;
-  throw_msg:any; 
+  throw_msg:any;
   submitted: boolean = false;
   msg_success: boolean = false;
   msg_danger: boolean = false;
@@ -30,7 +30,7 @@ export class AddUserComponent implements OnInit {
     private loginService:LoginService,
     private toastr: ToastrManager
   )
-  { 
+  {
     this.addProfileForm = this.formBuilder.group({
       username: ['',Validators.required],
       email: ['',Validators.required],
@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
       confirmpassword: ['',Validators.required],
       role: ['',Validators.required]
     });
-    this.token = localStorage.getItem('drminnie-admin-token'); 
+    this.token = localStorage.getItem('detailmaster-admin-token');
   }
 
   ngOnInit(): void {
@@ -47,33 +47,33 @@ export class AddUserComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     let obj = this.addProfileForm.value;
-    obj['drminnie-admin-token'] = this.token;
+    obj['detailmaster-admin-token'] = this.token;
     if(this.addProfileForm.value.password == this.addProfileForm.value.confirmpassword){
       this.loginService.createrofile(obj).subscribe(
           (response) => {
-            if(response.code == 200) 
+            if(response.code == 200)
             {
-              // this.throw_msg = response.message 
+              // this.throw_msg = response.message
               this.msg_success = true;
               this.msg_danger = false;
               this.toastr.successToastr(response.message);
               this.router.navigate(['/auth/view-user']);
             } else {
               this.msg_success = false;
-              // this.throw_msg = response.message 
+              // this.throw_msg = response.message
               // this.msg_danger = true;
               this.toastr.errorToastr(response.message);
-            } 
+            }
           },
       );
     } else {
       this.throw_msg = "Please Enter same Password"
       this.msg_danger = true;
-    }  
-    
+    }
+
   }
 
-  public hasError = (controlName: string, errorName: string) => { 
+  public hasError = (controlName: string, errorName: string) => {
     return this.addProfileForm.controls[controlName].hasError(errorName);
   };
 

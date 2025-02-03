@@ -1,12 +1,12 @@
 /*!
 
 =========================================================
-* Aetrio Dashboard Angular - v1.5.0
+* DetailMaster Dashboard Angular - v1.5.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/drminnie-dashboard-angular
+* Product Page: https://www.creative-tim.com/product/detailmaster-dashboard-angular
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/drminnie-dashboard-angular/blob/master/LICENSE.md)
+* Licensed under MIT (https://github.com/creativetimofficial/detailmaster-dashboard-angular/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
@@ -58,7 +58,7 @@
 @import "bootstrap/scss/utilities";
 @import "bootstrap/scss/print";
 
-// Aetrio utilities and components
+// DetailMaster utilities and components
 
 @import "custom/reboot";
 @import "custom/utilities";
@@ -106,7 +106,7 @@ body.bg-default
 	border-color: #a2999b !important;
 }
 
-.drminnie-pagination {
+.detailmaster-pagination {
 	background-color: #eae3e1 !important;
 }
 
@@ -134,7 +134,7 @@ body.bg-default
 a{
 	color: #212121;
 	&:hover {
-    color: #212121 ; 
+    color: #212121 ;
 	}
 }
 .main-content{

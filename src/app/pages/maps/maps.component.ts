@@ -41,7 +41,7 @@ export class MapsComponent implements OnInit {
         title: 'Hello World!'
     });
 
-    var contentString = '<div class="info-window-content"><h2>Aetrio Dashboard</h2>' +
+    var contentString = '<div class="info-window-content"><h2>detailmaster Dashboard</h2>' +
         '<p>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</p></div>';
 
     var infowindow = new google.maps.InfoWindow({

@@ -30,9 +30,9 @@ export class CareerService {
         return throwError(err);
       })
     );
-  }; 
+  };
 
-  
+
   getCareerWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/career/getcareerWithId';
     return this.http
@@ -69,7 +69,7 @@ export class CareerService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

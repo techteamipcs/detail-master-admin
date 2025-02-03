@@ -89,7 +89,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="drminnie-pagination" *ngIf="totalRecord > 0 ">
+                    <div class="detailmaster-pagination" *ngIf="totalRecord > 0 ">
                         <app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
                             (changePage)="onListChangePage($event)"></app-pagination>
                     </div>

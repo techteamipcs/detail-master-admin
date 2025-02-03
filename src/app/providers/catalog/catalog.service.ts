@@ -19,7 +19,7 @@ export class CatalogService {
       })
     );
   };
-  
+
   addCatalog = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/catalog/addcatalog';
     return this.http
@@ -43,7 +43,7 @@ export class CatalogService {
       );
   };
 
-  // update 
+  // update
   editCatalogdata = (moreData:any,Id:any): Observable<any> => {
     let endpoint = environment.baseUrl+'/api/catalog/editCatalogdata';
     if (Id) {
@@ -102,7 +102,7 @@ importallCatalog = (file: File): Observable<any> => {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

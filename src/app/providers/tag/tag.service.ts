@@ -30,14 +30,14 @@ export class TagService {
         return throwError(err);
       })
     );
-  }; 
+  };
 
   getTagWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/blog/getTagWithId';
     return this.http
       .post(endpoint, moreData,this.getRequestHeaders())
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
@@ -68,7 +68,7 @@ export class TagService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

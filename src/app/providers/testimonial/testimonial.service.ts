@@ -31,7 +31,7 @@ export class TestimonialService {
       })
     );
   };
-  
+
   getTestimonialWithId = (moreData:any): Observable<any> => {
     const endpoint = environment.baseUrl+'/api/home/getTestimonialWithId';
     return this.http
@@ -86,7 +86,7 @@ export class TestimonialService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('drminnie-admin-token');
+    const token = localStorage.getItem('detailmaster-admin-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
