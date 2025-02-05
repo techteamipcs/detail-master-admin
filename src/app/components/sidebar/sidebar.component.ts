@@ -30,7 +30,7 @@ export const ROUTES: RouteInfo[] = [
 
     // { path: '/student/view', title: 'Students',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/subscriber/view', title: 'Subscribers',  icon:'ni ni-active-40 text-gray', class: '' },
-    // { path: '/testimonial/view', title: 'Testimonials',  icon:'ni ni-caps-small text-green', class: '' },
+    { path: '/testimonial/view', title: 'Testimonials',  icon:'ni ni-caps-small text-green', class: '' },
 
     // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
     // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
