@@ -60,19 +60,19 @@ export class AddProjectComponent implements OnInit {
 	}
 
 	categories = [
-		{ id: 1, name: "Additions & Renovations" },
-		{ id: 2, name: "Bridges" },
-		{ id: 3, name: "Bus Canopies" },
+		{ id: 1, name: "Retail" },
+		{ id: 2, name: "Commercial" },
+		{ id: 3, name: "Residential" },
 		{ id: 4, name: "Commercials" },
-		{ id: 5, name: "Fire Safety House" },
-		{ id: 6, name: "Hospital" },
-		{ id: 7, name: "Industrial" },
-		{ id: 8, name: "Miscellaneous & Architectural Metals"},
-		{ id: 9, name: "Residential"},
-		{ id: 10, name: "School Building" },
-		{ id: 11, name: "Warehouse"}
+		{ id: 5, name: "Hospitality" },
+		// { id: 6, name: "Hospital" },
+		// { id: 7, name: "Industrial" },
+		// { id: 8, name: "Miscellaneous & Architectural Metals"},
+		// { id: 9, name: "Residential"},
+		// { id: 10, name: "School Building" },
+		// { id: 11, name: "Warehouse"}
 	];
-	
+
 	selected = [{ id: 1, name: "Commercials" }];
 	projectMultiImages: any = [];
 	constructor(
@@ -153,7 +153,7 @@ export class AddProjectComponent implements OnInit {
 			this.projectservice.addProject(obj).subscribe(
 				(response) => {
 					if (response.code == 200) {
-						this.throw_msg   = response.message 
+						this.throw_msg   = response.message
 						this.msg_success = true;
 						this.toastr.successToastr(response.message);
 						setTimeout(() => {
@@ -173,7 +173,7 @@ export class AddProjectComponent implements OnInit {
 			this.projectservice.editProjectdata(obj, id).subscribe(
 				(response) => {
 					if (response.code == 200) {
-						this.throw_msg = response.message 
+						this.throw_msg = response.message
 						this.msg_success = true;
 						this.toastr.successToastr(response.message);
 						setTimeout(() => {

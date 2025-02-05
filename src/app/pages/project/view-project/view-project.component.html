@@ -18,10 +18,12 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-6">
-							<input class="form-control mt-4" type="text" (keyup)="searchProject()" name="search" [(ngModel)]="searchText"
-                                          autocomplete="off" placeholder="&#61442;  Start searching a Project by id or name">
+							<input class="form-control mt-4" type="text" (keyup)="searchProject()" name="search"
+								[(ngModel)]="searchText" autocomplete="off"
+								placeholder="&#61442;  Start searching a Project by id or name">
 						</div>
-						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right custom-btn" routerLink="/project/add">Add
+						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right custom-btn"
+								routerLink="/project/add">Add
 								Project</button></div>
 					</div>
 					<div class="col-md-6">
@@ -39,20 +41,11 @@
 								<!-- <th>Image Hover</th> -->
 								<th>Category</th>
 								<th>Sequence Number</th>
-								<th>Status <ng-toggle
-									[(ngModel)]="isactive"
-									[disabled]="config.disabled"
-									[width]="config.width"
-									[height]="config.height"
-									[margin]="config.margin"
-									[labels]="config.labels"
-									[color]="config.color"
-									[switchColor]="config.switchColor"
-									[fontColor]="config.fontColor"
-									[fontSize]="config.fontSize"
-									(click)="changeStatus()"
-									required
-					></ng-toggle> <a (click)="resetFilter()" class="btn btn-sm btn-info mr-4">Reset</a></th>
+								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
+										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
+										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
+										(click)="changeStatus()" required></ng-toggle> <a (click)="resetFilter()"
+										class="btn btn-sm btn-info mr-4">Reset</a></th>
 								<th>Created At</th>
 								<th>Action</th>
 							</tr>
@@ -75,15 +68,18 @@
 								<td>
 									<p *ngFor="let cat of listProject.category">{{cat.name}}</p>
 								</td>
-								<td><p>{{listProject.sequence_number}}</p></td>
+								<td>
+									<p>{{listProject.sequence_number}}</p>
+								</td>
 								<td>{{listProject.status == true ? 'Active':'Deactive'}}</td>
 								<td>{{listProject.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
 								<td>
-									<a routerLink="/project/edit/{{listProject._id}}" style="cursor:pointer"><i
-											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+									<a routerLink="/project/edit/{{listProject._id}}" style="cursor:pointer">
+										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 									</a>
-									<a style="cursor:pointer;padding-left: 15px;" (click)="deleteProject(listProject._id)"><i
-											class="fa fa-trash-o" aria-hidden="true"></i></a>
+									<a style="cursor:pointer;padding-left: 15px;" (click)="deleteProject(listProject._id)">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</a>
 								</td>
 							</tr>
 						</tbody>
