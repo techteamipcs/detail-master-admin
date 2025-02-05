@@ -83,6 +83,10 @@ export class ViewConfigComponent implements OnInit {
       smtp_secure: [''],
       smtp_user: [''],
       smtp_password: [''],
+      total_reviews: [''],
+      total_projects: [''],
+      total_years_exp: [''],
+      total_countries: [''],
      });
      this.token = localStorage.getItem('detailmaster-admin-token');
      this.imagePath = environment.baseUrl+'/public/';
@@ -132,6 +136,10 @@ export class ViewConfigComponent implements OnInit {
                 smtp_secure: data?.smtp_secure,
                 smtp_user: data?.smtp_user,
                 smtp_password: data?.smtp_password,
+                total_reviews: data?.total_reviews,
+                total_projects: data?.total_projects,
+                total_years_exp: data?.total_years_exp,
+                total_countries: data?.total_countries,
               });
               window.scroll(0,0);
             }

@@ -71,6 +71,7 @@ export class AddGalleryComponent implements OnInit {
       desc_short: [''],
       desc_long: [''],
       video_url: [''],
+      category: ['',Validators.required],
       status:[true,Validators.required],
      });
      this.token = localStorage.getItem('token');
