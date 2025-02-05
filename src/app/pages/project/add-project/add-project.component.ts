@@ -96,7 +96,8 @@ export class AddProjectComponent implements OnInit {
 			location: ['', Validators.required],
 			owner: ['', Validators.required],
 			status: ['true', Validators.required],
-			sequence_number:['']
+			sequence_number:[''],
+			url_key: ['', Validators.required],
 		})
 		this.imagePath = environment.baseUrl + '/public/';
 
@@ -138,7 +139,8 @@ export class AddProjectComponent implements OnInit {
 						sequence_number:data?.sequence_number,
 						scope: data?.scope,
 						owner: data?.owner,
-						location: data?.location
+						location: data?.location,
+						url_key: data?.url_key
 					})
 				} else {
 

@@ -182,6 +182,13 @@
 								<span *ngIf="submitted && hasError('sequence_number','required')" class="alert-danger">Sequence Number
 									is required</span>
 							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">URL Key</label>
+								<input type="text" name="url_key" autocomplete="off" formControlName="url_key" class="form-control"
+									placeholder="URL Key">
+								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL Key is
+									required</span>
+							</div>
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Status</label>
