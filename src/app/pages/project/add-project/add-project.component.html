@@ -48,7 +48,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Type of structure</label>
+								<label for="exampleInputEmail1">Type of Category</label>
 								<!-- Using Items Input -->
 								<ng-select class="form-control" [items]="categories" bindLabel="name" placeholder="Select Category"
 									[multiple]="true" formControlName="category">
@@ -58,9 +58,26 @@
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Scope of project</label>
-								<input type="text" name="scope" autocomplete="off" formControlName="scope" class="form-control" placeholder="Scope of project">
+								<label for="exampleInputEmail1">Designer Name</label>
+								<input type="text" name="scope" autocomplete="off" formControlName="scope" class="form-control"
+									placeholder="Designer Name of project">
 								<span *ngIf="submitted && hasError('scope','required')" class="alert-danger">Scope is
+									required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Owner Name</label>
+								<input type="text" name="owner" autocomplete="off" formControlName="owner" class="form-control"
+									placeholder="owner of project">
+								<span *ngIf="submitted && hasError('owner','required')" class="alert-danger">owner name is
+									required</span>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Location</label>
+								<input type="text" name="location" autocomplete="off" formControlName="location" class="form-control"
+									placeholder="location of project">
+								<span *ngIf="submitted && hasError('location','required')" class="alert-danger">location is
 									required</span>
 							</div>
 
@@ -88,7 +105,7 @@
 									141)</label>
 								<div class="row" *ngIf="projectImage">
 									<div class="col-md-2">
-										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{projectImage}}">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{projectImage}}">
 										<a href="javascript:;" (click)="removeImage(projectImage)" class="small-box-footer"><i
 												class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a>
 									</div>
@@ -104,8 +121,55 @@
 
 								<div class="row">
 									<div class="col-md-2" *ngFor="let proimage of projectMultiImages; let i = index;">
-										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}{{proimage}}">
-										<a href="javascript:;" (click)="removeImageHover(i)" class="small-box-footer"><i
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{proimage}}">
+										<a href="javascript:;" (click)="removeImageHover(i)" class="small-box-footer"><i class="fa fa-trash"
+												style="color: red;" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Design Image 1</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD1($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail1" style="display: block;">
+									(Required Size 141 * 141)
+								</label>
+								<div class="row" *ngIf="designImage1">
+									<div class="col-md-2">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage1}}">
+										<a href="javascript:;" (click)="removeD1Image(designImage1)" class="small-box-footer">
+											<i class="fa fa-trash" style="color: red;" aria-hidden="true"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Design Image 2</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD2($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
+									141)</label>
+								<div class="row" *ngIf="designImage2">
+									<div class="col-md-2">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage2}}">
+										<a href="javascript:;" (click)="removeD2Image(designImage2)" class="small-box-footer"><i
+												class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Design Image 3</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD3($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
+									141)</label>
+								<div class="row" *ngIf="designImage3">
+									<div class="col-md-2">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage3}}">
+										<a href="javascript:;" (click)="removeD3Image(designImage3)" class="small-box-footer"><i
 												class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a>
 									</div>
 								</div>
@@ -113,9 +177,10 @@
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Sequence Number</label>
-								<input type="number" name="sequence_number" autocomplete="off" formControlName="sequence_number" class="form-control"
-									placeholder="Sequence Number">
-								<span *ngIf="submitted && hasError('sequence_number','required')" class="alert-danger">Sequence Number is required</span>
+								<input type="number" name="sequence_number" autocomplete="off" formControlName="sequence_number"
+									class="form-control" placeholder="Sequence Number">
+								<span *ngIf="submitted && hasError('sequence_number','required')" class="alert-danger">Sequence Number
+									is required</span>
 							</div>
 
 							<div class="form-group">

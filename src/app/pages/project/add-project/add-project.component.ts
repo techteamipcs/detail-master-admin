@@ -24,6 +24,9 @@ export class AddProjectComponent implements OnInit {
 	uploadInput: EventEmitter<UploadInput>;
 	authorImage: any;
 	projectImage: any;
+	designImage1: any;
+	designImage2: any;
+	designImage3: any;
 	imagePath: any;
 
 	// Data Assign
@@ -90,6 +93,8 @@ export class AddProjectComponent implements OnInit {
 			category: ['', Validators.required],
 			link: ['', Validators.required],
 			scope: ['', Validators.required],
+			location: ['', Validators.required],
+			owner: ['', Validators.required],
 			status: ['true', Validators.required],
 			sequence_number:['']
 		})
@@ -121,6 +126,9 @@ export class AddProjectComponent implements OnInit {
 					let data = response?.result;
 					this.projectImage = data?.image;
 					this.projectMultiImages = data?.project_images;
+					this.designImage1 = data?.design_image_1;
+					this.designImage2 = data?.design_image_2;
+					this.designImage3 = data?.design_image_3;
 					this.addProjectForm.patchValue({
 						name: data?.name,
 						desc: data?.desc,
@@ -128,7 +136,9 @@ export class AddProjectComponent implements OnInit {
 						link: data?.link,
 						status: data?.status,
 						sequence_number:data?.sequence_number,
-						scope: data?.scope
+						scope: data?.scope,
+						owner: data?.owner,
+						location: data?.location
 					})
 				} else {
 
@@ -143,6 +153,9 @@ export class AddProjectComponent implements OnInit {
 		let obj = this.addProjectForm.value;
 		let id = this.id;
 
+		obj['design_image_1'] = this.designImage1;
+		obj['design_image_2'] = this.designImage2;
+		obj['design_image_3'] = this.designImage3;
 		obj['image'] = this.projectImage;
 		obj['project_images'] = this.projectMultiImages;
 		if (this.addProjectForm.invalid) {
@@ -195,7 +208,7 @@ export class AddProjectComponent implements OnInit {
 		if (output.type === 'allAddedToQueue') {
 			const event: UploadInput = {
 				type: 'uploadAll',
-				url: environment.baseUrl + '/api/home/addimage',
+				url: environment.baseUrl + '/api/project/addimage',
 				method: 'POST',
 				data: {},
 			};
@@ -211,7 +224,7 @@ export class AddProjectComponent implements OnInit {
 		if (output.type === 'allAddedToQueue') {
 			const event: UploadInput = {
 				type: 'uploadAll',
-				url: environment.baseUrl + '/api/home/addimage',
+				url: environment.baseUrl + '/api/project/addimage',
 				method: 'POST',
 				data: {},
 			};
@@ -222,10 +235,72 @@ export class AddProjectComponent implements OnInit {
 		}
 	}
 
+	onUploadOutputD1(output: UploadOutput): void {
+		if (output.type === 'allAddedToQueue') {
+			const event: UploadInput = {
+				type: 'uploadAll',
+				url: environment.baseUrl + '/api/project/addimage',
+				method: 'POST',
+				data: {},
+			};
+			this.uploadInput.emit(event);
+		}
+		else if (output.type === 'done' && typeof output.file !== 'undefined') {
+			this.designImage1 = output.file.response.result;
+
+		}
+	}
+
+	onUploadOutputD2(output: UploadOutput): void {
+		if (output.type === 'allAddedToQueue') {
+			const event: UploadInput = {
+				type: 'uploadAll',
+				url: environment.baseUrl + '/api/project/addimage',
+				method: 'POST',
+				data: {},
+			};
+			this.uploadInput.emit(event);
+		}
+		else if (output.type === 'done' && typeof output.file !== 'undefined') {
+			this.designImage2 = output.file.response.result;
+
+		}
+	}
+
+	onUploadOutputD3(output: UploadOutput): void {
+		if (output.type === 'allAddedToQueue') {
+			const event: UploadInput = {
+				type: 'uploadAll',
+				url: environment.baseUrl + '/api/project/addimage',
+				method: 'POST',
+				data: {},
+			};
+			this.uploadInput.emit(event);
+		}
+		else if (output.type === 'done' && typeof output.file !== 'undefined') {
+			this.designImage3 = output.file.response.result;
+
+		}
+	}
 	onCancel() {
 		this.router.navigate(['/project/view']);
 	}
 
+	removeD1Image(index) {
+		if (confirm("Are you sure to delete this image")) {
+			this.designImage1 = "";
+		}
+	}
+	removeD2Image(index) {
+		if (confirm("Are you sure to delete this image")) {
+			this.designImage2 = "";
+		}
+	}
+	removeD3Image(index) {
+		if (confirm("Are you sure to delete this image")) {
+			this.designImage3 = "";
+		}
+	}
 	removeImage(index) {
 		if (confirm("Are you sure to delete this image")) {
 			this.projectImage = "";
