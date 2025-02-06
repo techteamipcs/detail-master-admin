@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-7 col-md-10">
 				<h1 class="display-3">Home Gallery Images </h1>
-				
+
 			</div>
 		</div>
 	</div> -->
@@ -45,10 +45,11 @@
 								<label for="category">Select Category </label>
 								<select name="category" formControlName="category" class="form-control" value="Choose here">
 									<option value="" selected>Choose here</option>
-									<option value="COMMERCIAL">COMMERCIAL</option>
-									<option value="HOSPITALITY">HOSPITALITY</option>									
-									<option value="RESIDENTIAL">RESIDENTIAL</option>	
-									<option value="RETAIL">RETAIL</option>						
+									<option value="COMMERCIAL">Commercial</option>
+									<option value="HOSPITALITY">Hospitality</option>
+									<option value="RESIDENTIAL">Residential</option>
+									<option value="RETAIL">Retail</option>
+									<option value="SPECIAL-PROJECTS">Special Projects</option>
 								</select>
 								<span *ngIf="submitted && hasError('category','required')" class="alert-danger">Please Select
 									Category</span>

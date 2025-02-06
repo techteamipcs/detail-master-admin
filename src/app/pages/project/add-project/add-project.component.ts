@@ -66,9 +66,9 @@ export class AddProjectComponent implements OnInit {
 		{ id: 1, name: "Retail" },
 		{ id: 2, name: "Commercial" },
 		{ id: 3, name: "Residential" },
-		{ id: 4, name: "Commercials" },
+		{ id: 4, name: "Special Projects" },
 		{ id: 5, name: "Hospitality" },
-		// { id: 6, name: "Hospital" },
+		// { id: 6, name: "Special Projects" },
 		// { id: 7, name: "Industrial" },
 		// { id: 8, name: "Miscellaneous & Architectural Metals"},
 		// { id: 9, name: "Residential"},
@@ -76,7 +76,7 @@ export class AddProjectComponent implements OnInit {
 		// { id: 11, name: "Warehouse"}
 	];
 
-	selected = [{ id: 1, name: "Commercials" }];
+	selected = [{ id: 1, name: "Retail" }];
 	projectMultiImages: any = [];
 	constructor(
 		private formBuilder: FormBuilder,
@@ -96,7 +96,7 @@ export class AddProjectComponent implements OnInit {
 			location: ['', Validators.required],
 			owner: ['', Validators.required],
 			status: ['true', Validators.required],
-			sequence_number:[''],
+			sequence_number: [''],
 			url_key: ['', Validators.required],
 		})
 		this.imagePath = environment.baseUrl + '/public/';
@@ -136,7 +136,7 @@ export class AddProjectComponent implements OnInit {
 						category: data?.category,
 						link: data?.link,
 						status: data?.status,
-						sequence_number:data?.sequence_number,
+						sequence_number: data?.sequence_number,
 						scope: data?.scope,
 						owner: data?.owner,
 						location: data?.location,
@@ -168,7 +168,7 @@ export class AddProjectComponent implements OnInit {
 			this.projectservice.addProject(obj).subscribe(
 				(response) => {
 					if (response.code == 200) {
-						this.throw_msg   = response.message
+						this.throw_msg = response.message
 						this.msg_success = true;
 						this.toastr.successToastr(response.message);
 						setTimeout(() => {
@@ -176,7 +176,7 @@ export class AddProjectComponent implements OnInit {
 						}, 2000);
 					}
 					else if (response.code == 400) {
-						this.throw_msg    = response.message;
+						this.throw_msg = response.message;
 						this.msg_danger = true;
 						this.toastr.errorToastr(response.message);
 					}
@@ -195,7 +195,7 @@ export class AddProjectComponent implements OnInit {
 							this.router.navigate(['/project/view']);
 						}, 2000);
 					} else {
-						this.throw_msg    = response.message;
+						this.throw_msg = response.message;
 						this.msg_danger = true;
 						this.toastr.errorToastr(response.message);
 					}
@@ -311,7 +311,7 @@ export class AddProjectComponent implements OnInit {
 
 	removeImageHover(index) {
 		if (confirm("Are you sure to delete this image")) {
-			this.projectMultiImages.splice(index,1)
+			this.projectMultiImages.splice(index, 1)
 		}
 	}
 
