@@ -165,6 +165,11 @@ export const AdminLayoutRoutes: Routes = [
 		data: {title: 'Achievement Module'}
 	},
 	{
+		path:'counter',
+		loadChildren: () => import("./../../pages/counter/counter.module").then((m) => m.CounterModule),
+		data: {title: 'Counter Module'}
+	},
+	{
 		path: 'homegallery',
 		loadChildren: () => import("./../../pages/home-gallery/home-gallery.module").then((m) => m.GalleryModule),
 		data: { title: 'Home Gallery Module' },
