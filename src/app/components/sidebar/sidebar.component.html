@@ -94,7 +94,7 @@
       <!-- Navigation -->
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngIf="menuItem.title == 'Dashboard'">
                   <i class="ni {{menuItem.icon}}"></i>
                   {{menuItem.title}}
               </a>
@@ -103,27 +103,51 @@
       <!-- Divider -->
       <hr class="my-3">
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Documentation</h6>
+      <h6 class="navbar-heading text-muted">Home Page</h6>
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngIf="menuItem.title != 'Dashboard'">
+                <i class="ni {{menuItem.icon}}"></i>
+                {{menuItem.title}}
+            </a>
+        </li>
+       </ul>
+        <!-- Divider -->
+      <hr class="my-3">
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted">Portfolio</h6>
+      <!-- Divider -->
+      <ul class="navbar-nav mb-md-3">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/project/view']" routerLinkActive="router-link-active" >
+          <i class="ni ni-paper-diploma text-black"></i> Recent Projects
+        </a>
+      </li>
+    </ul>
+      <hr class="my-3">
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted">Configuration</h6>
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
-        <!-- <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/icons']" routerLinkActive="router-link-active" >
-            <i class="ni ni-planet"></i> Icons
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/page/view']" routerLinkActive="router-link-active" >
+            <i class="ni ni-active-40"></i> SEO Pages
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/maps']" routerLinkActive="router-link-active" >
-            <i class="ni ni-pin-3"></i> Maps
+          <a class="nav-link" [routerLink]="['/user-profile']" routerLinkActive="router-link-active" >
+            <i class="ni ni-single-02"></i> User profile
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/tables']" routerLinkActive="router-link-active" >
-            <i class="ni ni-bullet-list-67"></i> Tables
+          <a class="nav-link" [routerLink]="['/auth/view-user']" routerLinkActive="router-link-active" >
+            <i class="ni-circle-08"></i> Users
           </a>
-        </li> -->
+        </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/config/view']" routerLinkActive="router-link-active" >
-            <i class="ni ni-settings"></i> Configuration
+            <i class="ni ni-settings"></i> Settings
           </a>
         </li>
       </ul>
