@@ -78,6 +78,8 @@ export class AddProjectComponent implements OnInit {
 
 	selected = [{ id: 1, name: "Retail" }];
 	projectMultiImages: any = [];
+	projectData:any = [];
+	projectListData:any = [];
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
@@ -98,6 +100,7 @@ export class AddProjectComponent implements OnInit {
 			status: ['true', Validators.required],
 			sequence_number: [''],
 			url_key: ['', Validators.required],
+			related_prjects:[],
 		})
 		this.imagePath = environment.baseUrl + '/public/';
 
@@ -109,6 +112,7 @@ export class AddProjectComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.id = this.route.snapshot.paramMap.get('id');
+		this.getAllProjects();
 		if (this.isEdit) {
 			// this.patchingdata(this.id);
 			this.addData(this.id);
@@ -125,6 +129,8 @@ export class AddProjectComponent implements OnInit {
 			(response) => {
 				if (response.code == 200) {
 					let data = response?.result;
+					this.projectData = data;
+					this.getAllProjects();
 					this.projectImage = data?.image;
 					this.projectMultiImages = data?.project_images;
 					this.designImage1 = data?.design_image_1;
@@ -140,7 +146,8 @@ export class AddProjectComponent implements OnInit {
 						scope: data?.scope,
 						owner: data?.owner,
 						location: data?.location,
-						url_key: data?.url_key
+						url_key: data?.url_key,
+						related_prjects: data?.related_prjects
 					})
 				} else {
 
@@ -313,6 +320,25 @@ export class AddProjectComponent implements OnInit {
 		if (confirm("Are you sure to delete this image")) {
 			this.projectMultiImages.splice(index, 1)
 		}
+	}
+
+	getAllProjects(){
+		let obj = {};
+		if(this.isEdit){
+			obj['existedproject'] = this.id;
+			if(this.projectData){
+				obj['related_prjects'] = this.projectData.related_prjects;
+			}
+		}
+		this.projectservice.getRecentProjects(obj).subscribe(
+			(response) => {
+				if (response.code == 200) {
+					if (response.result != null && response.result != '') {
+						this.projectListData = response.result;
+					}
+				}
+			},
+		);
 	}
 
 }

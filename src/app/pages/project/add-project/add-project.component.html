@@ -46,15 +46,14 @@
 								<span *ngIf="submitted && hasError('name','maxlength')" class="alert-danger">Please
 									Enter the 30 length Project Name</span>
 							</div>
-
 							<div class="form-group">
-								<label for="exampleInputEmail1">Type of Category</label>
-								<!-- Using Items Input -->
-								<ng-select class="form-control" [items]="categories" bindLabel="name" placeholder="Select Category"
-									[multiple]="true" formControlName="category">
-								</ng-select>
-								<span *ngIf="submitted && hasError('category','required')" class="alert-danger">Category is
-									required</span>
+								<label for="exampleInputEmail1">Select Category</label>
+								<select name="category" formControlName="category" class="form-control">
+									<option value="">Select Category</option>
+									<option value="{{cat.name}}" *ngFor="let cat of categories; let j = index">{{cat.name}}</option>
+								</select>
+								<span *ngIf="submitted && hasError('category','required')" class="alert-danger">Please Select
+									Catergory</span>
 							</div>
 
 							<div class="form-group">
@@ -183,10 +182,18 @@
 									is required</span>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">URL Key</label>
+								<label for="exampleInputEmail1">URL Key(It should be unique, and you can add any URL name you prefer)</label>
 								<input type="text" name="url_key" autocomplete="off" formControlName="url_key" class="form-control"
 									placeholder="URL Key">
 								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL Key is
+									required</span>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Related of Projects</label>
+								<ng-select class="form-control" [items]="projectListData" bindLabel="name" placeholder="Select Projects"
+									[multiple]="true" formControlName="related_prjects">
+								</ng-select>
+								<span *ngIf="submitted && hasError('related_prjects','required')" class="alert-danger">Related Projects is
 									required</span>
 							</div>
 

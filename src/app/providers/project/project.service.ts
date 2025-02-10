@@ -95,6 +95,15 @@ export class ProjectService {
 		);
 	};
 
+	getRecentProjects = (data: any): Observable<any> => {
+		const endpoint = environment.baseUrl + '/api/project/relatedProjects';
+		return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
+			catchError((err) => {
+				return throwError(err);
+			})
+		);
+	};
+
 	protected getRequestHeaders(): {
 		headers: HttpHeaders | { [header: string]: string | string[] };
 	} {
