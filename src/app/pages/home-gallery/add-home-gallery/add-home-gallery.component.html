@@ -60,33 +60,14 @@
 									class="form-control" placeholder="Location">
 								<span *ngIf="submitted && hasError('desc_short','required')" class="alert-danger">Gallery Location is required</span>
 							</div>
-
-							<!-- <div class="form-group">
-								<label for="exampleInputEmail1">Description Long</label>
-								<input type="text" name="desc_long" autocomplete="off" formControlName="desc_long" class="form-control"
-									placeholder="Gallery Description Long">
-								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Gallery Description
-									Long
-									is required</span>
-							</div> -->
-
 							<div class="form-group">
-								<label for="exampleInputEmail1">Home Gallery Featured Image</label><br>
+								<label for="exampleInputEmail1">Home Gallery Featured Image (Width - 376px X Height - 656px)</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
 									[uploadInput]="uploadInput" accept="image/*" />
 								<label for="" *ngIf="galleryImage">{{galleryImage}}</label><br>
 								<img *ngIf="galleryImage" alt="logo" style="height: 100px; width: 100px;margin-top: 5px;"
 									src="{{imagePath}}{{galleryImage}}">
 
-							</div>
-							<br>
-							<div class="form-group">
-								<label for="exampleInputEmail1">Youtube Video URL Key</label>
-								<p>Ex: https://www.youtube.com/watch?v=wiur_AGatGU</p>
-								<input type="text" name="video_url" formControlName="video_url" class="form-control"
-									placeholder="wiur_AGatGU">
-								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video URL is
-									required</span>
 							</div>
 
 							<div class="form-group">

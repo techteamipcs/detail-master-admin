@@ -89,12 +89,12 @@ export class AddBannerComponent implements OnInit {
 		this.options = { concurrency: 0, allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'] };
 		this.addbannerForm = this.formBuilder.group({
 			name: ['', Validators.required],
-			name2: ['', Validators.required],
-			name3: ['', Validators.required],
-			pagelist: [''],
+			name2: [''],
+			name3: [''],
+			pagelist: ['', Validators.required],
 			status: [true, Validators.required],
-			description: ['', Validators.required],
-			short_desc: ['', Validators.required]
+			description: [''],
+			short_desc: ['']
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/banner/';

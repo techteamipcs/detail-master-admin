@@ -77,8 +77,8 @@ export class AddTvshowComponent implements OnInit {
 			status: [true, Validators.required],
 			description: [''],
 			short_desc: [''],
-			date: ['', Validators.required],
-			url_key: ['', Validators.required],
+			date: ['',],
+			url_key: [''],
 		});
 		this.token = localStorage.getItem('token');
 		this.imagePath = environment.baseUrl + '/public/tvshow/';

@@ -107,7 +107,8 @@ export class AddGalleryComponent implements OnInit {
             desc_short: data?.desc_short,
             desc_long: data?.desc_long,
             video_url: data?.video_url,
-            status: data?.status
+            status: data?.status,
+            category: data?.category,
           });
        }else{
 

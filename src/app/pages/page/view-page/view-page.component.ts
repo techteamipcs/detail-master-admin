@@ -12,6 +12,9 @@ import { environment } from '../../../../environments/environment';
 // Services
 import { PageService } from '../../../providers/page/page.service';
 import { from } from 'rxjs';
+import { ModalDismissReasons, NgbDatepickerModule, NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { MediaService } from '../../../providers/media/media.service';
+import { BannerService } from 'src/app/providers/banner/banner.service';
 
 @Component({
   selector: 'app-view-page',
@@ -29,11 +32,17 @@ export class ViewPageComponent implements OnInit {
   currentLimit: number = 10;
   totalRecord: number  = 0;
   searchText = '';
-
+  selectedPage:any;
+  modalReference = null;
+  closeResult = '';
   constructor(
     private router: Router,
-    private pageService:PageService
-  )
+    private pageService:PageService,
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal,
+    private mediaService: MediaService,
+    public bannerservice: BannerService,
+    ) 
   { 
 
   }
@@ -83,4 +92,43 @@ export class ViewPageComponent implements OnInit {
     this.get_pageData();
   }
 
+  open(content,data) {
+      this.selectedPage = data;
+      this.modalReference = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        },
+      );
+    }
+  
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
+    }
+  
+    closeModal(){
+      this.activeModal.close();
+    }
+
+    deletePage() {
+      if (this.selectedPage) {
+        var mylist = { id: this.selectedPage._id };
+        this.pageService.deletePage(mylist).subscribe(
+          (response) => {
+            this.get_pageData();
+            if (response.code == 200) {
+              this.modalService.dismissAll();
+            }
+          },
+        );
+      }
+    }
 }

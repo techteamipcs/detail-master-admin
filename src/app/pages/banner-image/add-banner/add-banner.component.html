@@ -58,7 +58,7 @@
 								<span *ngIf="submitted && hasError('name','required')" class="alert-danger">Banner Title 1 is
 									required</span>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Title 2</label>
 								<input type="text" name="name2" autocomplete="off" formControlName="name2" class="form-control"
 									placeholder="Banner Name">
@@ -71,8 +71,8 @@
 									placeholder="Banner Name">
 								<span *ngIf="submitted && hasError('name3','required')" class="alert-danger">Banner Title 3 is
 									required</span>
-							</div>
-							<div class="form-group">
+							</div> -->
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Description</label>
 								<angular-editor name="description" formControlName="description"
 									[config]="editorConfig"></angular-editor>
@@ -85,10 +85,10 @@
 									placeholder="Banner short_desc">
 								<span *ngIf="submitted && hasError('short_desc','required')" class="alert-danger">Banner Short Description is
 									required</span>
-							</div>
+							</div> -->
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Upload Image</label><br>
+								<label for="exampleInputEmail1">Upload Image (Width - 872px X Height - 721px)</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage($event)"
 									[uploadInput]="uploadInput" accept="image/*" />
 								<label for="" *ngIf="bannerImage">{{bannerImage}}</label><br>
@@ -97,7 +97,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputEmail1">Upload Image Small</label><br>
+								<label for="exampleInputEmail1">Upload Image Small (Width - 337px X Height - 319px)</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadImage2($event)"
 									[uploadInput]="uploadInput" accept="image/*" />
 								<label for="" *ngIf="bannerImage2">{{bannerImage2}}</label><br>

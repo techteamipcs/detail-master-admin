@@ -38,25 +38,28 @@
 								<span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select
 									Status</span>
 							</div>
-
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Title sign</label>
-								<input type="text" name="title_sign" autocomplete="off" formControlName="title_sign"
-									class="form-control" placeholder="Title sign">
-								<span *ngIf="submitted && hasError('title_sign','required')" class="alert-danger">Title sign is
-									required</span>
-							</div>
-
-							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Title name</label>
+								<label for="exampleInputEmail1">Founder name</label>
 								<input type="text" name="title_name" autocomplete="off" formControlName="title_name"
-									class="form-control" placeholder="Title name">
+									class="form-control" placeholder="Founder name">
 								<span *ngIf="submitted && hasError('title_name','required')" class="alert-danger">Title name is
 									required</span>
 							</div>
-
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Description Short</label>
+								<label for="exampleInputEmail1">Founder sign</label>
+								<input type="text" name="title_sign" autocomplete="off" formControlName="title_sign"
+									class="form-control" placeholder="Founder sign">
+								<span *ngIf="submitted && hasError('title_sign','required')" class="alert-danger">Title sign is
+									required</span>
+							</div>				
+							<div class="form-group">
+								<label for="exampleInputEmail1">Long Description </label>
+								<angular-editor name="desc_long" formControlName="desc_long" [config]="editorConfig"></angular-editor>
+								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Description Long is
+									required</span>
+							</div>
+							<div class="form-group col-lg-12">
+								<label for="exampleInputEmail1">Short Description </label>
 								<input type="text" name="desc_short" autocomplete="off" formControlName="desc_short"
 									class="form-control" placeholder="Description short">
 								<span *ngIf="submitted && hasError('desc_short','required')" class="alert-danger">Description
@@ -71,20 +74,15 @@
 									required</span>
 							</div> -->
 
-							<div class="form-group">
-								<label for="exampleInputEmail1">Description Long</label>
-								<angular-editor name="desc_long" formControlName="desc_long" [config]="editorConfig"></angular-editor>
-								<span *ngIf="submitted && hasError('desc_long','required')" class="alert-danger">Description Long is
-									required</span>
-							</div>
+							
 
-							<div class="form-group col-lg-12">
+							<!-- <div class="form-group col-lg-12">
 								<label for="exampleInputEmail1">Video URL</label>
 								<input type="text" name="video_url" autocomplete="off" formControlName="video_url" class="form-control"
 									placeholder="Youtube Url">
 								<span *ngIf="submitted && hasError('video_url','required')" class="alert-danger">Video Url is
 									required</span>
-							</div>
+							</div> -->
 
 							<!-- <div class="form-group col-lg-12">
 								<label for="exampleInputEmail1">Video Description</label>
@@ -95,7 +93,7 @@
 							</div> -->
 
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1 ">Upload Image</label><br>
+								<label for="exampleInputEmail1 ">Upload Image (Width - 453px X Height - 1069px)</label><br>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadFile($event)"
 									[uploadInput]="uploadInput" class="mb-2" /><br>
 								<img src="{{imagePath}}about/{{imageDataBanner}}" class="img-fluid img-thumbnail"
@@ -111,7 +109,7 @@
 							</div> -->
 
 							<div class="form-group col-lg-12">
-								<label for="exampleInputEmail1">Page-Section-name</label>
+								<label for="exampleInputEmail1">Page-Section-name(ex:home,about...etc)</label>
 								<input type="text" name="page_section" autocomplete="off" formControlName="page_section"
 									class="form-control" placeholder="Page">
 								<span *ngIf="submitted && hasError('page_section','required')" class="alert-danger">Section is

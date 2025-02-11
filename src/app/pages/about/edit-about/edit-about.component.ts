@@ -74,7 +74,7 @@ export class EditAboutComponent implements OnInit {
 			title_name: ['', Validators.required],
 			desc_short: ['', Validators.required],
 			desc_long: ['', Validators.required],
-			video_url: ['', Validators.required],
+			video_url: [''],
 			page_section: ['', Validators.required],
 			video_desc: [''],
 			image_banner: [''],

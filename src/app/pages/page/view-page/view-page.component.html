@@ -54,6 +54,8 @@
                                 <a routerLink="/page/edit/{{listPage._id}}" style="cursor:pointer"><i
                                         class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
+                                <a style="cursor:pointer;padding-left: 15px;" (click)="open(content,listPage)"><i
+                                  class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -71,3 +73,24 @@
       </div>
     </div>
   </div>
+<!-- Banner Delete Popup -->
+<ng-template #content let-modal style="z-index: 0;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Page deletion</h4>
+    <button type="button" class="btn btn-danger" aria-describedby="modal-title"
+      (click)="modal.dismiss('Cross click')">close</button>
+  </div>
+  <div class="modal-body">
+    <p *ngIf="selectedPage">
+      <strong>Are you sure you want to delete <span class="text-primary">"{{selectedPage.page_name}}"</span> Page?</strong>
+    </p>
+    <!-- <p>
+      All information associated to this Banner Image will be permanently deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p> -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="deletePage()">Ok</button>
+  </div>
+</ng-template>

@@ -103,6 +103,15 @@ export class PageService {
     );
   };
 
+  deletePage = (data:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/home/deletePage';
+    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   // About Notice Services
 
   getAboutNoticeWithId = (moreData:any): Observable<any> => {
