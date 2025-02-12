@@ -91,7 +91,7 @@ export class AddBannerComponent implements OnInit {
 			name: ['', Validators.required],
 			name2: [''],
 			name3: [''],
-			pagelist: ['', Validators.required],
+			pagelist: [''],
 			status: [true, Validators.required],
 			description: [''],
 			short_desc: ['']

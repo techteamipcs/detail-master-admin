@@ -40,7 +40,8 @@
 								<!-- <th>About Image 2</th> -->
 								<!-- <th>Category</th> -->
 								<!-- <th>Approved</th> -->
-								<th>Modify Date</th>
+								<th>Created Date</th>
+								<th>Updated Date</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -78,6 +79,7 @@
 
 
 								<!-- <td>{{listAboutData.isApproved == true ? 'Yes':'No'}}</td> -->
+								<td>{{listAboutData.created_at | date: 'dd/MMM/yyyy : hh:mm:ss'}}</td>
 								<td>{{listAboutData.updated_at | date: 'dd/MMM/yyyy : hh:mm:ss'}}</td>
 								<td>{{listAboutData.status == true ? 'Active':'Deactive'}}</td>
 								<td>

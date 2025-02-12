@@ -37,6 +37,7 @@
 								<th>Home Gallery Name</th>
 								<th>Home Gallery Image</th>
 								<th>Created At</th>
+								<th>Updated At</th>
 								<th>Status
 									<ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
@@ -61,6 +62,7 @@
 								<td>{{listGallery.name}}</td>
 								<td><img src="{{imagePath}}{{listGallery.image}}" alt="logo" style="height: 100px;width: 100px;"></td>
 								<td>{{listGallery.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listGallery.updated_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
 								<td>{{listGallery.status == true ? 'Active':'Deactive'}}</td>
 								<td>
 									<a routerLink="/homegallery/edit/{{listGallery._id}}" style="cursor:pointer"><i

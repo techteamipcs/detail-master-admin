@@ -19,7 +19,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<input class="form-control" type="text" (keyup)="searchBanner()" name="search" [(ngModel)]="searchText"
-								autocomplete="off" placeholder="&#61442;  Start searching a Banner Image by id or name">
+								autocomplete="off" placeholder="&#61442;  Start searching a Banner Image by name">
 						</div>
 						<div class="col-md-6"><button type="button" class="btn btn-primary pull-right custom-btn"
 								routerLink="/banner-images/add">Add Banner</button></div>
@@ -52,6 +52,7 @@
 								<!-- <th>Format</th> -->
 								<th>Banner Image</th>
 								<th>Created At</th>
+								<th>Updated At</th>
 								<th>Status <ng-toggle [(ngModel)]="isactive" [disabled]="config.disabled" [width]="config.width"
 										[height]="config.height" [margin]="config.margin" [labels]="config.labels" [color]="config.color"
 										[switchColor]="config.switchColor" [fontColor]="config.fontColor" [fontSize]="config.fontSize"
@@ -86,6 +87,7 @@
 									style="height: 100px;width: 100px;"></td>
 								<!-- <td>{{listBanner.isApproved == true ? 'Yes':'No'}}</td> -->
 								<td>{{listBanner.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
+								<td>{{listBanner.updated_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
 								<td>{{listBanner.status == true ? 'Active':'Deactive'}}</td>
 								<td>
 									<a routerLink="/banner-images/edit/{{listBanner._id}}" style="cursor:pointer"><i

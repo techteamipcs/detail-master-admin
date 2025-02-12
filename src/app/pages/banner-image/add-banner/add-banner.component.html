@@ -1,9 +1,4 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-	>
-	<!-- Mask -->
-	<span class="mask bg-gradient-info opacity-8"></span>
-	<!-- Header container -->
-
+<div class="header pb-8 pt-5 pt-lg-2 d-flex align-items-center">
 </div>
 <div class="container-fluid mt--7">
 	<div class="row">
@@ -38,7 +33,7 @@
 								<span *ngIf="submitted && hasError('status','required')" class="alert-danger">Please Select
 									Status</span>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="pagelist">Select page </label>
 								<select name="pagelist" formControlName="pagelist" class="form-control" value="Choose here">
 									<option value="" selected>Choose here</option>
@@ -50,7 +45,7 @@
 								</select>
 								<span *ngIf="submitted && hasError('pagelist','required')" class="alert-danger">Please Select
 									page</span>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label for="exampleInputEmail1">Title 1</label>
 								<input type="text" name="name" autocomplete="off" formControlName="name" class="form-control"
