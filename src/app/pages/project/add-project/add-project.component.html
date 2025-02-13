@@ -182,11 +182,10 @@
 									is required</span>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">URL Key(It should be unique, and you can add any URL name you prefer)</label>
+								<label for="exampleInputEmail1">URL Key (This option is for adding 'Case Study' button for a project. Please mention a unique word or the first word of each project. The data added in this option will appear on the corresponding case study URL.)</label>
 								<input type="text" name="url_key" autocomplete="off" formControlName="url_key" class="form-control"
 									placeholder="URL Key">
-								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL Key is
-									required</span>
+								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL key or # is required</span>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Related of Projects</label>

@@ -40,23 +40,23 @@
                                 </select>
                             </div>
 
-                            <div class="form-group"> 
+                            <!-- <div class="form-group"> 
                                 <label for="exampleInputEmail1">Title</label>
                                 <input type="text" name="name" autocomplete="off" formControlName="title"
                                     class="form-control" placeholder="Testimonial Title">
                                 <span *ngIf="submitted && hasError('title','required')" class="alert-danger">Testimonial Title is
                                     required</span>
-                            </div>
+                            </div> -->
 
-                            <div class="form-group"> 
+                            <!-- <div class="form-group"> 
                                 <label for="exampleInputEmail1">Location</label>
                                 <input type="text" name="name" autocomplete="off" formControlName="location"
                                     class="form-control" placeholder="Location">
                                 <span *ngIf="submitted && hasError('location','required')" class="alert-danger">Location is
                                     required</span>
-                            </div>
+                            </div> -->
                             
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputEmail1">Featured</label>
                                 <select name="featured" formControlName="featured" class="form-control">
                                     <option value="">Select Featured</option>
@@ -65,15 +65,22 @@
                                 </select>
                                 <span *ngIf="submitted && hasError('featured','required')" class="alert-danger">Featured is
                                     required</span>
-                            </div>
+                            </div> -->
                          
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Text</label> 
+                                <label for="exampleInputEmail1">Text/Descriptions</label> 
                                    <textarea name="text" autocomplete="nope" formControlName="text" 
                                         class="form-control" placeholder="Testimonial Information"></textarea>
                                 <span *ngIf="submitted && hasError('text','required')" class="alert-danger">Testimonial Information is
                                     required</span>
                             </div> 
+                            <div class="form-group"> 
+                                <label for="exampleInputEmail1">Designation</label>
+                                <input type="text" name="job" autocomplete="off" formControlName="job"
+                                    class="form-control" placeholder="Designation">
+                                <span *ngIf="submitted && hasError('job','required')" class="alert-danger">Designation is
+                                    required</span>
+                            </div>
                             <!-- <div class="form-group">
                                 <label for="exampleInputEmail1">Job</label> 
                                 <ng-select [items]="jobs" bindLabel="name" placeholder="Select Job" appendTo="body"
@@ -82,7 +89,7 @@
                                 <span *ngIf="submitted && hasError('job','required')" class="alert-danger">Job is
                                     required</span>
                             </div>  -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputEmail1">Job</label>
                                 <select name="job" formControlName="job" class="form-control">
                                     <option value="">Select Job</option>
@@ -92,7 +99,7 @@
                                     <option value="Vice President">Vice President</option>
                                     <option value="Others">Others</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Testimonial Image (Width - 141px X Height - 141px)</label><br>

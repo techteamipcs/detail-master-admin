@@ -54,11 +54,11 @@ export class AddTestimonialComponent implements OnInit {
     this.addTestimonialForm = this.formBuilder.group({
       name: ['',Validators.required],
       status: [true,Validators.required],
-      title: ['',Validators.required],
-      location: ['',Validators.required],
+      title: [''],
+      location: [''],
       text: ['',Validators.required],
-      featured: ['',Validators.required],
-      job: ['',Validators.required],
+      featured: [''],
+      job: [''],
       ratings: ['',Validators.required]
      });
      this.imagePath = environment.baseUrl+'/public/';

@@ -19,7 +19,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<input class="form-control mt-4" type="text" (keyup)="searchContact()" name="search" [(ngModel)]="searchText"
-                                          autocomplete="off" placeholder="&#61442;  Start searching a Client by id or name">
+                                          autocomplete="off" placeholder="&#61442;  Start searching a Client  name">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -36,7 +36,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <!-- <th>Subject</th> -->
-                                <!-- <th>Message</th> -->
+                                <th>Message</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -55,7 +55,7 @@
                                 <td>{{listContact.email}}</td>
                                 <td>{{listContact.phone}}</td>
                                 <!-- <td><p *ngFor="let sub of listContact.subject">{{sub.name}}</p></td> -->
-                                <!-- <td>{{listContact.message}}</td> -->
+                                <td>{{listContact.message}}</td>
                                 <td>{{listContact.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>
                                 <td><a style="cursor:pointer;padding-left: 15px;"
                                         (click)="deletecontact(listContact._id)"><i class="fa fa-trash-o"
