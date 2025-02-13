@@ -40,8 +40,8 @@
                                 <th>SL No</th>
                                 <th>Name</th>
                                 <th>Image</th>
-                                <th>location</th>
-                                <th>Title</th>
+                                <!-- <th>location</th>
+                                <th>Title</th> -->
                                 <th>Ratings</th>
                                 <th>Status <ng-toggle
                                     [(ngModel)]="isactive"
@@ -74,8 +74,8 @@
                                 <td>{{listTestimonial.name}}</td>
                                 <td><img src="{{imagePath}}{{listTestimonial.image}}" alt="logo"
                                         style="height: 100px;width: 100px;"></td>
-                                <td>{{listTestimonial.location}}</td>
-                                <td>{{listTestimonial.title}}</td>
+                                <!-- <td>{{listTestimonial.location}}</td> -->
+                                <!-- <td>{{listTestimonial.title}}</td> -->
                                 <td>{{ listTestimonial.ratings}}</td>
                                 <td>{{listTestimonial.status == true ? 'Active':'Deactive'}}</td>
                                 <td>{{listTestimonial.created_at | date: 'dd/MMM/yyyy hh:mm a'}}</td>

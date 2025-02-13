@@ -24,7 +24,7 @@ export class TestimonialService {
   };
 
   getTestimonialDetails = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/home/alltestimonial';
+    const endpoint = environment.baseUrl+'/api/home/viewtestimonial';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
