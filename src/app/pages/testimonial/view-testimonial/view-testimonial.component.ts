@@ -84,9 +84,9 @@ export class ViewTestimonialComponent implements OnInit {
         (response)=> {
           if (response.code == 200) 
           {
-            if(response.testimonialData != null && response.testimonialData != '')
+            if(response.result != null && response.result != '')
             {
-              this.testimonialData = response.testimonialData;
+              this.testimonialData = response.result;
               this.totalRecord     = response?.count; 
               window.scroll(0,0); 
             }

@@ -93,7 +93,7 @@ export class AddProjectComponent implements OnInit {
 			name: ['', [Validators.required, Validators.maxLength(255)]],
 			desc: ['', Validators.required],
 			category: ['', Validators.required],
-			link: ['', Validators.required],
+			link: [''],
 			scope: ['', Validators.required],
 			location: ['', Validators.required],
 			owner: ['', Validators.required],

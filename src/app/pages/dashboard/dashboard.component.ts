@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
   homegallery_count:any;
   podcast_count:any;
   socialactivity_count:any;
+  tvshows_count:any;
   constructor( private router: Router,
     private dashboardService:DashboardService,
     private toastr: ToastrManager) { }
@@ -124,6 +125,7 @@ export class DashboardComponent implements OnInit {
               this.award_count = response.count_award;
               this.podcast_count = response.count_podcast;
               this.socialactivity_count = response.count_socialactivity;
+              this.tvshows_count = response.count_tvshows;
               this.cartCountValues = [this.achievement_count,this.award_count,
                 this.podcast_count,this.socialactivity_count,this.contact_count,this.gallery_count,
                 this.allpage_count,this.subscriber_count,this.testimonial_count,this.user_count,]

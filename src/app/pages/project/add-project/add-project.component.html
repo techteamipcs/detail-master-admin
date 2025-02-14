@@ -88,20 +88,20 @@
 									required</span>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="exampleInputEmail1">Link</label>
 								<input type="text" name="link" autocomplete="off" formControlName="link" class="form-control"
 									placeholder="Project Link">
 								<span *ngIf="submitted && hasError('link','required')" class="alert-danger">Link is
 									required</span>
-							</div>
+							</div> -->
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Project Image</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutput($event)"
 									[uploadInput]="uploadInput" />
-								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
-									141)</label>
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 1509 *
+									702)</label>
 								<div class="row" *ngIf="projectImage">
 									<div class="col-md-2">
 										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{projectImage}}">
@@ -115,8 +115,8 @@
 								<label for="exampleInputEmail1">Project Multil Image</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputProjectImage($event)"
 									[uploadInput]="uploadInput" />
-								<label for="exampleInputEmail2" style="display: block;">(Required Size 141 *
-									141)</label>
+								<label for="exampleInputEmail2" style="display: block;">(Required Size 703 *
+									432)px</label>
 
 								<div class="row">
 									<div class="col-md-2" *ngFor="let proimage of projectMultiImages; let i = index;">
@@ -132,7 +132,7 @@
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD1($event)"
 									[uploadInput]="uploadInput" />
 								<label for="exampleInputEmail1" style="display: block;">
-									(Required Size 141 * 141)
+									(Required Size 958 * 406)px
 								</label>
 								<div class="row" *ngIf="designImage1">
 									<div class="col-md-2">
@@ -148,8 +148,8 @@
 								<label for="exampleInputEmail1">Design Image 2</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD2($event)"
 									[uploadInput]="uploadInput" />
-								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
-									141)</label>
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 958 *
+									406)px</label>
 								<div class="row" *ngIf="designImage2">
 									<div class="col-md-2">
 										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage2}}">
@@ -163,8 +163,8 @@
 								<label for="exampleInputEmail1">Design Image 3</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD3($event)"
 									[uploadInput]="uploadInput" />
-								<label for="exampleInputEmail1" style="display: block;">(Required Size 141 *
-									141)</label>
+								<label for="exampleInputEmail1" style="display: block;">(Required Size 516 *
+									846)px</label>
 								<div class="row" *ngIf="designImage3">
 									<div class="col-md-2">
 										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage3}}">

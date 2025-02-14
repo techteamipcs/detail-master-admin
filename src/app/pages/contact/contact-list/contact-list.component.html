@@ -19,7 +19,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<input class="form-control mt-4" type="text" (keyup)="searchContact()" name="search" [(ngModel)]="searchText"
-                                          autocomplete="off" placeholder="&#61442;  Start searching a Client  name">
+                                          autocomplete="off" placeholder="&#61442;  Start searching here">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -63,7 +63,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="detailmaster-pagination" *ngIf="totalRecord > 0  | filter:searchText;">
+                    <div class="detailmaster-pagination" *ngIf="totalRecord > 0 && !searchText">
                         <app-pagination #pagination [initialPage]="currentPage" [count]="totalRecord"
                             (changePage)="onListChangePage($event)"></app-pagination>
                     </div>
