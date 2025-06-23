@@ -110,7 +110,7 @@
 									</div>
 								</div>
 							</div>
-
+							<hr>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Project Multil Image</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputProjectImage($event)"
@@ -126,7 +126,21 @@
 									</div>
 								</div>
 							</div>
-
+							<hr>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Project Design Image</label>
+								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputProjectDesignImage($event)"
+									[uploadInput]="uploadInput" />
+								<label for="exampleInputEmail2" style="display: block;">(Required Size *)px</label>
+								<div class="row">
+									<div class="col-md-2" *ngFor="let designImage of projectDesignImages; let i = index;">
+										<img alt="logo" style="height: 100px; width: 100px;" src="{{imagePath}}project/{{designImage}}">
+										<a href="javascript:;" (click)="removeDesignImage(i)" class="small-box-footer"><i class="fa fa-trash"
+												style="color: red;" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+							<hr>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Design Image 1</label>
 								<input type="file" #uploader ngFileSelect (uploadOutput)="onUploadOutputD1($event)"
@@ -182,17 +196,21 @@
 									is required</span>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">URL Key (This option is for adding 'Case Study' button for a project. Please mention a unique word or the first word of each project. The data added in this option will appear on the corresponding case study URL.)</label>
+								<label for="exampleInputEmail1">URL Key (This option is for adding 'Case Study' button for a project.
+									Please mention a unique word or the first word of each project. The data added in this option will
+									appear on the corresponding case study URL.)</label>
 								<input type="text" name="url_key" autocomplete="off" formControlName="url_key" class="form-control"
 									placeholder="URL Key">
-								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL key or # is required</span>
+								<span *ngIf="submitted && hasError('url_key','required')" class="alert-danger">URL key or # is
+									required</span>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Related of Projects</label>
 								<ng-select class="form-control" [items]="projectListData" bindLabel="name" placeholder="Select Projects"
 									[multiple]="true" formControlName="related_prjects">
 								</ng-select>
-								<span *ngIf="submitted && hasError('related_prjects','required')" class="alert-danger">Related Projects is
+								<span *ngIf="submitted && hasError('related_prjects','required')" class="alert-danger">Related Projects
+									is
 									required</span>
 							</div>
 

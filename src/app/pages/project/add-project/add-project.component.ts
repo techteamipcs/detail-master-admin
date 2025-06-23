@@ -78,6 +78,7 @@ export class AddProjectComponent implements OnInit {
 
 	selected = [{ id: 1, name: "Retail" }];
 	projectMultiImages: any = [];
+	projectDesignImages: any = [];
 	projectData:any = [];
 	projectListData:any = [];
 	constructor(
@@ -133,6 +134,7 @@ export class AddProjectComponent implements OnInit {
 					this.getAllProjects();
 					this.projectImage = data?.image;
 					this.projectMultiImages = data?.project_images;
+					this.projectDesignImages = data?.project_design_images;
 					this.designImage1 = data?.design_image_1;
 					this.designImage2 = data?.design_image_2;
 					this.designImage3 = data?.design_image_3;
@@ -167,6 +169,7 @@ export class AddProjectComponent implements OnInit {
 		obj['design_image_3'] = this.designImage3;
 		obj['image'] = this.projectImage;
 		obj['project_images'] = this.projectMultiImages;
+		obj['project_design_images'] = this.projectDesignImages;
 		if (this.addProjectForm.invalid) {
 			return;
 		}
@@ -241,6 +244,21 @@ export class AddProjectComponent implements OnInit {
 		}
 		else if (output.type === 'done' && typeof output.file !== 'undefined') {
 			this.projectMultiImages.push(output.file.response.result);
+		}
+	}
+
+	onUploadOutputProjectDesignImage(output: UploadOutput): void {
+		if (output.type === 'allAddedToQueue') {
+			const event: UploadInput = {
+				type: 'uploadAll',
+				url: environment.baseUrl + '/api/project/addimage',
+				method: 'POST',
+				data: {},
+			};
+			this.uploadInput.emit(event);
+		}
+		else if (output.type === 'done' && typeof output.file !== 'undefined') {
+			this.projectDesignImages.push(output.file.response.result);
 		}
 	}
 
@@ -319,6 +337,12 @@ export class AddProjectComponent implements OnInit {
 	removeImageHover(index) {
 		if (confirm("Are you sure to delete this image")) {
 			this.projectMultiImages.splice(index, 1)
+		}
+	}
+
+	removeDesignImage(index) {
+		if (confirm("Are you sure to delete this image")) {
+			this.projectDesignImages.splice(index, 1)
 		}
 	}
 
