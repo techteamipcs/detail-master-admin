@@ -6,12 +6,13 @@ export const environment = {
 	production: false,
 
 	// live
-	// Url: 'https://build.pixtar.ae/admin',
-	// baseUrl:'https://build.pixtar.ae:5010',
+	Url: 'https://www.detailmastergroup.com/admin',
+	baseUrl: 'https://www.detailmastergroup.com:5010',
+
 
 	// local
-	baseUrl: 'http://localhost:5010',
-	Url: 'http://localhost:4310',
+	// baseUrl: 'http://localhost:5010',
+	// Url: 'http://localhost:4310',
 
 };
 

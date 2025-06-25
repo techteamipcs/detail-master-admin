@@ -2,8 +2,8 @@ export const environment = {
 	production: true,
 
 	// live
-	// Url: 'https://build.pixtar.ae/admin',
-	// baseUrl:'https://build.pixtar.ae:5010',
+	Url: 'https://www.detailmastergroup.com/admin',
+	baseUrl: 'https://www.detailmastergroup.com:5010',
 
 	// local
 	// Url: 'http://localhost/detailmaster/admin',
